@@ -1582,7 +1582,7 @@ dev = [
     { name = "requests", specifier = ">=2.32.3" },
     { name = "ruff", specifier = ">=0.7.1" },
     { name = "ssort", specifier = ">=0.13.0" },
-    { name = "toml-sort", specifier = ">=0.23.1,<0.24" },
+    { name = "toml-sort", specifier = ">=0.23.1,<0.25" },
 ]
 
 [[package]]
@@ -2717,14 +2717,14 @@ wheels = [
 
 [[package]]
 name = "toml-sort"
-version = "0.23.1"
+version = "0.24.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "tomlkit" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/be/87/73d4464480f5191a21ff7e142131fedbf65ad90bc84a9be04db8e0554a15/toml_sort-0.23.1.tar.gz", hash = "sha256:833728c48b0f8d509aecd9ae8347768ca3a9332977b32c9fd2002932f0eb9c90", size = 18624, upload-time = "2023-05-08T04:14:59Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/15/65/d62fb175769355a65c2c5e53a155cf28f2162af4e4067f11d8af89c0a4a3/toml_sort-0.24.3.tar.gz", hash = "sha256:74c3cab5c1ecaf76c8239addc15342de548fb39598694f1298550d0fe2673a81", size = 17773, upload-time = "2025-09-10T02:43:54.955Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f4/7c/f5f7141fa13737341f06b28f242669b45abe279a3c3f40b1688e5dd74707/toml_sort-0.23.1-py3-none-any.whl", hash = "sha256:69ae60de9c4d67478533697eb4119092e2b30ddffe5ca09bbad3912905c935a0", size = 20678, upload-time = "2023-05-08T04:14:56.49Z" },
+    { url = "https://files.pythonhosted.org/packages/0e/1c/f5a9a4f918ff0e1578fdc3f607a7ec704c5da1b13ddc290fd0aefa97ff2e/toml_sort-0.24.3-py3-none-any.whl", hash = "sha256:d70642f54827b4c17a6cde788dcb45d598c1eb9833544a2fcec5eb7b0b744ed4", size = 16538, upload-time = "2025-09-10T02:43:53.67Z" },
 ]
 
 [[package]]
