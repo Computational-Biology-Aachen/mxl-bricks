@@ -4,7 +4,7 @@ requires = ["hatchling"]
 
 [dependency-groups]
 dev = [
-  "toml-sort>=0.23.1,<0.24",
+  "toml-sort>=0.23.1,<0.25",
   "ruff>=0.7.1",
   "coverage>=7.6.4",
   "jupyter>=1.1.1",
