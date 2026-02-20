@@ -9,15 +9,6 @@ repos:
       - id: ruff-format
         types_or: [python, pyi, jupyter]
 
-  # Sort pyproject toml
-  - repo: https://github.com/pappasam/toml-sort
-    rev: v0.24.2
-    hooks:
-      - id: toml-sort-fix
-        args: [--in-place]
-        language: python
-        types: [toml]
-
   # Make sure pixi lock is up to date
   - repo: local
     hooks:

@@ -23,7 +23,7 @@ dev = [
 ]
 
 [project]
-authors = [{name = "Marvin van Aalst", email = "marvin.vanaalst@gmail.com"}]
+authors = [{ name = "Marvin van Aalst", email = "marvin.vanaalst@gmail.com" }]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
@@ -45,7 +45,7 @@ keywords = ["modelling", "ode", "metabolic"]
 license = "MIT"
 requires-python = ">=3.12"
 maintainers = [
-  {name = "Marvin van Aalst", email = "marvin.vanaalst@gmail.com"},
+  { name = "Marvin van Aalst", email = "marvin.vanaalst@gmail.com" },
 ]
 name = "mxlbricks"
 readme = "README.md"
@@ -88,45 +88,45 @@ select = ["ALL"]
 fixable = ["ALL"]
 ignore = [
   "ANN401",  # any
-  "C901",  # too complex
+  "C901",    # too complex
   "COM812",  # missing trailing comma
-  "D",  # all of documentation
-  "E501",  # line-too-long
+  "D",       # all of documentation
+  "E501",    # line-too-long
   "ERA001",  # commented-out code
   "FIX001",  # line contains FIXME
   "ISC001",  # single line implicit string concat
-  "N806",  # non-lowercase variable
+  "N806",    # non-lowercase variable
   "PGH003",  # specific rule type ignore
-  "S110",  # try-except-pass
-  "S301",  # pickle usage
-  "TD001",  # invalid todo tag
-  "TD002",  # missing todo author
-  "TD003",  # missing todo link
-  "TD004",  # missing todo version
-  "TD005",  # missing todo date
+  "S110",    # try-except-pass
+  "S301",    # pickle usage
+  "TD001",   # invalid todo tag
+  "TD002",   # missing todo author
+  "TD003",   # missing todo link
+  "TD004",   # missing todo version
+  "TD005",   # missing todo date
   "TRY003",  # raise vanilla args
-  "PLR0912",  # too many branches
-  "PLR0911",  # too many statements
-  "PLR0913",  # max num of arguments
-  "PLR0915",  # too many lines
-  "PD010",  # pivot table
-  "PT011",  # pytest.raises is too broad
+  "PLR0912", # too many branches
+  "PLR0911", # too many statements
+  "PLR0913", # max num of arguments
+  "PLR0915", # too many lines
+  "PD010",   # pivot table
+  "PT011",   # pytest.raises is too broad
   "RUF022",  # unsorted all
-  "TC006",  # cast("type")
-  "N803",  # lowercase name
+  "TC006",   # cast("type")
+  "N803",    # lowercase name
 ]
 
 [tool.ruff.lint.per-file-ignores]
 "*.ipynb" = [
-  "T201",  # print statements
-  "D",  # all of documentation
+  "T201", # print statements
+  "D",    # all of documentation
 ]
 "tests/*" = [
-  "S101",  # assert
-  "D",  # all of documentation
-  "PLR2004",  # magic comparisons
-  "SLF",  # private access
-  "PD901",  # df name
+  "S101",    # assert
+  "D",       # all of documentation
+  "PLR2004", # magic comparisons
+  "SLF",     # private access
+  "PD901",   # df name
 ]
 
 [tool.tomlsort]
@@ -138,4 +138,4 @@ trailing_comma_inline_array = true
 package = true
 
 [tool.uv.sources]
-mxlbricks = {workspace = true}
+mxlbricks = { workspace = true }
