@@ -24,19 +24,4 @@ jobs:
         run: pixi install
 
       - name: Run tests
-        run: pixi run test-cov
-
-      - name: Get coverage value
-        run: python -c "import json; print('COVERAGE={}'.format(json.load(open('coverage.json'))['totals']['percent_covered_display']))" >> $GITHUB_ENV
-
-      - name: Coverage badge
-        uses: schneegans/dynamic-badges-action@v1.7.0
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: 834e07ef419b8bdc03a75645bacdbc66
-          filename: coverage.json
-          label: Coverage
-          message: ${{ env.COVERAGE }}
-          valColorRange: ${{ env.COVERAGE }}
-          maxColorRange: 100
-          minColorRange: 0
+        run: pixi run test

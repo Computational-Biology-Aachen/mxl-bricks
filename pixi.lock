@@ -5,6 +5,8 @@ environments:
     - url: https://conda.anaconda.org/conda-forge/
     indexes:
     - https://pypi.org/simple
+    options:
+      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -4733,11 +4735,10 @@ packages:
 - pypi: ./
   name: mxlbricks
   version: 0.6.0
-  sha256: 76b3e67032b27f2a901b76f96c2511b35cb19c7c580b03fb97ce9486605d2995
+  sha256: f0d8f06fe999804100e00395385a2f0131443d897f41903e21c841ebccad4524
   requires_dist:
   - mxlpy>=0.26.0
   requires_python: '>=3.12'
-  editable: true
 - pypi: https://files.pythonhosted.org/packages/8a/3d/47f3c5d3b082b3fc74a7d74135a0907877bdd566ce2c18ea067fac448ff2/mxlpy-0.26.0-py3-none-any.whl
   name: mxlpy
   version: 0.26.0
