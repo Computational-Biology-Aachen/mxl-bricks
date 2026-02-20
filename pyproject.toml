@@ -49,9 +49,9 @@ maintainers = [
 ]
 name = "mxlbricks"
 readme = "README.md"
-version = "0.6.0"
+version = "0.7.0"
 dependencies = [
-  "mxlpy>=0.26.0",
+  "mxlpy>=0.30.0",
 ]
 
 [tool.bandit]
@@ -86,8 +86,8 @@ fixable = ["ALL"]
 ignore = [
   "ANN401",  # any
   "C901",  # too complex
-  "COM812",  # missing trailing comma  # "D", # all of documenetation
-  "D",
+  "COM812",  # missing trailing comma
+  "D",  # all of documentation
   "E501",  # line-too-long
   "ERA001",  # commented-out code
   "FIX001",  # line contains FIXME
@@ -122,8 +122,8 @@ ignore = [
   "S101",  # assert
   "D",  # all of documentation
   "PLR2004",  # magic comparisons
-  "SLF",
-  "PD901",  # "df" name
+  "SLF",  # private access
+  "PD901",  # df name
 ]
 
 [tool.tomlsort]

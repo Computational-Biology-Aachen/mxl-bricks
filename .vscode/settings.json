@@ -6,6 +6,7 @@
             88
         ]
     },
+    "python.terminal.activateEnvironment": false,
     "notebook.output.textLineLimit": 50,
     "files.exclude": {
         "**/*.bbl": true,

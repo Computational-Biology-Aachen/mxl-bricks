@@ -134,7 +134,9 @@ names = {
 
 def test_steady_state() -> None:
     model = get_saadat2021()
-    res = Simulator(model, integrator=Assimulo).simulate(100).get_result()
+    res = (
+        Simulator(model, integrator=Assimulo).simulate(100).get_result().unwrap_or_err()
+    )
     assert res is not None
 
     pd.testing.assert_series_equal(

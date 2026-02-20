@@ -1469,7 +1469,7 @@ wheels = [
 
 [[package]]
 name = "mxlbricks"
-version = "0.6.0"
+version = "0.7.0"
 source = { editable = "." }
 dependencies = [
     { name = "mxlpy" },
@@ -1496,7 +1496,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "mxlpy", specifier = ">=0.26.0" }]
+requires-dist = [{ name = "mxlpy", specifier = ">=0.30.0" }]
 
 [package.metadata.requires-dev]
 dev = [
