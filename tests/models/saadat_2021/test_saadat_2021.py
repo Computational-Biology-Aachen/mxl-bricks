@@ -6,6 +6,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pytest
 from mxlpy import Assimulo, Simulator, scan
 
 from mxlbricks import names as n
@@ -145,6 +146,7 @@ def test_steady_state() -> None:
     )
 
 
+@pytest.mark.extensive
 def test_steady_state_by_pfd() -> None:
     reference = pd.read_csv(CWD / "ss-by-pfd.csv", index_col=0).rename(columns=names)
     reference.index.name = "PPFD"

@@ -15,7 +15,7 @@ isort = ">=6.0.1,<7"
 black = ">=25.1.0,<26"
 
 [pypi-dependencies]
-mxlbricks = {path = ".", editable = true}
+mxlbricks = { path = ".", editable = true }
 
 [target.osx-arm64.dependencies]
 clang = "*"
@@ -25,22 +25,23 @@ posix = ">=1.0.0,<2"
 
 [tasks]
 set-version = "export VERSION=$(python -c \"import toml;print('VERSION={}'.format(toml.load(open('pyproject.toml'))['project']['version']))\")"
-test = {cmd = ["pytest", "tests"]}
-test-cov = {cmd = ["pytest", "--disable-warnings", "--cov", "--cov-report", "json", "tests"]}
-mike-deploy = {cmd = [
+test = { cmd = ["pytest", "tests", "-m", "not extensive"] }
+test-full = { cmd = ["pytest", "tests"] }
+test-cov = { cmd = ["pytest", "-m", "not extensive", "--disable-warnings", "--cov", "--cov-report", "json", "tests"] }
+mike-deploy = { cmd = [
   "mike",
   "deploy",
   "--update-aliases",
   "--push",
   "$VERSION",
   "latest",
-], env = {JUPYTER_PLATFORM_DIRS = "1", VERSION = "$VERSION"}}
-mike-set-default = {cmd = [
+], env = { JUPYTER_PLATFORM_DIRS = "1", VERSION = "$VERSION" } }
+mike-set-default = { cmd = [
   "mike",
   "set-default",
   "--push",
   "latest",
-]}
+] }
 
 [workspace]
 authors = ["Marvin van Aalst <marvin.vanaalst@gmail.com>"]

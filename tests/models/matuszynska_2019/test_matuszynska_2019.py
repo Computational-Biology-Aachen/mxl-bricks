@@ -6,6 +6,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pytest
 from mxlpy import Assimulo, scan
 
 from mxlbricks import get_matuszynska2019 as get_model
@@ -121,6 +122,7 @@ def test_steady_state_by_pfd() -> None:
     pd.testing.assert_frame_equal(reference, res.loc[:, to_compare], rtol=1e-4)
 
 
+@pytest.mark.extensive
 def test_steady_state_by_pfd_analytical() -> None:
     reference = pd.read_csv(CWD / "ss-by-pfd.csv", index_col=0).rename(columns=names)
     reference.index.name = "PPFD"
