@@ -68,5 +68,7 @@ pixi install
 `MxlBricks` is part of a larger family of tools that are designed with a similar set of abstractions. Check them out!
 
 - [MxlPy](https://github.com/Computational-Biology-Aachen/MxlPy) is a Python package for mechanistic learning (Mxl)
+- [MxlModels](https://github.com/Computational-Biology-Aachen/mxl-models) supplies flat, single-file versions of MxlBricks models for easy inspection
 - [MxlWeb](https://github.com/Computational-Biology-Aachen/mxl-web) brings simulation of mechanistic models to the browser!
-- [MxlModels](https://github.com/Computational-Biology-Aachen/mxl-models) supplies you with flat, easy-to-use and inspect models.
+- [pysbml](https://github.com/Computational-Biology-Aachen/pysbml) simplifies SBML models for import/export with MxlPy
+- [Parameteriser](https://gitlab.com/marvin.vanaalst/parameteriser) looks up kinetic parameters from BRENDA and other databases
