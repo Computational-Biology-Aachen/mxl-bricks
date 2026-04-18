@@ -38,7 +38,7 @@ Install pixi [as described in the docs](https://pixi.sh/latest/#installation).
 Run
 
 ```bash
-pixi instal
+pixi install
 ```
 
 
@@ -65,7 +65,8 @@ pixi instal
 
 ## Tool family 🏠
 
-`MxlPy` is part of a larger family of tools that are designed with a similar set of abstractions. Check them out!
+`MxlBricks` is part of a larger family of tools that are designed with a similar set of abstractions. Check them out!
 
 - [MxlPy](https://github.com/Computational-Biology-Aachen/MxlPy) is a Python package for mechanistic learning (Mxl)
 - [MxlWeb](https://github.com/Computational-Biology-Aachen/mxl-web) brings simulation of mechanistic models to the browser!
+- [MxlModels](https://github.com/Computational-Biology-Aachen/mxl-models) supplies you with flat, easy-to-use and inspect models.
