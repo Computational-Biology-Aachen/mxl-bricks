@@ -1,5 +1,4 @@
-import math
-
+import numpy as np
 from mxlpy import Model
 
 from mxlbricks import names as n
@@ -314,8 +313,7 @@ def _keq_pq_red(
     dg1 = -E0_QA * F
     dg2 = -2 * E0_PQ * F
     dg = -2 * dg1 + dg2 + 2 * pHstroma * dG_pH
-
-    return math.exp(-dg / RT)
+    return np.exp(-dg / RT)
 
 
 def add_plastoquinone_keq(
@@ -396,11 +394,11 @@ def add_quencher(
 
 
 def _ph_lumen(protons: float) -> float:
-    return -math.log10(protons * 0.00025)
+    return -np.log10(protons * 0.00025)
 
 
 def _dg_ph(r: float, t: float) -> float:
-    return math.log(10) * r * t
+    return np.log(10) * r * t
 
 
 def add_ph_lumen(
