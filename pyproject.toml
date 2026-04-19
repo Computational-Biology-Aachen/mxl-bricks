@@ -139,3 +139,8 @@ package = true
 
 [tool.uv.sources]
 mxlbricks = { workspace = true }
+
+[tool.pytest]
+markers = [
+  "extensive",
+]
