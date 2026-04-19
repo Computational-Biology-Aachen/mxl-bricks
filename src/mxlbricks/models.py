@@ -5,9 +5,8 @@ from typing import Literal
 from mxlpy import Model, Parameter, Variable, units
 from sympy.physics.units.quantities import Quantity
 
-from mxlbricks import names as n
-from mxlbricks.utils import fcbb_regulated, static, thioredixon_regulated
-
+from . import names as n
+from ._tmp import get_matuszynska2016_npq
 from .derived import (
     add_adenosin_moiety,
     add_ascorbate_moiety,
@@ -83,6 +82,17 @@ from .enzymes import (
     add_violaxanthin_epoxidase,
     add_zeaxanthin_epoxidase,
 )
+from .utils import fcbb_regulated, static, thioredixon_regulated
+
+__all__ = [
+    "get_matuszynska2016_npq",
+    "get_yokota1985",
+    "get_poolman2000",
+    "get_matuszynska2016_phd",
+    "get_matuszynska2019",
+    "get_saadat2021",
+    "get_cbb_regulated",
+]
 
 mol_chl = Quantity("mol_chl", abbrev="mol_chl")
 mmol_mol_chl = units.mmol / mol_chl
@@ -181,7 +191,7 @@ def get_poolman2000() -> Model:
     return model
 
 
-def get_matuszynska2016npq(
+def get_matuszynska2016_phd(
     *,
     mode: Literal["matrix", "analytical"] = "matrix",
     chl_lumen: str = "_lumen",
