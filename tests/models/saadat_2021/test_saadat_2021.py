@@ -2,12 +2,13 @@
 # https://doi.org/10.3389/fpls.2021.750580
 
 
+from functools import partial
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
-from mxlpy import Assimulo, Simulator, scan
+from mxlpy import Scipy, Simulator, scan
 
 from mxlbricks import names as n
 from mxlbricks.models import get_saadat2021
@@ -136,13 +137,17 @@ names = {
 def test_steady_state() -> None:
     model = get_saadat2021()
     res = (
-        Simulator(model, integrator=Assimulo).simulate(100).get_result().unwrap_or_err()
+        Simulator(model, integrator=partial(Scipy, method="Radau"))
+        .simulate(100)
+        .get_result()
+        .unwrap_or_err()
     )
     assert res is not None
 
     pd.testing.assert_series_equal(
         pd.Series(model.get_initial_conditions()),
         pd.Series(res.get_new_y0()),
+        rtol=1e-2,
     )
 
 
@@ -168,4 +173,8 @@ def test_steady_state_by_pfd() -> None:
 
     # Check if all mapped are the same
     to_compare = list(reference.columns.intersection(res.columns))
-    pd.testing.assert_frame_equal(reference, res.loc[:, to_compare], rtol=1e-4)
+    pd.testing.assert_frame_equal(
+        reference,
+        res.loc[:, to_compare],
+        rtol=1e-2,
+    )

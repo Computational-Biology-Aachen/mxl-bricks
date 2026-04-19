@@ -1,9 +1,6 @@
 name: ci
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -17,11 +14,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install pixi
-        uses: prefix-dev/setup-pixi@v0.8.11
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Set up Python
+        run: uv python install 3.13
+
+      - name: Set Python version
+        run: uv venv --python 3.13
 
       - name: Set up environment
-        run: pixi install
+        run: uv sync --all-extras --all-groups
 
       - name: Run tests
-        run: pixi run test
+        run: uv run pytest -m "not extensive" --disable-warnings tests/

@@ -21,11 +21,14 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
-      - name: Install pixi
-        uses: prefix-dev/setup-pixi@v0.8.11
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
 
-      - name: Set up environment
-        run: pixi install
+      - name: Set up Python
+        run: uv python install 3.13
+
+      - name: Set Python version
+        run: uv venv --python 3.13
 
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
       - uses: actions/cache@v4
@@ -34,7 +37,7 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-
-      - run: pixi run set-version
-      - run: pixi run mike-deploy
-      - run: pixi run mike-set-default
+      - run: uv sync --all-extras --all-groups
+      - run: uv run python -c "import toml;print('VERSION={}'.format(toml.load(open('pyproject.toml'))['project']['version']))" >> $GITHUB_ENV
+      - run: uv run mike deploy --update-aliases --push ${{ env.VERSION }} latest
+      - run: uv run mike set-default --push latest

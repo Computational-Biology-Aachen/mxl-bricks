@@ -1,9 +1,9 @@
 name: ci
 
 on:
-  release:
-    types: [published]
-  workflow_dispatch: {}
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -14,23 +14,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install pixi
-        uses: prefix-dev/setup-pixi@v0.8.11
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Set up Python
+        run: uv python install 3.13
+
+      - name: Set Python version
+        run: uv venv --python 3.13
 
       - name: Set up environment
-        run: pixi install
+        run: uv sync --all-extras --all-groups
 
       - name: Run tests
-        run: pixi run test-cov
+        run: uv run pytest -m "not extensive" --disable-warnings --cov --cov-report json
+          tests/
 
       - name: Get coverage value
-        run: python -c "import json; print('COVERAGE={}'.format(json.load(open('coverage.json'))['totals']['percent_covered_display']))" >> $GITHUB_ENV
+        run: python -c "import json;
+          print('COVERAGE={}'.format(json.load(open('coverage.json'))['totals']['percent_covered_display']))"
+          >> $GITHUB_ENV
 
       - name: Coverage badge
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
-          gistID: 834e07ef419b8bdc03a75645bacdbc66
+          gistID: 98ab3ce1db511de42f9871e91d85e4cd
           filename: coverage.json
           label: Coverage
           message: ${{ env.COVERAGE }}

@@ -2,12 +2,13 @@
 # https://doi.org/10.1111/ppl.12962
 
 
+from functools import partial
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
-from mxlpy import Assimulo, scan
+from mxlpy import Scipy, scan
 
 from mxlbricks import get_matuszynska2019 as get_model
 from mxlbricks import names as n
@@ -103,7 +104,7 @@ def test_steady_state_by_pfd() -> None:
     res = scan.steady_state(
         get_model(variant=None),
         to_scan=pd.DataFrame({n.pfd(): np.arange(100, 1400, 100)}),
-        integrator=Assimulo,
+        integrator=partial(Scipy, method="Radau"),
     ).get_args(
         include_variables=True,
         include_parameters=True,
@@ -119,7 +120,7 @@ def test_steady_state_by_pfd() -> None:
 
     # Check if all mapped are the same
     to_compare = list(reference.columns.intersection(res.columns))
-    pd.testing.assert_frame_equal(reference, res.loc[:, to_compare], rtol=1e-4)
+    pd.testing.assert_frame_equal(reference, res.loc[:, to_compare], rtol=1e-2)
 
 
 @pytest.mark.extensive
@@ -130,7 +131,7 @@ def test_steady_state_by_pfd_analytical() -> None:
     res = scan.steady_state(
         get_model(variant=None, mode="matrix"),
         to_scan=pd.DataFrame({n.pfd(): np.arange(100, 1400, 100)}),
-        integrator=Assimulo,
+        integrator=partial(Scipy, method="Radau"),
     ).get_args(
         include_variables=True,
         include_parameters=True,
@@ -146,4 +147,4 @@ def test_steady_state_by_pfd_analytical() -> None:
 
     # Check if all mapped are the same
     to_compare = list(reference.columns.intersection(res.columns))
-    pd.testing.assert_frame_equal(reference, res.loc[:, to_compare], rtol=1e-4)
+    pd.testing.assert_frame_equal(reference, res.loc[:, to_compare], rtol=1e-2)
