@@ -1,38 +1,47 @@
 {
-    "python.defaultInterpreterPath": ".venv/bin/python",
-    // "python.defaultInterpreterPath": ".pixi/envs/default/bin/python",
     "[python]": {
         "editor.rulers": [
             88
         ]
     },
-    "python.terminal.activateEnvironment": false,
-    "notebook.output.textLineLimit": 50,
     "files.exclude": {
+        "**/__pycache__": true,
+        "**/_minted-main": true,
+        "**/*.aux": true,
         "**/*.bbl": true,
+        "**/*.bcf": true,
         "**/*.blg": true,
         "**/*.dvi": true,
+        "**/*.egg-info": true,
         "**/*.fdb_latexmk": true,
         "**/*.fls": true,
-        "**/*.aux": true,
-        "**/*.synctex.gz": true,
-        "**/*.log": true,
-        "**/*.out": true,
-        "**/*.toc": true,
-        "**/*.lof": true,
-        "**/*.lot": true,
         "**/*.glsdefs": true,
-        "**/_minted-main": true,
-        "**/*synctex(busy)": true,
-        "**/*.run.xml": true,
-        "**/*.bcf": true,
+        "**/*.lof": true,
+        "**/*.log": true,
+        "**/*.lot": true,
         "**/*.mypy_cache": true,
+        "**/*.out": true,
+        "**/*.pixi": true,
         "**/*.pytest_cache": true,
         "**/*.ruff_cache": true,
-        "**/__pycache__": true,
-        "**/*.egg-info": true,
+        "**/*.run.xml": true,
+        "**/*.synctex.gz": true,
+        "**/*.toc": true,
         // envs
         "**/*.venv": true,
-        "**/*.pixi": true,
+        "**/*dist": true,
+        "**/*synctex(busy)": true
     },
+    "notebook.output.textLineLimit": 50,
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.terminal.activateEnvironment": false,
+    "ruff.interpreter": [
+        "${workspaceFolder}/.venv/bin/python"
+    ],
+    "terminal.integrated.env.linux": {
+        "UV_PROJECT_ENVIRONMENT": "${workspaceFolder}/.venv"
+    },
+    "terminal.integrated.env.osx": {
+        "UV_PROJECT_ENVIRONMENT": "${workspaceFolder}/.venv"
+    }
 }
