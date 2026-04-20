@@ -6,7 +6,7 @@ from mxlpy import Model, Parameter, Variable, units
 from sympy.physics.units.quantities import Quantity
 
 from . import names as n
-from ._tmp import get_matuszynska2016_npq
+from ._m16_npq import get_matuszynska2016_npq
 from .derived import (
     add_adenosin_moiety,
     add_ascorbate_moiety,
