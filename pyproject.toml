@@ -18,6 +18,8 @@ dev = [
   "pyright>=1.1.387",
   "ssort>=0.13.0",
   "mike>=2.1.3",
+  "libcst>=1.8.6",
+  "typer>=0.24.1",
 ]
 
 [project]
