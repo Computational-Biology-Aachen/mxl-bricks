@@ -6,6 +6,7 @@ from mxlpy import Model, Parameter, Variable, units
 from sympy.physics.units.quantities import Quantity
 
 from . import names as n
+from ._e26 import get_ebeling_2026
 from ._m16_npq import get_matuszynska2016_npq
 from .derived import (
     add_adenosin_moiety,
@@ -85,6 +86,7 @@ from .enzymes import (
 from .utils import fcbb_regulated, static, thioredixon_regulated
 
 __all__ = [
+    "get_ebeling_2026",
     "get_matuszynska2016_npq",
     "get_yokota1985",
     "get_poolman2000",
