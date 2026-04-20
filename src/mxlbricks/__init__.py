@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 __all__ = [
+    "get_ebeling_2026",
     "get_matuszynska2016_npq",
     "get_matuszynska2016_phd",
     "get_matuszynska2019",
@@ -12,6 +13,7 @@ __all__ = [
 
 from . import names
 from .models import (
+    get_ebeling_2026,
     get_matuszynska2016_npq,
     get_matuszynska2016_phd,
     get_matuszynska2019,
