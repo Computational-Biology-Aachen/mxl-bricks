@@ -5,7 +5,6 @@ __all__ = [
     "get_matuszynska2016_phd",
     "get_matuszynska2019",
     "get_poolman2000",
-    "get_poolman2000",
     "get_saadat2021",
     "get_yokota1985",
     "names",
