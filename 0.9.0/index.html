@@ -8,20 +8,22 @@
       
       
       
-        <link rel="canonical" href="https://computational-biology-aachen.github.io/mxl-bricks/latest/plot_.html">
+        <link rel="canonical" href="https://computational-biology-aachen.github.io/mxl-bricks/0.9.0/index.html">
       
       
+      
+        <link rel="next" href="models.html">
       
       
         
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Plot - mxl-bricks docs</title>
+        <title>mxl-bricks docs</title>
       
     
     
@@ -73,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#mxlbricks" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -109,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Plot 
+              About
             
           </span>
         </div>
@@ -259,10 +266,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="index.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -278,6 +312,165 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motivation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reaction-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaction definition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reaction definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#injecting-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Injecting parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derived-vmax-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derived vmax values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtered-stoichiometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtered stoichiometries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model building
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#design-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design recommendations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discarded-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discarded design decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discarded design decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model inheritance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -409,6 +602,155 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motivation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reaction-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaction definition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reaction definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#injecting-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Injecting parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derived-vmax-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derived vmax values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtered-stoichiometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtered stoichiometries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model building
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#design-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design recommendations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discarded-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discarded design decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discarded design decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model inheritance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -427,8 +769,6 @@
   
   
 
-
-  <h1>Plot </h1>
 
 <script>
 (function (global, factory) {
@@ -1152,8 +1492,42 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8122979c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d4c28144">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="mxlbricks-logo" src="assets/logo.png" style="display: block; max-height: 20rem; margin: auto; padding-bottom: 2rem"/>
+<h1 id="mxlbricks">MxlBricks<a class="anchor-link" href="#mxlbricks">¶</a></h1><p><code>mxlbricks</code> is a library built on top of <a href="https://github.com/Computational-Biology-Aachen/MxlPy">MxlPy</a> to enable quick building of mechanistic learning models.</p>
+<h2 id="motivation">Motivation<a class="anchor-link" href="#motivation">¶</a></h2><p>It is desirable to be able to build larger-scale metabolic models from smaller components, which can be tested and analysed in detail.</p>
+<p>However, in the last decades we have not seen widespread use of such successful model composition.</p>
+<p>We want to argue that this is due to the fact that most attempts to compose larger models use either entire existing models or metabolic pathways as the unit of composition.</p>
+<p>However, the idealisation of a metabolic pathway as an isolated entity is not a realistic assumption, as it ignores the fact that the pathway is embedded in a larger network of reactions.</p>
+<p>This is especially problematic regarding choices of energy and redox equivalents.</p>
+<p>These are frequently described as either parameters, conserved quantities or free variables in different models, depending on the context.</p>
+<p>This leads to incompatibilities between the models.</p>
+<p>We thus believe that the unit of composition should be the individual reactions and those reactions need to be described in a way that allows for the description of other model components to vary depending on the use case.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6823842f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="practical-problems">Practical problems<a class="anchor-link" href="#practical-problems">¶</a></h2><p>Other problems are of a more practical nature, such as differences in naming conventions.</p>
+<p>For this we propose a shared set of names which we store in the <code>names</code> module.</p>
+<p>To enable localisation of the reactions, we also provide the option to inject compartment information.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">atp_synthase</span><span class="p">(</span><span class="n">compartment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a9b5cccf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1171,16 +1545,54 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mxlbricks</span><span class="w"> </span><span class="kn">import</span> <span class="n">names</span> <span class="k">as</span> <span class="n">n</span>
+
+<span class="c1"># Default case</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">atp_synthase</span><span class="p">())</span>
+
+<span class="c1"># Localised to cytosol</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">atp_synthase</span><span class="p">(</span><span class="s2">"_cyt"</span><span class="p">))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-1">from __future__ import annotations</div>
+<div class="clipboard-copy-txt" id="cell-1">from mxlbricks import names as n
+
+# Default case
+print(n.atp_synthase())
+
+# Localised to cytosol
+print(n.atp_synthase("_cyt"))</div>
 </div>
 </div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>atp_synthase
+atp_synthase_cyt
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c891e91e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="reaction-definition">Reaction definition<a class="anchor-link" href="#reaction-definition">¶</a></h2><p>All reactions in <code>mxl-bricks</code> are defined in a similar way.</p>
+<p>We will first show an entire example and then step through it, explaining the rationale behind the choices made.</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7f5e6818">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=69d6af1c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1198,32 +1610,130 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mxlpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">mxlpy.plot</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">Color</span><span class="p">,</span>
-    <span class="n">FigAxs</span><span class="p">,</span>
-    <span class="n">Linestyle</span><span class="p">,</span>
-    <span class="n">_partition_by_order_of_magnitude</span><span class="p">,</span>
-    <span class="n">_split_large_groups</span><span class="p">,</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mxlpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">fns</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mxlbricks.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">static</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_dummy_reaction</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span>
+    <span class="n">compartment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">e0</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">kcat</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">km</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Dummy enzyme-catalysed, irreversible reaction.</span>
+
+<span class="sd">    1 substrate =&gt; 1 product</span>
+<span class="sd">    """</span>
+    <span class="n">rxn_name</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="n">dummy</span><span class="p">(</span><span class="n">compartment</span><span class="p">)</span>
+
+    <span class="c1"># Default parameter description if none is given</span>
+    <span class="n">e0</span> <span class="o">=</span> <span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">e0</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="k">if</span> <span class="n">e0</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">e0</span>
+    <span class="n">kcat</span> <span class="o">=</span> <span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">kcat</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="k">if</span> <span class="n">kcat</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">kcat</span>
+    <span class="n">km</span> <span class="o">=</span> <span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">km</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="k">if</span> <span class="n">km</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">km</span>
+
+    <span class="c1"># Derive vmax from e0 and kcat</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_derived</span><span class="p">(</span><span class="n">vmax</span> <span class="o">:=</span> <span class="n">n</span><span class="o">.</span><span class="n">vmax</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">fn</span><span class="o">=</span><span class="n">fns</span><span class="o">.</span><span class="n">proportional</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">kcat</span><span class="p">,</span> <span class="n">e0</span><span class="p">])</span>
+
+    <span class="c1"># Add the reaction</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">rxn_name</span><span class="p">,</span>
+        <span class="n">fn</span><span class="o">=</span><span class="n">fns</span><span class="o">.</span><span class="n">michaelis_menten_1s</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">n</span><span class="o">.</span><span class="n">a0</span><span class="p">(</span><span class="n">compartment</span><span class="p">),</span>
+            <span class="n">vmax</span><span class="p">,</span>
+            <span class="n">km</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">stoichiometry</span><span class="o">=</span><span class="p">{</span>
+            <span class="n">n</span><span class="o">.</span><span class="n">a0</span><span class="p">(</span><span class="n">compartment</span><span class="p">):</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">n</span><span class="o">.</span><span class="n">a1</span><span class="p">(</span><span class="n">compartment</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-2">from mxlpy import Model, fns
+
+from mxlbricks.utils import static
+
+
+def add_dummy_reaction(
+    model: Model,
+    compartment: str,
+    e0: str | None = None,
+    kcat: str | None = None,
+    km: str | None = None,
+) -&gt; Model:
+    """Dummy enzyme-catalysed, irreversible reaction.
+
+    1 substrate =&gt; 1 product
+    """
+    rxn_name = n.dummy(compartment)
+
+    # Default parameter description if none is given
+    e0 = static(model, n.e0(rxn_name), value=1.0) if e0 is None else e0
+    kcat = static(model, n.kcat(rxn_name), value=1.0) if kcat is None else kcat
+    km = static(model, n.km(rxn_name), value=0.1) if km is None else km
+
+    # Derive vmax from e0 and kcat
+    model.add_derived(vmax := n.vmax(rxn_name), fn=fns.proportional, args=[kcat, e0])
+
+    # Add the reaction
+    model.add_reaction(
+        name=rxn_name,
+        fn=fns.michaelis_menten_1s,
+        args=[
+            n.a0(compartment),
+            vmax,
+            km,
+        ],
+        stoichiometry={
+            n.a0(compartment): -1,
+            n.a1(compartment): 1,
+        },
+    )
+    return model</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a5010617">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The reaction takes a <code>Model</code> object, any localisation information (e.g. <code>compartment</code>) and optionally parameters as <strong>names</strong>.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_dummy_reaction</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span>
+    <span class="n">compartment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">e0</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">kcat</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">km</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-2">import pandas as pd
-from mxlpy import plot
-from mxlpy.plot import (
-    Color,
-    FigAxs,
-    Linestyle,
-    _partition_by_order_of_magnitude,
-    _split_large_groups,
-)</div>
 </div>
 </div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=413c3b5e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="injecting-parameters">Injecting parameters<a class="anchor-link" href="#injecting-parameters">¶</a></h3><p>The names are given as strings, so that they can be easily replaced by the user.</p>
+<p>In this way the reaction does neither impose a name nor other features.</p>
+<p>Note: this technique is called <a href="https://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a>.</p>
+<p>This is especially useful for different descriptions of the same reaction.</p>
+<p>For example, the concentration of the enzyme could be assumed to be constant, in which case a normal parameter would be appropriate.</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a0180a26">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=fdc5f286">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1241,72 +1751,32 @@ from mxlpy.plot import (
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">_combine_small_groups</span><span class="p">(</span>
-    <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">min_group_size</span><span class="p">:</span> <span class="nb">int</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Combine adjacent groups if their size is smaller than min_group_size.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        groups: List of lists of strings</span>
-<span class="sd">        min_group_size: Minimum size for a group to remain separate</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        List of lists with small adjacent groups combined</span>
-<span class="sd">    """</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">current_group</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="k">for</span> <span class="n">next_group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_group</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_group_size</span><span class="p">:</span>
-            <span class="n">current_group</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">next_group</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_group</span><span class="p">)</span>
-            <span class="n">current_group</span> <span class="o">=</span> <span class="n">next_group</span>
-
-    <span class="c1"># Last group</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_group</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_group_size</span><span class="p">:</span>
-        <span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">current_group</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_group</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">result</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">constant</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">name</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-3">def _combine_small_groups(
-    groups: list[list[str]], min_group_size: int
-) -&gt; list[list[str]]:
-    """
-    Combine adjacent groups if their size is smaller than min_group_size.
-
-    Args:
-        groups: List of lists of strings
-        min_group_size: Minimum size for a group to remain separate
-
-    Returns:
-        List of lists with small adjacent groups combined
-    """
-    result = []
-    current_group = groups[0]
-
-    for next_group in groups[1:]:
-        if len(current_group) &lt; min_group_size:
-            current_group.extend(next_group)
-        else:
-            result.append(current_group)
-            current_group = next_group
-
-    # Last group
-    if len(current_group) &lt; min_group_size:
-        result[-1].extend(current_group)
-    else:
-        result.append(current_group)
-    return result</div>
+<div class="clipboard-copy-txt" id="cell-3">def constant(model: Model, name: str, value: float) -&gt; str:
+    model.add_parameter(name, value)
+    return name</div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88668003">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>However, the reaction might also be regulated by a thioredoxin system.</p>
+<p>In that case we would not be interested in the total amount of the enzyme, but rather it's active fraction.</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3e472564">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4c2e8897">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1324,91 +1794,199 @@ from mxlpy.plot import (
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">line_autogrouped</span><span class="p">(</span>
-    <span class="n">s</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span> <span class="o">|</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
-    <span class="o">*</span><span class="p">,</span>
-    <span class="n">n_cols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="n">col_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="n">row_height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="n">min_group_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">max_group_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
-    <span class="n">grid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Color</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">linewidth</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="p">:</span> <span class="n">Linestyle</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FigAxs</span><span class="p">:</span>
-    <span class="n">group_names</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">_partition_by_order_of_magnitude</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
-        <span class="k">else</span> <span class="n">_partition_by_order_of_magnitude</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-    <span class="p">)</span>
-    <span class="n">group_names</span> <span class="o">=</span> <span class="n">_combine_small_groups</span><span class="p">(</span><span class="n">group_names</span><span class="p">,</span> <span class="n">min_group_size</span><span class="o">=</span><span class="n">min_group_size</span><span class="p">)</span>
-    <span class="n">group_names</span> <span class="o">=</span> <span class="n">_split_large_groups</span><span class="p">(</span><span class="n">group_names</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="n">max_group_size</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">thioredixon_regulated</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-    <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">group_names</span><span class="p">]</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
-        <span class="k">else</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">group</span><span class="p">]</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">group_names</span><span class="p">]</span>
-    <span class="p">)</span>
+    <span class="n">derived_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_active"</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_derived</span><span class="p">(</span><span class="n">derived_name</span><span class="p">,</span> <span class="n">fns</span><span class="o">.</span><span class="n">proportional</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">e_active</span><span class="p">()])</span>
+    <span class="k">return</span> <span class="n">derived_name</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-4">def thioredixon_regulated(model: Model, name: str, value: float) -&gt; str:
+    model.add_parameter(name, value)
 
-    <span class="k">return</span> <span class="n">plot</span><span class="o">.</span><span class="n">lines_grouped</span><span class="p">(</span>
-        <span class="n">groups</span><span class="p">,</span>
-        <span class="n">n_cols</span><span class="o">=</span><span class="n">n_cols</span><span class="p">,</span>
-        <span class="n">col_width</span><span class="o">=</span><span class="n">col_width</span><span class="p">,</span>
-        <span class="n">row_height</span><span class="o">=</span><span class="n">row_height</span><span class="p">,</span>
-        <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
-        <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
-        <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyle</span><span class="p">,</span>
-        <span class="n">linewidth</span><span class="o">=</span><span class="n">linewidth</span><span class="p">,</span>
-        <span class="n">xlabel</span><span class="o">=</span><span class="n">xlabel</span><span class="p">,</span>
-        <span class="n">ylabel</span><span class="o">=</span><span class="n">ylabel</span><span class="p">,</span>
+    derived_name = f"{name}_active"
+    model.add_derived(derived_name, fns.proportional, args=[name, n.e_active()])
+    return derived_name</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ce63c75a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Using this approach, we can easily switch between the two descriptions by simply injecting the appropriate function.</p>
+<div class="highlight"><pre><span></span><span class="c1"># here the function depends on `E0_dummy`</span>
+<span class="n">add_dummy_reaction</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">e0</span><span class="o">=</span><span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">e0</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">dummy</span><span class="p">()),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+
+<span class="c1"># here the function depends on `E0_dummy_active`</span>
+<span class="n">add_dummy_reaction</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">e0</span><span class="o">=</span><span class="n">thioredixon_regulated</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">e0</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">dummy</span><span class="p">()),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bf9de538">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="default-parameters">Default parameters<a class="anchor-link" href="#default-parameters">¶</a></h3><p>Inside the function, the parameters are then initialised to default values if they are not given</p>
+<div class="highlight"><pre><span></span><span class="n">e0</span> <span class="o">=</span> <span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">e0</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="k">if</span> <span class="n">e0</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">e0</span>
+</pre></div>
+<p>This is done to avoid overly redundant code in case the parameter description is always the same.</p>
+<p>For example, it is a lot easier to see the difference between these two descriptions</p>
+<div class="highlight"><pre><span></span><span class="n">add_dummy_reaction</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">compartment</span><span class="o">=</span><span class="s2">"_chl"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">add_dummy_reaction</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">compartment</span><span class="o">=</span><span class="s2">"_chl"</span><span class="p">,</span>
+    <span class="n">e0</span><span class="o">=</span><span class="n">thioredixon_regulated</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">e0</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+<p>rather than these two</p>
+<div class="highlight"><pre><span></span><span class="n">add_dummy_reaction</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">compartment</span><span class="o">=</span><span class="s2">"_chl"</span><span class="p">,</span>
+    <span class="n">e0</span><span class="o">=</span><span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">e0</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">kcat</span><span class="o">=</span><span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">kcat</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">km</span><span class="o">=</span><span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">km</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">add_dummy_reaction</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">compartment</span><span class="o">=</span><span class="s2">"_chl"</span><span class="p">,</span>
+    <span class="n">e0</span><span class="o">=</span><span class="n">thioredixon_regulated</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">e0</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">kcat</span><span class="o">=</span><span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">kcat</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">km</span><span class="o">=</span><span class="n">static</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">km</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d9c7f68f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="derived-vmax-values">Derived vmax values<a class="anchor-link" href="#derived-vmax-values">¶</a></h3><p><code>mxl-bricks</code> does not make any assumption about the rate laws used in the model.<br/>
+However, in the case of any Michaelis-Menten-type rate law, it is recommended to derive the <code>vmax</code> from the <code>kcat</code> and the concentration of the enzyme.</p>
+<p>This makes it a lot easier to compare the actual <code>kcat</code> values chosen against databases like <a href="https://www.brenda-enzymes.org/">BRENDA</a>.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Derive vmax from e0 and kcat</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_derived</span><span class="p">(</span><span class="n">vmax</span> <span class="o">:=</span> <span class="n">n</span><span class="o">.</span><span class="n">vmax</span><span class="p">(</span><span class="n">rxn_name</span><span class="p">),</span> <span class="n">fn</span><span class="o">=</span><span class="n">fns</span><span class="o">.</span><span class="n">proportional</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">kcat</span><span class="p">,</span> <span class="n">e0</span><span class="p">])</span>
+</pre></div>
+<p>As <a href="https://github.com/Computational-Biology-Aachen/MxlPy">MxlPy</a> supports derived values from both parameters and variables, this code does not need to be changed between the two descriptions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4c234706">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="filtered-stoichiometries">Filtered stoichiometries<a class="anchor-link" href="#filtered-stoichiometries">¶</a></h3><p>By default, we will define the stoichiometries of a reaction like the following:</p>
+<div class="highlight"><pre><span></span><span class="n">stoichiometry</span><span class="o">=</span><span class="p">{</span>
+    <span class="n">n</span><span class="o">.</span><span class="n">a0</span><span class="p">(</span><span class="n">compartment</span><span class="p">):</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">.</span><span class="n">a1</span><span class="p">(</span><span class="n">compartment</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+<p>However, especially with different descriptions of energy and redox equivalents, not all of the stoichiometries might actually be variables.<br/>
+In that case, we can use the <code>filter_stoichiometry</code> function to filter out the stoichiometries that are not actually variables.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mxlbricks.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_stoichiometry</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span>
+        <span class="o">...</span>
+        <span class="n">stoichiometry</span><span class="o">=</span><span class="n">filter_stoichiometry</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span>
+            <span class="n">stoichiometry</span><span class="o">=</span><span class="p">{</span>
+                <span class="n">n</span><span class="o">.</span><span class="n">a0</span><span class="p">(</span><span class="n">compartment</span><span class="p">):</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">n</span><span class="o">.</span><span class="n">a1</span><span class="p">(</span><span class="n">compartment</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">),</span>
     <span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4">def line_autogrouped(
-    s: pd.Series | pd.DataFrame,
-    *,
-    n_cols: int = 2,
-    col_width: float = 4,
-    row_height: float = 3,
-    min_group_size: int = 1,
-    max_group_size: int = 6,
-    grid: bool = True,
-    xlabel: str | None = None,
-    ylabel: str | None = None,
-    color: Color | list[list[Color]] | None = None,
-    linewidth: float | None = None,
-    linestyle: Linestyle | None = None,
-) -&gt; FigAxs:
-    group_names = (
-        _partition_by_order_of_magnitude(s)
-        if isinstance(s, pd.Series)
-        else _partition_by_order_of_magnitude(s.max())
-    )
-    group_names = _combine_small_groups(group_names, min_group_size=min_group_size)
-    group_names = _split_large_groups(group_names, max_size=max_group_size)
-
-    groups: list[pd.Series] | list[pd.DataFrame] = (
-        [s.loc[group] for group in group_names]
-        if isinstance(s, pd.Series)
-        else [s.loc[:, group] for group in group_names]
-    )
-
-    return plot.lines_grouped(
-        groups,
-        n_cols=n_cols,
-        col_width=col_width,
-        row_height=row_height,
-        grid=grid,
-        color=color,
-        linestyle=linestyle,
-        linewidth=linewidth,
-        xlabel=xlabel,
-        ylabel=ylabel,
-    )</div>
 </div>
 </div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3b16065c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="model-building">Model building<a class="anchor-link" href="#model-building">¶</a></h2><p>With this, models can be composed from</p>
+<ul>
+<li>a set of variables</li>
+<li>a set of parameters</li>
+<li>(potentially) a set of derived quantities</li>
+<li>a set of reactions</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_model</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_variables</span><span class="p">({</span><span class="n">n</span><span class="o">.</span><span class="n">atp</span><span class="p">():</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">...</span><span class="p">})</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_parameters</span><span class="p">({</span><span class="n">n</span><span class="o">.</span><span class="n">ph</span><span class="p">():</span> <span class="mf">7.0</span><span class="p">,</span> <span class="o">...</span><span class="p">})</span>
+
+    <span class="c1"># Add reactions to the model</span>
+    <span class="n">add_reaction1</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">add_reaction2</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">add_reaction3</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ac0efd97">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="design-recommendations">Design recommendations<a class="anchor-link" href="#design-recommendations">¶</a></h3><p>We recommend to include all parameters of a reaction in the description of the reaction, such that it is a self-contained unit.</p>
+<p>However, sometimes parameters might be shared between reactions.</p>
+<p>In that case, we recommend to still define the parameter in each reaction, but then pass the default value to each of the reactions.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_model</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_parameters</span><span class="p">({</span><span class="n">n</span><span class="o">.</span><span class="n">ph</span><span class="p">():</span> <span class="mf">7.0</span><span class="p">,</span> <span class="o">...</span><span class="p">})</span>
+
+    <span class="c1"># Inject the parameters into the reactions</span>
+    <span class="n">add_reaction1</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ph</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">ph</span><span class="p">())</span>
+    <span class="n">add_reaction2</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ph</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">ph</span><span class="p">())</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6a320293">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="discarded-design-decisions">Discarded design decisions<a class="anchor-link" href="#discarded-design-decisions">¶</a></h2><h3 id="model-inheritance">Model inheritance<a class="anchor-link" href="#model-inheritance">¶</a></h3><p>We initially considered using inheritance to build models from smaller components.<br/>
+In the context of models, this could look something like this:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_model_v1</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span> <span class="o">...</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_model_v2</span><span class="p">(</span><span class="n">model_v1</span><span class="p">:</span> <span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span> <span class="o">...</span>
+</pre></div>
+<p>However, this makes changes to models difficult, as other models may depend on the model you are trying to change.<br/>
+Thus, the entire chain of models becomes rigid and difficult to change.<br/>
+So while a composition approach requires more boilerplate code and repetition, it is much more flexible.</p>
 </div>
 </div>
 </div>
@@ -1416,6 +1994,10 @@ from mxlpy.plot import (
 </div> <!-- jp-Notebook -->
 </div> <!-- jupyter-wrapper -->
 
+        <style>
+        ['pre { line-height: 125%; }\ntd.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }\nspan.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }\ntd.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }\nspan.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }\n.highlight-ipynb .hll { background-color: var(--jp-cell-editor-active-background) }\n.highlight-ipynb { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }\n.highlight-ipynb .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */\n.highlight-ipynb .err { color: var(--jp-mirror-editor-error-color) } /* Error */\n.highlight-ipynb .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */\n.highlight-ipynb .o { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator */\n.highlight-ipynb .p { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation */\n.highlight-ipynb .ch { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Hashbang */\n.highlight-ipynb .cm { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Multiline */\n.highlight-ipynb .cp { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Preproc */\n.highlight-ipynb .cpf { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.PreprocFile */\n.highlight-ipynb .c1 { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Single */\n.highlight-ipynb .cs { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment.Special */\n.highlight-ipynb .kc { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Constant */\n.highlight-ipynb .kd { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Declaration */\n.highlight-ipynb .kn { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Namespace */\n.highlight-ipynb .kp { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Pseudo */\n.highlight-ipynb .kr { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Reserved */\n.highlight-ipynb .kt { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword.Type */\n.highlight-ipynb .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */\n.highlight-ipynb .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */\n.highlight-ipynb .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */\n.highlight-ipynb .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */\n.highlight-ipynb .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */\n.highlight-ipynb .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */\n.highlight-ipynb .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */\n.highlight-ipynb .mh { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Hex */\n.highlight-ipynb .mi { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer */\n.highlight-ipynb .mo { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Oct */\n.highlight-ipynb .sa { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Affix */\n.highlight-ipynb .sb { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Backtick */\n.highlight-ipynb .sc { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Char */\n.highlight-ipynb .dl { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Delimiter */\n.highlight-ipynb .sd { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Doc */\n.highlight-ipynb .s2 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Double */\n.highlight-ipynb .se { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Escape */\n.highlight-ipynb .sh { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Heredoc */\n.highlight-ipynb .si { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Interpol */\n.highlight-ipynb .sx { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Other */\n.highlight-ipynb .sr { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Regex */\n.highlight-ipynb .s1 { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Single */\n.highlight-ipynb .ss { color: var(--jp-mirror-editor-string-color) } /* Literal.String.Symbol */\n.highlight-ipynb .il { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Integer.Long */']
+        </style>
+        
 
 
 
