@@ -193,7 +193,7 @@ def get_poolman2000() -> Model:
 
 def get_matuszynska2016_phd(
     *,
-    mode: Literal["matrix", "analytical"] = "matrix",
+    mode: Literal["matrix", "analytical", "analytical-split"] = "analytical",
     chl_lumen: str = "_lumen",
 ) -> Model:
     model = Model()
@@ -278,7 +278,7 @@ def get_matuszynska2016_phd(
 def get_matuszynska2019(
     *,
     variant: Literal["linear-speedup", "mm-speedup"] | None = None,
-    mode: Literal["matrix", "analytical"] = "matrix",
+    mode: Literal["matrix", "analytical", "analytical-split"] = "analytical",
     chl_lumen: str = "_lumen",
 ) -> Model:
     model = Model()
@@ -443,7 +443,7 @@ def get_matuszynska2019(
 
 def get_saadat2021(
     *,
-    mode: Literal["matrix", "analytical"] = "matrix",
+    mode: Literal["matrix", "analytical", "analytical-split"] = "analytical",
     chl_lumen: str = "_lumen",
 ) -> Model:
     model = Model()

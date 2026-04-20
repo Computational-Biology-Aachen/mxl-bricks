@@ -109,7 +109,6 @@ from .psi_psii import (
     add_psi_2019,
     add_psi_2021,
     add_psii,
-    add_psii_analytic,
 )
 from .ptox import add_ptox
 from .pyruvate_dehydrogenase import add_pyruvate_dehydrogenase

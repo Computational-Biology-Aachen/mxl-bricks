@@ -512,7 +512,7 @@ def b3(
 
 
 def get_matuszynska2016_npq(
-    mode: Literal["matrix", "analytical", "analytical-split"],
+    mode: Literal["matrix", "analytical", "analytical-split"] = "analytical",
 ) -> Model:
     m = Model()
 
