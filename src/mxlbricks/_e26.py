@@ -1,3 +1,5 @@
+from typing import cast
+
 import numpy as np
 from mxlpy import Derived, InitialAssignment, Model
 
@@ -7,37 +9,67 @@ from mxlbricks.models import get_saadat2021
 
 
 ### PSII and PSI ###
-def moiety_3(c1: float, c2: float, c3: float, total: float) -> float:
+def _moiety_3(
+    c1: float,
+    c2: float,
+    c3: float,
+    total: float,
+) -> float:
     return total - c1 - c2 - c3
 
 
-def normalize_concentration(concentration: float, total: float) -> float:
+def _normalize_concentration(
+    concentration: float,
+    total: float,
+) -> float:
     return concentration / total
 
 
-def normalize_2_concentrations(c1: float, c2: float, total: float) -> float:
+def _normalize_2_concentrations(
+    c1: float,
+    c2: float,
+    total: float,
+) -> float:
     return (c1 + c2) / total
 
 
-def mass_action_22_rev(
-    s1: float, s2: float, p1: float, p2: float, kf: float, keq: float
+def _mass_action_22_rev(
+    s1: float,
+    s2: float,
+    p1: float,
+    p2: float,
+    kf: float,
+    keq: float,
 ) -> float:
     return kf * s1 * s2 - (kf / keq) * p1 * p2
 
 
-def kquencher(s: float, q: float, kH_Qslope: float, kH0: float) -> float:
+def _kquencher(
+    s: float,
+    q: float,
+    kH_Qslope: float,
+    kH0: float,
+) -> float:
     return (kH0 + kH_Qslope * q) * s
 
 
-def vPS1(P700FA: float, ps2cs: float, pfd: float) -> float:
+def _v_ps1(
+    P700FA: float,
+    ps2cs: float,
+    pfd: float,
+) -> float:
     return (1 - ps2cs) * pfd * P700FA
 
 
-def vMehler(PSI_red_acceptor: float, O2ext: float, kMehler: float) -> float:
+def _v_mehler(
+    PSI_red_acceptor: float,
+    O2ext: float,
+    kMehler: float,
+) -> float:
     return kMehler * O2ext * PSI_red_acceptor
 
 
-def Fluo(
+def _fluo(
     Q: float,
     B0: float,
     B2: float,
@@ -51,12 +83,22 @@ def Fluo(
     return (ps2cs * kF * B0) / (kF + k2 + kH) + (ps2cs * kF * B2) / (kF + kH)
 
 
-def _keq_pcp700(E0_PC: float, F: float, E0_P700: float, RT: float) -> float:
+def _keq_pcp700(
+    E0_PC: float,
+    F: float,
+    E0_P700: float,
+    RT: float,
+) -> float:
     DG = -(-E0_PC * F) + (-E0_P700 * F)
     return np.exp(-DG / RT)
 
 
-def _keq_faf_d(E0_FA: float, F: float, E0_Fd: float, RT: float) -> float:
+def _keq_faf_d(
+    E0_FA: float,
+    F: float,
+    E0_Fd: float,
+    RT: float,
+) -> float:
     DG = -(-E0_FA * F) + (-E0_Fd * F)
     return np.exp(-DG / RT)
 
@@ -64,56 +106,79 @@ def _keq_faf_d(E0_FA: float, F: float, E0_Fd: float, RT: float) -> float:
 ### b6f ###
 
 
-def _four_div_by(x: float) -> float:
+def _four_div_by(
+    x: float,
+) -> float:
     return 4.0 / x
 
 
-def k_b6f(pH: float, pKreg: float, b6f_content: float, max_b6f: float) -> float:
+def _k_b6f(
+    pH: float,
+    pKreg: float,
+    b6f_content: float,
+    max_b6f: float,
+) -> float:
     pHmod = 1 - (1 / (10 ** (pH - pKreg) + 1))
     return pHmod * b6f_content * max_b6f
 
 
-def vb6f_2024(
-    PC: float, PCred: float, PQ: float, PQred: float, k_b6f: float, Keq: float
+def _vb6f_2024(
+    PC: float,
+    PCred: float,
+    PQ: float,
+    PQred: float,
+    _k_b6f: float,
+    Keq: float,
 ) -> float:
     f = PQred / (PQred + PQ)
-    return f * PC * k_b6f - (1 - f) * PCred * (k_b6f / Keq)
+    return f * PC * _k_b6f - (1 - f) * PCred * (_k_b6f / Keq)
 
 
-def reversible_mass_action_1s_1p(s: float, p: float, kf: float, kb: float) -> float:
+def _reversible_mass_action_1s_1p(
+    s: float,
+    p: float,
+    kf: float,
+    kb: float,
+) -> float:
     return kf * s - kb * p
 
 
-def half(x: float) -> float:
+def _half(
+    x: float,
+) -> float:
     return x / 2
 
 
-def protons_lumen(pH_lumen: float) -> float:
+def _protons_lumen(
+    pH_lumen: float,
+) -> float:
     return (10 ** (-pH_lumen)) / 2.5e-4
 
 
-def protons_stroma(pH_stroma: float) -> float:
+def _protons_stroma(
+    pH_stroma: float,
+) -> float:
     return (10 ** (-pH_stroma)) / 3.2e-5
 
 
-def vATPsynthase_mod(
+def _v_at_psynthase_mod(
     ATP: float,
     ATP_activity: float,
-    ATP_pmf_activity: float,
+    _atp_pmf_activity: float,
     k_ATPsynthase: float,
     ADP: float,
-    Keq_ATP: float,
+    _keq_atp: float,
     convf: float,
 ) -> float:
     return (
         ATP_activity
-        * ATP_pmf_activity
+        * _atp_pmf_activity
         * k_ATPsynthase
-        * (ADP / convf - ATP / convf / Keq_ATP)
+        * (ADP / convf - ATP / convf / _keq_atp)
     )
 
 
-def ATP_pmf_activity(
+def _atp_pmf_activity(
     pK0E: float,
     b: float,
     pH_lumen: float,
@@ -122,13 +187,16 @@ def ATP_pmf_activity(
     RT: float,
     delta_psi: float,
 ) -> float:
-    pmf = delta_psi - np.log(10) * ((RT) / F) * (pH_lumen - pH)
-    x = np.log(10 ** (-pK0E)) + b * (pmf * F) / (RT)
+    _pmf = delta_psi - np.log(10) * ((RT) / F) * (pH_lumen - pH)
+    x = np.log(10 ** (-pK0E)) + b * (_pmf * F) / (RT)
     return (np.e**x) / (1 + np.e**x)
 
 
-def vATPactivity(
-    ATPactivity: float, light: float, kActATPase: float, kDeactATPase: float
+def _v_at_pactivity(
+    ATPactivity: float,
+    light: float,
+    kActATPase: float,
+    kDeactATPase: float,
 ) -> float:
     """Activation of ATPsynthase by light"""
     if light > 0.0:
@@ -136,7 +204,7 @@ def vATPactivity(
     return -kDeactATPase * ATPactivity
 
 
-def ATP_pmf_activity2(
+def _atp_pmf_activity2(
     pK0E: float,
     b: float,
     pH_lumen: float,
@@ -145,34 +213,52 @@ def ATP_pmf_activity2(
     RT: float,
     delta_psi: float,
 ) -> float:
-    pmf = delta_psi - np.log(10) * ((RT) / F) * (pH_lumen - pH)
-    x = np.log(10 ** (-pK0E)) + b * (pmf * F) / (RT)
+    _pmf = delta_psi - np.log(10) * ((RT) / F) * (pH_lumen - pH)
+    x = np.log(10 ** (-pK0E)) + b * (_pmf * F) / (RT)
     return (np.e**x) / (1 + np.e**x)
 
 
-def deltapH(pH: float, pH_lumen: float, dG: float) -> float:
+def _deltap_h(
+    pH: float,
+    pH_lumen: float,
+    dG: float,
+) -> float:
     return dG * (pH - pH_lumen)
 
 
-def pmf(deltapH: float, delta_psi: float, F: float) -> float:
-    return F * delta_psi + deltapH
+def _pmf(
+    _deltap_h: float,
+    delta_psi: float,
+    F: float,
+) -> float:
+    return F * delta_psi + _deltap_h
 
 
-def pmf_in_V(
-    delta_psi: float, pH_lumen: float, pH: float, RT: float, F: float
+def _pmf_in_v(
+    delta_psi: float,
+    pH_lumen: float,
+    pH: float,
+    RT: float,
+    F: float,
 ) -> float:
     return delta_psi - np.log(10) * ((RT) / F) * (pH_lumen - pH)
 
 
-def voltage_turnover_molChl_per_mmol(
-    capacitance_specific: float, molChl_per_area_membrane: float, F: float
+def _voltage_turnover_mol_chl_per_mmol(
+    capacitance_specific: float,
+    molChl_per_area_membrane: float,
+    F: float,
 ) -> float:
     area_permolChl = 1 / molChl_per_area_membrane
     return F / (capacitance_specific * area_permolChl)
 
 
-def initial_delta_psi(
-    pH: float, pH_lumen: float, R: float, F: float, T: float
+def _initial_delta_psi(
+    pH: float,
+    pH_lumen: float,
+    R: float,
+    F: float,
+    T: float,
 ) -> float:
     """
     Estimation of delta psi in the dark - assuming delta_pH and delta_psi have equal contribution to pmf
@@ -180,67 +266,103 @@ def initial_delta_psi(
     return np.log(10) * ((R * T) / F) * (pH - pH_lumen)
 
 
-def Keq_ATP(
-    pmf: float, DeltaG0_ATP: float, Pi_mol: float, HPR: float, RT: float
+def _keq_atp(
+    _pmf: float,
+    DeltaG0_ATP: float,
+    Pi_mol: float,
+    HPR: float,
+    RT: float,
 ) -> float:
-    DG = DeltaG0_ATP - HPR * pmf
+    DG = DeltaG0_ATP - HPR * _pmf
 
     return Pi_mol * np.exp(-DG / RT)
 
 
-def Keq_cytb6f(
-    pH: float, pmf: float, F: float, E0_PQ: float, E0_PC: float, RT: float, dG_pH: float
+def _keq_cytb6f(
+    pH: float,
+    _pmf: float,
+    F: float,
+    E0_PQ: float,
+    E0_PC: float,
+    RT: float,
+    dG_pH: float,
 ) -> float:
     DG1 = -2 * F * E0_PQ
     DG2 = -F * E0_PC
-    DG = -(DG1 + 2 * dG_pH * pH) + 2 * DG2 + 2 * pmf
+    DG = -(DG1 + 2 * dG_pH * pH) + 2 * DG2 + 2 * _pmf
     return np.exp(-DG / RT)
 
 
-def one_div(x: float) -> float:
+def _one_div(
+    x: float,
+) -> float:
     return x
 
 
-def two_div(x: float) -> float:
+def _two_div(
+    x: float,
+) -> float:
     return 2 * x
 
 
-def three_div(x: float) -> float:
+def _three_div(
+    x: float,
+) -> float:
     return 3 * x
 
 
-def neg_one_div(x: float) -> float:
+def _neg_one_div(
+    x: float,
+) -> float:
     return -1 * x
 
 
-def atp_div(HPR: float, x: float) -> float:
+def _atp_div(
+    HPR: float,
+    x: float,
+) -> float:
     return -HPR * x
 
 
-def four_div(x: float) -> float:
+def _four_div(
+    x: float,
+) -> float:
     return 4 * x
 
 
-def reg_KEA(
-    pH: float, ATP: float, KEA3_pH_reg: float, KEA3_ATP_treshold: float
+def _reg_kea(
+    pH: float,
+    ATP: float,
+    KEA3_pH_reg: float,
+    KEA3_ATP_treshold: float,
 ) -> float:
     pH_inhib = (1 - 0.1) / (1 + np.exp((pH - KEA3_pH_reg) / 0.001))
     ATP_inhib = (1 - 0.1) / (1 + np.exp((KEA3_ATP_treshold - ATP) / 0.01))
     return pH_inhib * ATP_inhib
 
 
-def DG_K(Klumen: float, Kstroma: float, delta_psi: float, RT: float, F: float) -> float:
+def _dg_k(
+    Klumen: float,
+    Kstroma: float,
+    delta_psi: float,
+    RT: float,
+    F: float,
+) -> float:
     return (-(RT / F) * np.log10(Kstroma / Klumen) + delta_psi) * F
 
 
-def Cl_driving_force(
-    delta_psi: float, Cl_lumen: float, Cl_stroma: float, RT: float, F: float
+def _cl_driving_force(
+    delta_psi: float,
+    Cl_lumen: float,
+    Cl_stroma: float,
+    RT: float,
+    F: float,
 ) -> float:
     return ((RT / F) * np.log10(Cl_stroma / Cl_lumen) + delta_psi) * F
 
 
-def Keq_NDH1(
-    pmf: float,
+def _keq_ndh1(
+    _pmf: float,
     E0_Fd: float,
     F: float,
     E0_PQ: float,
@@ -250,27 +372,30 @@ def Keq_NDH1(
 ) -> float:
     DG1 = -E0_Fd * F
     DG2 = -2 * E0_PQ * F
-    DG = -2 * DG1 + DG2 + 2 * dG_pH * pHstroma + 4 * pmf
+    DG = -2 * DG1 + DG2 + 2 * dG_pH * pHstroma + 4 * _pmf
     return np.exp(-DG / RT)
 
 
-def vKEA(
+def _v_kea(
     Klumen: float,
     H: float,
     Kstroma: float,
     k_KEA: float,
     Hstroma: float,
-    reg_KEA: float,
+    _reg_kea: float,
 ) -> float:
-    v_KEA = k_KEA * (H * Kstroma - Hstroma * Klumen) * reg_KEA
-    return max(v_KEA, 0)
+    v_KEA = k_KEA * (H * Kstroma - Hstroma * Klumen) * _reg_kea
+    return max(
+        v_KEA,
+        0,
+    )
 
 
-def v_voltage_K_channel(
+def _v_voltage_k_channel(
     delta_psi_ions: float,
     Klumen: float,
     Kstroma: float,
-    DG_K: float,
+    _dg_k: float,
     perm_K: float,
     K_delta_psi_treshold: float,
 ) -> float:
@@ -278,14 +403,14 @@ def v_voltage_K_channel(
         1 + np.exp(-(delta_psi_ions - K_delta_psi_treshold) / 0.001)
     )
     return (
-        perm_K * DG_K * voltage_dependence * (Klumen / Kstroma)
+        perm_K * _dg_k * voltage_dependence * (Klumen / Kstroma)
     )  # why divided K_total/2
 
 
-def vVCCN1(
+def _v_vccn1(
     Cl_stroma: float,
     Cl_lumen: float,
-    Cl_driving_force: float,
+    _cl_driving_force: float,
     delta_psi_ions: float,
     k_VCCN1: float,
     VCCN_delta_psi_treshold: float,
@@ -293,43 +418,49 @@ def vVCCN1(
     voltage_gate = (1 - 0.1) / (
         1 + np.exp(-(delta_psi_ions - VCCN_delta_psi_treshold) / 0.001)
     )
-    return voltage_gate * k_VCCN1 * Cl_driving_force * (Cl_stroma / Cl_lumen)
+    return voltage_gate * k_VCCN1 * _cl_driving_force * (Cl_stroma / Cl_lumen)
 
 
-def vClCe(
+def _v_cl_ce(
     Cl_lumen: float,
     Cl_stroma: float,
     kClCe: float,
     PQ: float,
-    Cl_driving_force: float,
+    _cl_driving_force: float,
     ClCe_PQ: float,
 ) -> float:  # correct
     activation = (0.2 - 0.1) / (1 + np.exp(-(PQ - ClCe_PQ) / 0.1))
-    return kClCe * activation * Cl_driving_force * (Cl_stroma / Cl_lumen)
+    return kClCe * activation * _cl_driving_force * (Cl_stroma / Cl_lumen)
 
 
-def ClCe_activation(ATP: float, ClCe_ATP_threshold: float) -> float:
+def _cl_ce_activation(
+    ATP: float,
+    ClCe_ATP_threshold: float,
+) -> float:
     return (1 - 0.1) / (1 + np.exp((ATP - ClCe_ATP_threshold) / 0.01))
 
 
-def ClCe_bi(
-    Cl_lumen: float, Cl_stroma: float, kClCe: float, activation: float
+def _cl_ce_bi(
+    Cl_lumen: float,
+    Cl_stroma: float,
+    kClCe: float,
+    activation: float,
 ) -> float:  # correct
     return kClCe * (Cl_stroma - Cl_lumen) * activation
 
 
-def ClCe_CH(
+def _cl_ce_ch(
     Cl_lumen: float,
     Cl_stroma: float,
     kClCe: float,
     activation: float,
     protons: float,
-    protons_lumen: float,
+    _protons_lumen: float,
 ) -> float:  # correct
-    return kClCe * ((Cl_lumen * protons) / (protons_lumen * Cl_stroma)) * activation
+    return kClCe * ((Cl_lumen * protons) / (_protons_lumen * Cl_stroma)) * activation
 
 
-def vCl_leak(
+def _v_cl_leak(
     kCl_leak: float,
     Cl_lumen: float,
     Cl_stroma: float,
@@ -341,7 +472,13 @@ def vCl_leak(
     return kCl_leak * ((Cl_lumen - Cl_stroma) ** 2) / (total_div) * activation
 
 
-def vNDH1(A1: float, Fdred: float, PQ: float, pHlumen: float, kNDH1: float) -> float:
+def _v_ndh1(
+    A1: float,
+    Fdred: float,
+    PQ: float,
+    pHlumen: float,
+    kNDH1: float,
+) -> float:
     return (
         kNDH1
         * ((Fdred**2) * PQ)
@@ -350,7 +487,9 @@ def vNDH1(A1: float, Fdred: float, PQ: float, pHlumen: float, kNDH1: float) -> f
     )
 
 
-def squared(x: float) -> float:
+def _squared(
+    x: float,
+) -> float:
     return x**2
 
 
@@ -358,8 +497,8 @@ def _build_full_model(
     m: Model,
     *,
     chl_lumen: str = "_lumen",
-    lumen_reactions: list = ["B12", "b6f", "proton_leak", "atp_synthase"],
-    stroma_reactions: list = ["B20", "b6f", "atp_synthase", "proton_leak"],
+    lumen_reactions: list[str] | None = None,
+    stroma_reactions: list[str] | None = None,
     ClCe: str = "exporter",
 ) -> Model:
     """
@@ -370,6 +509,17 @@ def _build_full_model(
     4. tracking pH and variable stroma
     3. delta psi and ion channels
     """
+
+    lumen_reactions = (
+        ["B12", "b6f", "proton_leak", "atp_synthase"]
+        if lumen_reactions is None
+        else lumen_reactions
+    )
+    stroma_reactions = (
+        ["B20", "b6f", "atp_synthase", "proton_leak"]
+        if stroma_reactions is None
+        else stroma_reactions
+    )
 
     ### PSII + PSI dynamics ###
     m.remove_derived("keq_PCP700")
@@ -388,7 +538,10 @@ def _build_full_model(
     m.remove_parameter("kcat_ferredoxin_reductase")
     # m.add_parameter("PSII_total", 2.5)
     # m.add_parameter("PSI_total", 2.5)
-    m.add_parameter("kH_Qslope", 5e9)
+    m.add_parameter(
+        "kH_Qslope",
+        5e9,
+    )
     m.add_variables(
         {
             "P700FA": 1.506615384275408,  # eq at pfd 800       #"PSItot": 2.5, (in parameter vector of Matuszynska)
@@ -399,78 +552,125 @@ def _build_full_model(
             n.b2(): 0.5620208537555176,
         }
     )
-    m.add_derived(n.keq("PCP700"), _keq_pcp700, args=["E^0_PC", "F", "E^0_P700", "RT"])
-    m.add_derived(n.keq("FAFd"), _keq_faf_d, args=["E^0_FA", "F", "E^0_Fd", "RT"])
-    m.add_derived(n.b3(), moiety_3, args=[n.b0(), n.b1(), n.b2(), "PSII_total"])
     m.add_derived(
-        "P700+FA", moiety_3, args=["P700FA-", "P700FA", "P700+FA-", "PSI_total"]
+        n.keq("PCP700"),
+        _keq_pcp700,
+        args=["E^0_PC", "F", "E^0_P700", "RT"],
     )
-    m.add_derived("rel_P700+FA", normalize_concentration, args=["P700+FA", "PSI_total"])
-    m.add_derived("rel_P700FA", normalize_concentration, args=["P700FA", "PSI_total"])
-    m.add_derived("rel_P700FA-", normalize_concentration, args=["P700FA-", "PSI_total"])
     m.add_derived(
-        "rel_P700+FA-", normalize_concentration, args=["P700+FA-", "PSI_total"]
+        n.keq("FAFd"),
+        _keq_faf_d,
+        args=["E^0_FA", "F", "E^0_Fd", "RT"],
+    )
+    m.add_derived(
+        n.b3(),
+        _moiety_3,
+        args=[n.b0(), n.b1(), n.b2(), "PSII_total"],
+    )
+    m.add_derived(
+        "P700+FA",
+        _moiety_3,
+        args=["P700FA-", "P700FA", "P700+FA-", "PSI_total"],
+    )
+    m.add_derived(
+        "rel_P700+FA",
+        _normalize_concentration,
+        args=["P700+FA", "PSI_total"],
+    )
+    m.add_derived(
+        "rel_P700FA",
+        _normalize_concentration,
+        args=["P700FA", "PSI_total"],
+    )
+    m.add_derived(
+        "rel_P700FA-",
+        _normalize_concentration,
+        args=["P700FA-", "PSI_total"],
+    )
+    m.add_derived(
+        "rel_P700+FA-",
+        _normalize_concentration,
+        args=["P700+FA-", "PSI_total"],
     )
     m.add_derived(
         "rel_P700",
-        normalize_2_concentrations,
+        _normalize_2_concentrations,
         args=["P700+FA-", "P700+FA", "PSI_total"],
     )
     m.add_derived(
         "rel_P700+",
-        normalize_2_concentrations,
+        _normalize_2_concentrations,
         args=["P700+FA-", "P700+FA", "PSI_total"],
     )
-    m.add_derived("rel_B0", normalize_concentration, args=[n.b0(), "PSII_total"])
-    m.add_derived("rel_B1", normalize_concentration, args=[n.b1(), "PSII_total"])
-    m.add_derived("rel_B2", normalize_concentration, args=[n.b2(), "PSII_total"])
-    m.add_derived("rel_B3", normalize_concentration, args=[n.b3(), "PSII_total"])
+    m.add_derived(
+        "rel_B0",
+        _normalize_concentration,
+        args=[n.b0(), "PSII_total"],
+    )
+    m.add_derived(
+        "rel_B1",
+        _normalize_concentration,
+        args=[n.b1(), "PSII_total"],
+    )
+    m.add_derived(
+        "rel_B2",
+        _normalize_concentration,
+        args=[n.b2(), "PSII_total"],
+    )
+    m.add_derived(
+        "rel_B3",
+        _normalize_concentration,
+        args=[n.b3(), "PSII_total"],
+    )
     m.add_derived(
         n.fluorescence(),
-        Fluo,
+        _fluo,
         args=[n.quencher(), n.b0(), n.b2(), n.ps2cs(), "k2", "kF", "kH_Qslope", "kH0"],
     )
 
     m.add_reaction(
         "toP700FA-",
-        mass_action_22_rev,
+        _mass_action_22_rev,
         stoichiometry={"P700+FA-": -1, "P700FA-": 1, n.pc_ox(): 1},
         args=["P700+FA-", n.pc_red(), n.pc_ox(), "P700FA-", "kPCox", n.keq("PCP700")],
     )
 
     m.add_reaction(
         "toP700FA_v3",
-        mass_action_22_rev,
+        _mass_action_22_rev,
         stoichiometry={"P700FA-": -1, n.fd_ox(): -1, "P700FA": 1},
         args=["P700FA-", n.fd_ox(), "P700FA", n.fd_red(), "kFdred", n.keq("FAFd")],
     )
 
     m.add_reaction(
         "toP700+FA",
-        mass_action_22_rev,
+        _mass_action_22_rev,
         stoichiometry={"P700+FA-": -1, n.fd_ox(): -1},
         args=["P700+FA-", n.fd_ox(), "P700+FA", n.fd_red(), "kFdred", n.keq("FAFd")],
     )
 
     m.add_reaction(
         "toP700FA_v5",
-        mass_action_22_rev,
+        _mass_action_22_rev,
         stoichiometry={"P700FA": 1, n.pc_ox(): 1},
         args=["P700+FA", n.pc_red(), "P700FA", n.pc_ox(), "kPCox", n.keq("PCP700")],
     )
 
     m.add_reaction(
         "PSI",
-        vPS1,
+        _v_ps1,
         stoichiometry={"P700FA": -1, "P700+FA-": 1},
         args=["P700FA", n.ps2cs(), n.pfd()],
     )
 
     m.add_reaction(
         "mehler1",
-        vMehler,
+        _v_mehler,
         stoichiometry={
-            n.h2o2(): Derived(fn=value, args=["convf"]),
+            n.h2o2(): Derived(
+                fn=value,
+                args=["convf"],
+            ),
             "P700FA": 2,
             "P700FA-": -2,
         },
@@ -479,8 +679,14 @@ def _build_full_model(
 
     m.add_reaction(
         "mehler2",
-        vMehler,
-        stoichiometry={n.h2o2(): Derived(fn=value, args=["convf"]), "P700+FA-": -2},
+        _v_mehler,
+        stoichiometry={
+            n.h2o2(): Derived(
+                fn=value,
+                args=["convf"],
+            ),
+            "P700+FA-": -2,
+        },
         args=["P700+FA-", n.o2(chl_lumen), "kMehler"],
     )
 
@@ -493,7 +699,7 @@ def _build_full_model(
 
     m.add_reaction(
         "B10Q",
-        kquencher,
+        _kquencher,
         stoichiometry={n.b1(): -1, n.b0(): 1},
         args=[n.b1(), n.quencher(), "kH_Qslope", "kH0"],
     )
@@ -511,14 +717,17 @@ def _build_full_model(
         stoichiometry={
             n.b1(): -1,
             n.b2(): 1,
-            n.h(chl_lumen): Derived(fn=one_div, args=["bH"]),
+            n.h(chl_lumen): Derived(
+                fn=_one_div,
+                args=["bH"],
+            ),
         },  # watersplitting occurs on lumenal side and protons will be buffered in the lumen by amino acids
         args=[n.b1(), "k2"],
     )
 
     m.add_reaction(
         "B20",
-        mass_action_22_rev,
+        _mass_action_22_rev,
         stoichiometry={n.b2(): -1, n.pq_ox(): -0.5, n.b0(): 1},  # PQred is alm
         args=[n.b2(), n.pq_ox(), n.pq_red(), n.b0(), "kPQred", n.keq(n.pq_red())],
     )
@@ -538,7 +747,7 @@ def _build_full_model(
 
     m.add_reaction(
         "B32Q",
-        kquencher,
+        _kquencher,
         stoichiometry={n.b2(): 1},  # "B3": -1 (alm)
         args=[n.b3(), n.quencher(), "kH_Qslope", "kH0"],
     )
@@ -546,9 +755,18 @@ def _build_full_model(
     ### b6f ###
     bH = m.get_raw_parameters()["bH"].value
 
-    m.add_parameter("b6f_content", 1)
-    m.add_parameter("max_b6f", 500)
-    m.add_parameter("pKreg", 6.5)
+    m.add_parameter(
+        "b6f_content",
+        1,
+    )
+    m.add_parameter(
+        "max_b6f",
+        500,
+    )
+    m.add_parameter(
+        "pKreg",
+        6.5,
+    )
     m.remove_reaction("b6f")
 
     """m.add_derived("keq_b6f",fn=_keq_cytb6f,
@@ -556,17 +774,20 @@ def _build_full_model(
 
     m.add_derived(
         "keq_b6f_dyn",
-        fn=k_b6f,
+        fn=_k_b6f,
         args=[n.ph(chl_lumen), "pKreg", "b6f_content", "max_b6f"],
     )
 
     m.add_reaction(
         "b6f",
-        fn=vb6f_2024,
+        fn=_vb6f_2024,
         stoichiometry={
             n.pc_ox(): -2,
             n.pq_ox(): 1,
-            n.h(chl_lumen): Derived(fn=_four_div_by, args=["bh"]),
+            n.h(chl_lumen): Derived(
+                fn=_four_div_by,
+                args=["bh"],
+            ),
         },
         args=[n.pc_ox(), n.pc_red(), n.pq_ox(), n.pq_red(), "keq_b6f_dyn", "keq_b6f"],
     )
@@ -575,37 +796,66 @@ def _build_full_model(
 
     m.remove_derived("pH_lumen")
     m.remove_variable("protons_lumen")
-    m.add_variable("pH_lumen", 6.5)
-    m.add_derived("protons_lumen", protons_lumen, args=["pH_lumen"])
+    m.add_variable(
+        "pH_lumen",
+        6.5,
+    )
+    m.add_derived(
+        "protons_lumen",
+        _protons_lumen,
+        args=["pH_lumen"],
+    )
 
-    HPR = m.get_raw_parameters()["HPR"].value
+    HPR = cast(
+        float,
+        m.get_raw_parameters()["HPR"].value,
+    )
 
     for r in lumen_reactions:
-        stoich = m.get_raw_reactions()[r].stoichiometry
+        stoich = m.get_raw_reactions()[r].stoichiometry  # type: ignore
 
         if r == "B12":
-            stoich["pH_lumen"] = -1 / bH
+            stoich["pH_lumen"] = -1 / bH  # type: ignore
         elif r == "b6f":
-            stoich["pH_lumen"] = -4 / bH
+            stoich["pH_lumen"] = -4 / bH  # type: ignore
         elif r == "proton_leak":
-            stoich["pH_lumen"] = 1 / bH
+            stoich["pH_lumen"] = 1 / bH  # type: ignore
         elif r == "atp_synthase":
-            stoich["pH_lumen"] = HPR / bH
+            stoich["pH_lumen"] = HPR / bH  # type: ignore
         else:
             continue
-        m.update_reaction(r, stoichiometry=stoich)
+        m.update_reaction(
+            r,
+            stoichiometry=stoich,
+        )
 
     ### tracking stroma pH + variability ###
     m.remove_parameter("protons")
     m.remove_parameter("pH")
-    m.add_parameter("stroma_buffering", 400)
-    m.add_variable("pH", 7.8)
-    m.add_derived("protons", protons_stroma, args=["pH"])
+    m.add_parameter(
+        "stroma_buffering",
+        400,
+    )
+    m.add_variable(
+        "pH",
+        7.8,
+    )
+    m.add_derived(
+        "protons",
+        _protons_stroma,
+        args=["pH"],
+    )
 
-    buffering = m.get_raw_parameters()["stroma_buffering"].value
+    buffering = cast(
+        float,
+        m.get_raw_parameters()["stroma_buffering"].value,
+    )
 
     for r in stroma_reactions:
-        stoich = m.get_raw_reactions()[r].stoichiometry
+        stoich = cast(
+            dict,
+            m.get_raw_reactions()[r].stoichiometry,
+        )
 
         if r == "B20":
             stoich["pH"] = 1 / buffering
@@ -618,10 +868,16 @@ def _build_full_model(
         else:
             continue
 
-        m.update_reaction(r, stoichiometry=stoich)
+        m.update_reaction(
+            r,
+            stoichiometry=stoich,
+        )
     ### ATP changes ###
 
-    m.add_variable("ATPactivity", 0)
+    m.add_variable(
+        "ATPactivity",
+        0,
+    )
     m.add_parameters(
         {
             "kActATPase": 0.01,
@@ -634,15 +890,15 @@ def _build_full_model(
 
     m.add_reaction(
         "vATPactivity",
-        vATPactivity,
+        _v_at_pactivity,
         args=["ATPactivity", n.pfd(), "kActATPase", "kDeactATPase"],
         stoichiometry={"ATPactivity": 1},
     )
 
-    stoich = m.get_raw_reactions()["atp_synthase"].stoichiometry
+    stoich = m.get_raw_reactions()["atp_synthase"].stoichiometry  # type: ignore
     m.update_reaction(
         "atp_synthase",
-        vATPsynthase_mod,
+        _v_at_psynthase_mod,
         stoichiometry=stoich,
         args=[
             "ATP",
@@ -657,7 +913,7 @@ def _build_full_model(
 
     m.add_derived(
         "ATP_pmf_activity",
-        ATP_pmf_activity,
+        _atp_pmf_activity,
         args=["pK0E", "b", "pH_lumen", "pH", "F", "RT", "delta_psi"],
     )
 
@@ -675,14 +931,14 @@ def _build_full_model(
 
     m.add_reaction(
         "vATP_shuttle",
-        reversible_mass_action_1s_1p,
+        _reversible_mass_action_1s_1p,
         stoichiometry={"ATP": 1},
         args=["ADP", "ATP", "k_import_ATP", n.kf(n.ex_atp())],
     )
 
     m.add_reaction(
         "vNADPH_shuttle",
-        reversible_mass_action_1s_1p,
+        _reversible_mass_action_1s_1p,
         stoichiometry={"NADPH": 1},
         args=["NADP", "NADPH", "k_import_NADPH", n.kf(n.ex_nadph())],
     )
@@ -708,26 +964,41 @@ def _build_full_model(
         }
     )
 
-    m.add_derived("deltapH", deltapH, args=["pH", "pH_lumen", "dG_pH"])
+    m.add_derived(
+        "deltapH",
+        _deltap_h,
+        args=["pH", "pH_lumen", "dG_pH"],
+    )
 
     m.add_derived(
-        "deltapH_in_volts", initial_delta_psi, args=["pH", "pH_lumen", "R", "F", "T"]
+        "deltapH_in_volts",
+        _initial_delta_psi,
+        args=["pH", "pH_lumen", "R", "F", "T"],
     )
 
     m.add_variable(
         "delta_psi",
         initial_value=InitialAssignment(
-            fn=initial_delta_psi, args=["pH", "pH_lumen", "R", "F", "T"]
+            fn=_initial_delta_psi,
+            args=["pH", "pH_lumen", "R", "F", "T"],
         ),
     )
 
-    m.add_derived("pmf", pmf, args=["deltapH", "delta_psi", "F"])
+    m.add_derived(
+        "pmf",
+        _pmf,
+        args=["deltapH", "delta_psi", "F"],
+    )
 
-    m.add_derived("pmf_in_V", pmf_in_V, args=["delta_psi", "pH_lumen", "pH", "RT", "F"])
+    m.add_derived(
+        "pmf_in_V",
+        _pmf_in_v,
+        args=["delta_psi", "pH_lumen", "pH", "RT", "F"],
+    )
 
     m.update_derived(
         "ATP_pmf_activity",
-        ATP_pmf_activity2,
+        _atp_pmf_activity2,
         args=["pK0E", "b", "pH_lumen", "pH", "F", "RT", "delta_psi"],
     )
 
@@ -735,65 +1006,121 @@ def _build_full_model(
 
     m.add_derived(
         "keq_b6f",
-        Keq_cytb6f,
+        _keq_cytb6f,
         args=["pH_lumen", "pmf_in_V", "F", "E^0_PQ", "E^0_PC", "RT", "dG_pH"],
     )
 
     updates = {
-        "B12": {"delta_psi": Derived(fn=one_div, args=["volts_per_charge"])},
-        "b6f": {"delta_psi": Derived(fn=four_div, args=["volts_per_charge"])},
+        "B12": {
+            "delta_psi": Derived(
+                fn=_one_div,
+                args=["volts_per_charge"],
+            )
+        },
+        "b6f": {
+            "delta_psi": Derived(
+                fn=_four_div,
+                args=["volts_per_charge"],
+            )
+        },
         "atp_synthase": {
-            "delta_psi": Derived(fn=atp_div, args=["HPR", "volts_per_charge"])
+            "delta_psi": Derived(
+                fn=_atp_div,
+                args=["HPR", "volts_per_charge"],
+            )
         },
         "proton_leak": {
-            "delta_psi": Derived(fn=neg_one_div, args=["volts_per_charge"])
+            "delta_psi": Derived(
+                fn=_neg_one_div,
+                args=["volts_per_charge"],
+            )
         },
     }
 
     for r, delta_update in updates.items():
-        stoich = m.get_raw_reactions()[r].stoichiometry
+        stoich: dict[str, float | Derived] = cast(
+            dict,
+            m.get_raw_reactions()[r].stoichiometry,
+        )
         stoich.update(delta_update)
-        m.update_reaction(r, stoichiometry=stoich)
+        m.update_reaction(
+            r,
+            stoichiometry=stoich,
+        )
 
     m.add_variable(
-        "K_stroma", initial_value=InitialAssignment(fn=half, args=["K_total"])
+        "K_stroma",
+        initial_value=InitialAssignment(
+            fn=_half,
+            args=["K_total"],
+        ),
     )
     m.add_variable(
-        "Cl_stroma", initial_value=InitialAssignment(fn=half, args=["Cl_total"])
-    )
-
-    m.add_derived("K_lumen", moiety_1, args=["K_stroma", "K_total"])
-    m.add_derived("Cl_lumen", moiety_1, args=["Cl_stroma", "Cl_total"])
-    m.add_derived("total_Cl_2", squared, args=["Cl_total"])
-    m.add_derived("total_K_2", squared, args=["K_total"])
-    m.add_derived(
-        "KEA3_reg", reg_KEA, args=["pH", "ATP", "KEA3_pH_reg", "KEA3_ATP_treshold"]
+        "Cl_stroma",
+        initial_value=InitialAssignment(
+            fn=_half,
+            args=["Cl_total"],
+        ),
     )
 
     m.add_derived(
-        "dG_K_ions", DG_K, args=["K_lumen", "K_stroma", "delta_psi", "RT", "F"]
+        "K_lumen",
+        moiety_1,
+        args=["K_stroma", "K_total"],
+    )
+    m.add_derived(
+        "Cl_lumen",
+        moiety_1,
+        args=["Cl_stroma", "Cl_total"],
+    )
+    m.add_derived(
+        "total_Cl_2",
+        _squared,
+        args=["Cl_total"],
+    )
+    m.add_derived(
+        "total_K_2",
+        _squared,
+        args=["K_total"],
+    )
+    m.add_derived(
+        "KEA3_reg",
+        _reg_kea,
+        args=["pH", "ATP", "KEA3_pH_reg", "KEA3_ATP_treshold"],
+    )
+
+    m.add_derived(
+        "dG_K_ions",
+        _dg_k,
+        args=["K_lumen", "K_stroma", "delta_psi", "RT", "F"],
     )
 
     m.add_derived(
         "Cl_driving_force",
-        Cl_driving_force,
+        _cl_driving_force,
         args=["delta_psi", "Cl_lumen", "Cl_stroma", "RT", "F"],
     )
 
     m.add_derived(
-        "Keq_NDH1", Keq_NDH1, args=["pmf", "E^0_Fd", "F", "E^0_PQ", "pH", "dG_pH", "RT"]
+        "Keq_NDH1",
+        _keq_ndh1,
+        args=["pmf", "E^0_Fd", "F", "E^0_PQ", "pH", "dG_pH", "RT"],
     )
 
     m.add_reaction(
         "KEA3",
-        vKEA,
+        _v_kea,
         args=["K_lumen", "protons_lumen", "K_stroma", "k_KEA", "protons", "KEA3_reg"],
-        stoichiometry={"K_stroma": -1, "pH_lumen": 1 / bH, "pH": -1 / buffering},
+        stoichiometry={
+            "K_stroma": -1,
+            "pH_lumen": 1 / bH,  # type: ignore
+            "pH": -1 / buffering,
+        },
     )
 
     m.add_reaction(
         "voltage_K_channel",
-        v_voltage_K_channel,
+        _v_voltage_k_channel,
         args=[
             "delta_psi",
             "K_lumen",
@@ -804,13 +1131,16 @@ def _build_full_model(
         ],
         stoichiometry={
             "K_stroma": 1,
-            "delta_psi": Derived(fn=neg_one_div, args=["volts_per_charge"]),
+            "delta_psi": Derived(
+                fn=_neg_one_div,
+                args=["volts_per_charge"],
+            ),
         },
     )
 
     m.add_reaction(
         "VCCN1",
-        vVCCN1,
+        _v_vccn1,
         args=[
             "Cl_stroma",
             "Cl_lumen",
@@ -821,13 +1151,16 @@ def _build_full_model(
         ],
         stoichiometry={
             "Cl_stroma": -1,
-            "delta_psi": Derived(fn=neg_one_div, args=["volts_per_charge"]),
+            "delta_psi": Derived(
+                fn=_neg_one_div,
+                args=["volts_per_charge"],
+            ),
         },
     )
 
     m.add_reaction(
         "ClCe",
-        vClCe,
+        _v_cl_ce,
         args=[
             "Cl_lumen",
             "Cl_stroma",
@@ -838,13 +1171,16 @@ def _build_full_model(
         ],
         stoichiometry={
             "Cl_stroma": -1,
-            "delta_psi": Derived(fn=neg_one_div, args=["volts_per_charge"]),
+            "delta_psi": Derived(
+                fn=_neg_one_div,
+                args=["volts_per_charge"],
+            ),
         },
     )
 
     m.add_reaction(
         "Cl_leak",
-        vCl_leak,
+        _v_cl_leak,
         args=[
             "k_Cl_leak",
             "Cl_lumen",
@@ -855,33 +1191,44 @@ def _build_full_model(
         ],
         stoichiometry={
             "Cl_stroma": 1,
-            "delta_psi": Derived(fn=one_div, args=["volts_per_charge"]),
+            "delta_psi": Derived(
+                fn=_one_div,
+                args=["volts_per_charge"],
+            ),
         },
     )
 
     m.add_reaction(
         "NDH1",
-        vNDH1,
+        _v_ndh1,
         args=["P700+FA-", n.fd_red(), n.pq_ox(), "pH_lumen", "k_NDH1"],
         stoichiometry={
             n.fd_ox(): 2,
             n.pq_ox(): -1,
-            "pH_lumen": -4 / bH,
+            "pH_lumen": -4 / bH,  # type: ignore
             "pH": 4 / buffering,
-            "delta_psi": Derived(fn=four_div, args=["volts_per_charge"]),
+            "delta_psi": Derived(
+                fn=_four_div,
+                args=["volts_per_charge"],
+            ),
         },
     )
 
     if ClCe == "bi":
         m.remove_reaction("ClCe")
-        m.add_parameter("ClCe_ATP_threshold", 0.2)
+        m.add_parameter(
+            "ClCe_ATP_threshold",
+            0.2,
+        )
         m.add_derived(
-            "ClCe_activation", ClCe_activation, args=["ATP", "ClCe_ATP_threshold"]
+            "ClCe_activation",
+            _cl_ce_activation,
+            args=["ATP", "ClCe_ATP_threshold"],
         )
 
         m.add_reaction(
             "ClCe_bi",
-            ClCe_bi,
+            _cl_ce_bi,
             args=[
                 "Cl_lumen",
                 "Cl_stroma",
@@ -894,14 +1241,19 @@ def _build_full_model(
 
     if ClCe == "antiport":
         m.remove_reaction("ClCe")
-        m.add_parameter("ClCe_ATP_threshold", 0.2)
+        m.add_parameter(
+            "ClCe_ATP_threshold",
+            0.2,
+        )
         m.add_derived(
-            "ClCe_activation", ClCe_activation, args=["ATP", "ClCe_ATP_threshold"]
+            "ClCe_activation",
+            _cl_ce_activation,
+            args=["ATP", "ClCe_ATP_threshold"],
         )
 
         m.add_reaction(
             "ClCe_CH",
-            ClCe_CH,
+            _cl_ce_ch,
             args=[
                 "Cl_lumen",
                 "Cl_stroma",
@@ -910,7 +1262,11 @@ def _build_full_model(
                 "protons",
                 "protons_lumen",
             ],
-            stoichiometry={"Cl_stroma": 1, "pH_lumen": -1 / bH, "pH": 1 / buffering},
+            stoichiometry={
+                "Cl_stroma": 1,
+                "pH_lumen": -1 / bH,  # type: ignore
+                "pH": 1 / buffering,
+            },
         )
 
     m.update_variables(
@@ -963,4 +1319,7 @@ def _build_full_model(
 
 
 def get_ebeling_2026() -> Model:
-    return _build_full_model(get_saadat2021(), ClCe="bi")
+    return _build_full_model(
+        get_saadat2021(),
+        ClCe="bi",
+    )
