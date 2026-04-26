@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC FIXME
 
@@ -35,6 +35,7 @@ def add_proton_leak(
     ph_stroma: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add proton leak (name) to model."""
     rxn = default_name(rxn, n.proton_leak)
     h_lumen = default_name(h_lumen, lambda: n.h("_lumen"))
     ph_stroma = default_name(ph_stroma, n.ph)

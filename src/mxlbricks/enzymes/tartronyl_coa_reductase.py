@@ -1,4 +1,4 @@
-"""TCR1: nadph + tarcoa -> nadp + coa + 2h3oppan
+"""TCR1: nadph + tarcoa -> nadp + coa + 2h3oppan.
 
 Tartronyl-Coa + NADPH -> Tartronate-semialdehyde + NADP + CoA
 dG' = 29.78
@@ -39,6 +39,7 @@ def add_tartronyl_coa_reductase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add tartronyl coa reductase (TCR1: nadph + tarcoa -> nadp + coa + 2h3oppan) to model."""
     rxn = default_name(rxn, n.tartronyl_coa_reductase)
     nadph = default_name(nadph, n.nadph)
     tartronyl_coa = default_name(tartronyl_coa, n.tartronyl_coa)

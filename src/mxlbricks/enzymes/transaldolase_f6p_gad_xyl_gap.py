@@ -1,4 +1,4 @@
-"""F6P + Glycolaldehyde <=> GAP + XYLULOSE
+"""F6P + Glycolaldehyde <=> GAP + XYLULOSE.
 
 EC 2.2.1.2
 
@@ -41,6 +41,7 @@ def add_transaldolase_f6p_gad_xyl_gap(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add transaldolase f6p gad xyl gap (F6P + Glycolaldehyde <=> GAP + XYLULOSE) to model."""
     rxn = default_name(rxn, n.transaldolase_f6p_gad_gap_xyl)
     f6p = default_name(f6p, n.f6p)
     glycolaldehyde = default_name(glycolaldehyde, n.glycolaldehyde)

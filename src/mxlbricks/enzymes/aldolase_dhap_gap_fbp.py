@@ -1,4 +1,4 @@
-"""DHAP + GAP <=> FBP
+"""DHAP + GAP <=> FBP.
 
 EC 4.1.2.13
 
@@ -29,6 +29,7 @@ def add_aldolase_dhap_gap_req(
     kre: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add aldolase dhap gap req (DHAP + GAP <=> FBP) to model."""
     rxn = default_name(rxn, n.aldolase_dhap_gap)
     gap = default_name(gap, n.gap)
     dhap = default_name(dhap, n.dhap)

@@ -1,4 +1,4 @@
-"""ribulose-phosphate 3-epimerase
+"""ribulose-phosphate 3-epimerase.
 
 EC 5.1.3.1
 
@@ -27,6 +27,7 @@ def add_ribulose_5_phosphate_3_epimerase(
     kre: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add ribulose 5 phosphate 3 epimerase (ribulose-phosphate 3-epimerase) to model."""
     rxn = default_name(rxn, n.ribulose_phosphate_epimerase)
     x5p = default_name(x5p, n.x5p)
     ru5p = default_name(ru5p, n.ru5p)

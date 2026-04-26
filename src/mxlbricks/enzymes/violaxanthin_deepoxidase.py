@@ -1,6 +1,7 @@
-"""Violaxanthin Deepoxidase (lumen)
+"""Violaxanthin Deepoxidase (lumen).
+
 Violaxanthin + Ascorbate -> Antheraxanthin + Dehydroascorbate + H2O
-Antheraxanthin + Ascorbate -> Zeaxanthin + Dehydroascorbate + H2O
+Antheraxanthin + Ascorbate -> Zeaxanthin + Dehydroascorbate + H2O.
 """
 
 from mxlpy import Model
@@ -33,6 +34,7 @@ def add_violaxanthin_epoxidase(
     kh_zx: str | None = None,
     kphsat: str | None = None,
 ) -> Model:
+    """Add violaxanthin epoxidase (Violaxanthin Deepoxidase (lumen)) to model."""
     rxn = default_name(rxn, n.violaxanthin_deepoxidase)
     vx = default_name(vx, n.vx)
     h_lumen = default_name(h_lumen, lambda: n.h("_lumen"))

@@ -1,5 +1,6 @@
-"""Tartronate semialdehyde(aq) + NADH(aq) ⇌ Glycerate(aq) + NAD (aq)
-Keq = 1.6e5 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25)
+"""Tartronate semialdehyde(aq) + NADH(aq) ⇌ Glycerate(aq) + NAD (aq).
+
+Keq = 1.6e5 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25).
 """
 
 from __future__ import annotations
@@ -35,6 +36,7 @@ def add_tartronate_semialdehyde_reductase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add tartronate semialdehyde reductase (Tartronate semialdehyde(aq) + NADH(aq) ⇌ Glycerate(aq) + NAD (aq)) to model."""
     rxn = default_name(rxn, n.tartronate_semialdehyde_reductase)
     tartronate_semialdehyde = default_name(
         tartronate_semialdehyde, n.tartronate_semialdehyde

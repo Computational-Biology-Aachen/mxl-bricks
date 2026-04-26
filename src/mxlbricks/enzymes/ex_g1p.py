@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 Equilibrator
 """
@@ -70,6 +70,7 @@ def add_g1p_efflux(
     ka_f6p: str | None = None,
     ka_fbp: str | None = None,
 ) -> Model:
+    """Add g1p efflux (name) to model."""
     rxn = default_name(rxn, n.ex_g1p)
     g1p = default_name(g1p, n.g1p)
     atp = default_name(atp, n.atp)

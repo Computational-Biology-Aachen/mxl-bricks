@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 1.2.3.5
 
@@ -36,6 +36,7 @@ def add_glyoxylate_oxidase(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add glyoxylate oxidase (name) to model."""
     rxn = default_name(rxn, n.glyoxylate_oxidase)
     glyoxylate = default_name(glyoxylate, n.glyoxylate)
     o2 = default_name(o2, n.o2)

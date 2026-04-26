@@ -1,4 +1,4 @@
-"""Glycolaldehyde + GAP <=> A5P
+"""Glycolaldehyde + GAP <=> A5P.
 
 EC 4.1.2.?
 
@@ -38,6 +38,7 @@ def add_a5p_aldolase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add a5p aldolase (Glycolaldehyde + GAP <=> A5P) to model."""
     rxn = default_name(rxn, n.a5p_aldolase)
     s1 = default_name(s1, n.glycolaldehyde)
     s2 = default_name(s2, n.gap)

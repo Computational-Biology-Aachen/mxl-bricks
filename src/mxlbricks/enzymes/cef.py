@@ -1,3 +1,5 @@
+"""Enzyme building block: cef."""
+
 from mxlpy import Model
 
 from mxlbricks import names as n
@@ -21,6 +23,7 @@ def add_cyclic_electron_flow(
     rxn: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add cyclic electron flow to model."""
     rxn = default_name(rxn, n.cyclic_electron_flow)
 
     model.add_reaction(

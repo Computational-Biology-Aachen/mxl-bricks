@@ -1,4 +1,4 @@
-"""H+-transporting two-sector ATPase
+"""H+-transporting two-sector ATPase.
 
 ADP + Orthophosphate -> ATP
 
@@ -119,6 +119,7 @@ def add_atp_synthase_mmol_chl(
     hpr: str | None = None,
     bh: str | None = None,  # proton buffering
 ) -> Model:
+    """Add atp synthase mmol chl (H+-transporting two-sector ATPase) to model."""
     rxn = default_name(rxn, n.atp_synthase)
     atp = default_name(atp, n.atp)
     adp = default_name(adp, n.adp)
@@ -186,6 +187,7 @@ def add_atp_synthase_mm(
     bh: str | None = None,  # proton buffering
     convf: str | None = None,
 ) -> Model:
+    """Add atp synthase mm (H+-transporting two-sector ATPase) to model."""
     rxn = default_name(rxn, n.atp_synthase)
     atp = default_name(atp, n.atp)
     adp = default_name(adp, n.adp)
@@ -249,7 +251,7 @@ def add_atp_synthase_static_protons(
     km_adp: str | None = None,
     km_pi: str | None = None,
 ) -> Model:
-    """Used by Poolman 2000"""
+    """Add ATP synthase reaction as used in Poolman 2000."""
     rxn = default_name(rxn, n.atp_synthase)
     atp = default_name(atp, n.atp)
     adp = default_name(adp, n.adp)
@@ -299,6 +301,7 @@ def add_atp_synthase_energy_dependent(
     km_adp: str | None = None,
     km_pi: str | None = None,
 ) -> Model:
+    """Add atp synthase energy dependent (H+-transporting two-sector ATPase) to model."""
     rxn = default_name(rxn, n.atp_synthase)
     atp = default_name(atp, n.atp)
     adp = default_name(adp, n.adp)
@@ -355,6 +358,7 @@ def add_atp_synthase_2024(
     bh: str | None = None,  # proton buffering
     convf: str | None = None,
 ) -> Model:
+    """Add atp synthase 2024 (H+-transporting two-sector ATPase) to model."""
     rxn = default_name(rxn, n.atp_synthase)
     atp = default_name(atp, n.atp)
     adp = default_name(adp, n.adp)

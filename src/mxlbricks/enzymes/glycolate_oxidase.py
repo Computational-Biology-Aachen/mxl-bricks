@@ -1,4 +1,4 @@
-"""glycolate oxidase
+"""glycolate oxidase.
 
 O2 + Glycolate(chl) <=> H2O2 + Glyoxylate
 
@@ -34,10 +34,7 @@ def add_glycolate_oxidase_yokota(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
-    """
-
-    This variant doesn't actually include the oxygen concentration
-    """
+    """Add glycolate oxidase without explicit oxygen concentration term."""
     rxn = default_name(rxn, n.glycolate_oxidase)
     glycolate = default_name(glycolate, n.glycolate)
     glyoxylate = default_name(glyoxylate, n.glyoxylate)
@@ -79,6 +76,7 @@ def add_glycolate_oxidase(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add glycolate oxidase (glycolate oxidase) to model."""
     rxn = default_name(rxn, n.glycolate_oxidase)
     glycolate = default_name(glycolate, n.glycolate)
     glyoxylate = default_name(glyoxylate, n.glyoxylate)

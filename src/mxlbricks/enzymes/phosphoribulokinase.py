@@ -1,4 +1,4 @@
-"""phosphoribulokinase
+"""phosphoribulokinase.
 
 EC 2.7.1.19
 
@@ -70,6 +70,7 @@ def add_phosphoribulokinase(
     ki4: str | None = None,
     ki5: str | None = None,
 ) -> Model:
+    """Add phosphoribulokinase (phosphoribulokinase) to model."""
     rxn = default_name(rxn, n.phosphoribulokinase)
     ru5p = default_name(ru5p, n.ru5p)
     atp = default_name(atp, n.atp)

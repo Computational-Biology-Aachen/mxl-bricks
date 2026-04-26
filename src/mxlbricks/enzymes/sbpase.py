@@ -1,4 +1,4 @@
-"""SBPase
+"""SBPase.
 
 EC 3.1.3.37
 
@@ -37,6 +37,7 @@ def add_sbpase(
     kms: str | None = None,
     ki: str | None = None,
 ) -> Model:
+    """Add sbpase (SBPase) to model."""
     rxn = default_name(rxn, n.sbpase)
     sbp = default_name(sbp, n.sbp)
     s7p = default_name(s7p, n.s7p)

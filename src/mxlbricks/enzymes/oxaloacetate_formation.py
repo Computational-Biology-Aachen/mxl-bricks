@@ -1,4 +1,4 @@
-"""Spontaneous reaction
+"""Spontaneous reaction.
 
 EC FIXME
 
@@ -39,6 +39,7 @@ def add_oxaloacetate_formation(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add oxaloacetate formation (Spontaneous reaction) to model."""
     rxn = default_name(rxn, n.oxaloacetate_formation)
     iminoaspartate = default_name(iminoaspartate, n.iminoaspartate)
     oxaloacetate = default_name(oxaloacetate, n.oxaloacetate)

@@ -1,4 +1,4 @@
-"""EC 5.4.2.1
+"""EC 5.4.2.1.
 
 Equilibrator
 2-Phospho-D-glycerate(aq) ⇌ 3-Phospho-D-glycerate(aq)
@@ -36,6 +36,7 @@ def add_phosphoglycerate_mutase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add phosphoglycerate mutase (EC 5) to model."""
     rxn = default_name(rxn, n.phosphoglycerate_mutase)
     pga2 = default_name(pga2, n.pga2)
     pga = default_name(pga, n.pga)

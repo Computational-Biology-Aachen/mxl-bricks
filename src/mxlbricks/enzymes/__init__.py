@@ -1,3 +1,5 @@
+"""Enzyme reaction building blocks for mxlpy models."""
+
 from .a5p_isomerase import add_a5p_isomerase
 from .acetoacetate_coa_ligase import add_acetoacetate_coa_ligase
 from .acetyl_coa_acetyltransfer import add_acetyl_coa_acetyltransfer

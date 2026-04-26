@@ -1,4 +1,4 @@
-"""fructose-1,6-bisphosphatase
+"""fructose-1,6-bisphosphatase.
 
 EC 3.1.3.11
 
@@ -39,6 +39,7 @@ def add_fbpase(
     ki_f6p: str | None = None,
     ki_pi: str | None = None,
 ) -> Model:
+    """Add fbpase (fructose-1,6-bisphosphatase) to model."""
     rxn = default_name(rxn, n.fbpase)
     fbp = default_name(fbp, n.fbp)
     f6p = default_name(f6p, n.f6p)

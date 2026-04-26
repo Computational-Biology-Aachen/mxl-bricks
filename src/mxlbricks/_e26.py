@@ -198,7 +198,7 @@ def _v_at_pactivity(
     kActATPase: float,
     kDeactATPase: float,
 ) -> float:
-    """Activation of ATPsynthase by light"""
+    """Activation of ATPsynthase by light."""
     if light > 0.0:
         return kActATPase * (1 - ATPactivity)
     return -kDeactATPase * ATPactivity
@@ -260,9 +260,7 @@ def _initial_delta_psi(
     F: float,
     T: float,
 ) -> float:
-    """
-    Estimation of delta psi in the dark - assuming delta_pH and delta_psi have equal contribution to pmf
-    """
+    """Estimate delta psi in the dark, assuming delta_pH and delta_psi contribute equally to pmf."""
     return np.log(10) * ((R * T) / F) * (pH - pH_lumen)
 
 
@@ -501,15 +499,15 @@ def _build_full_model(
     stroma_reactions: list[str] | None = None,
     ClCe: str = "exporter",
 ) -> Model:
-    """
-    Changes:
+    """Build full e26 model with extended dynamics.
+
+    Changes from base:
     1. PSII + PSI dynamics
     2. b6f module photosynthetic control
     3. ATP synthase
     4. tracking pH and variable stroma
-    3. delta psi and ion channels
+    5. delta psi and ion channels.
     """
-
     lumen_reactions = (
         ["B12", "b6f", "proton_leak", "atp_synthase"]
         if lumen_reactions is None

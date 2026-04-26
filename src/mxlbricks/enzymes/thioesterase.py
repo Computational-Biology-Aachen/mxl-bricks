@@ -1,4 +1,4 @@
-"""EC 3.1.2.10
+"""EC 3.1.2.10.
 
 Metacyc:
 FORMYL_COA_m + WATER_m <=> CO-A_m + FORMATE_m + PROTON_m
@@ -37,6 +37,7 @@ def add_thioesterase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add thioesterase (EC 3) to model."""
     rxn = default_name(rxn, n.thioesterase)
     formyl_coa = default_name(formyl_coa, n.formyl_coa)
     coa = default_name(coa, n.coa)

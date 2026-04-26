@@ -1,3 +1,5 @@
+"""Enzyme building block: quencher."""
+
 from mxlpy import Model
 
 from mxlbricks import names as n
@@ -16,6 +18,7 @@ def add_quenching_reaction(
     energy: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add quenching reaction to model."""
     rxn = default_name(rxn, n.quencher)
     energy = default_name(energy, n.energy)
 

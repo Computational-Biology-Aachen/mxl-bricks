@@ -1,4 +1,4 @@
-"""glycine transaminase
+"""glycine transaminase.
 
 EC 2.6.1.4
 
@@ -83,6 +83,7 @@ def add_glycine_transaminase_irreversible(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add glycine transaminase irreversible (glycine transaminase) to model."""
     rxn = default_name(rxn, n.glycine_transaminase)
     glutamate = default_name(glutamate, n.glutamate)
     glyoxylate = default_name(glyoxylate, n.glyoxylate)
@@ -133,6 +134,7 @@ def add_glycine_transaminase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glycine transaminase (glycine transaminase) to model."""
     rxn = default_name(rxn, n.glycine_transaminase)
     glutamate = default_name(glutamate, n.glutamate)
     glyoxylate = default_name(glyoxylate, n.glyoxylate)

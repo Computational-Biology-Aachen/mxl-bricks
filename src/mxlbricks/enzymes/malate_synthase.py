@@ -1,4 +1,4 @@
-"""malate synthase
+"""malate synthase.
 
 EC 2.3.3.9
 
@@ -42,6 +42,7 @@ def add_malate_synthase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add malate synthase (malate synthase) to model."""
     rxn = default_name(rxn, n.malate_synthase)
     acetyl_coa = default_name(acetyl_coa, n.acetyl_coa)
     glyoxylate = default_name(glyoxylate, n.glyoxylate)

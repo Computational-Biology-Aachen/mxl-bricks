@@ -1,4 +1,4 @@
-"""dehydroascorbate_reductase, DHAR
+"""dehydroascorbate_reductase, DHAR.
 
 EC FIXME
 
@@ -40,6 +40,7 @@ def add_dehydroascorbate_reductase(
     km_dha: str | None = None,
     km_gsh: str | None = None,
 ) -> Model:
+    """Add dehydroascorbate reductase (dehydroascorbate_reductase, DHAR) to model."""
     rxn = default_name(rxn, n.dehydroascorbate_reductase)
     dha = default_name(dha, n.dha)
     glutathion_ox = default_name(glutathion_ox, n.glutathion_ox)

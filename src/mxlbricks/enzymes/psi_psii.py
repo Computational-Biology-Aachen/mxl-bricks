@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC FIXME
 
@@ -83,9 +83,10 @@ def _ps1states_2019(
     k_pc_ox: float,
     pfd: float,
 ) -> float:
-    """QSSA calculates open state of PSI
+    """QSSA calculates open state of PSI.
+
     depends on reduction states of plastocyanin and ferredoxin
-    C = [PC], F = [Fd] (ox. forms)
+    C = [PC], F = [Fd] (ox. forms).
     """
     L = (1 - ps2cs) * pfd
     return psi_tot / (
@@ -111,9 +112,10 @@ def _ps1states_2021_surrogate(
     k0: float,
     o2: float,
 ) -> tuple[float, float, float]:
-    """QSSA calculates open state of PSI
+    """QSSA calculates open state of PSI.
+
     depends on reduction states of plastocyanin and ferredoxin
-    C = [PC], F = [Fd] (ox. forms)
+    C = [PC], F = [Fd] (ox. forms).
     """
     kLI = (1 - ps2cs) * pfd
 
@@ -789,6 +791,7 @@ def add_ps2_cross_section(
     static_ant_i: str | None = None,
     static_ant_ii: str | None = None,
 ) -> Model:
+    """Add ps2 cross section (name) to model."""
     model.add_derived(
         name=n.ps2cs(),
         fn=_ps2_crosssection,
@@ -817,6 +820,7 @@ def add_psii(
     b2: str,
     b3: str,
 ) -> Model:
+    """Add psii (name) to model."""
     args = [
         pq_ox,
         pq_red,
@@ -904,6 +908,7 @@ def add_psi_2019(
     keq_pcp700: str,
     keq_fd_red: str,
 ) -> Model:
+    """Add psi 2019 (name) to model."""
     model.add_derived(
         name=n.a1(),
         fn=_ps1states_2019,
@@ -955,6 +960,7 @@ def add_psi_2021(
     keq_fd_red: str,
     k_mehler: str,
 ) -> Model:
+    """Add psi 2021 (name) to model."""
     model.add_surrogate(
         "ps1states",
         surrogate=qss.Surrogate(
@@ -1006,6 +1012,7 @@ def add_mehler(
     convf: str,
     k_mehler: str,
 ) -> Model:
+    """Add mehler (name) to model."""
     model.add_reaction(
         name=rxn,
         fn=mass_action_2s,
@@ -1050,8 +1057,9 @@ def add_photosystems(
     mehler: bool,
     convf: str | None = None,
 ) -> Model:
-    """PSII: 2 H2O + 2 PQ + 4 H_stroma -> O2 + 2 PQH2 + 4 H_lumen
-    PSI: Fd_ox + PC_red -> Fd_red + PC_ox
+    """PSII: 2 H2O + 2 PQ + 4 H_stroma -> O2 + 2 PQH2 + 4 H_lumen.
+
+    PSI: Fd_ox + PC_red -> Fd_red + PC_ox.
     """
     pq_ox = default_name(pq_ox, n.pq_ox)
     pq_red = default_name(pq_red, n.pq_red)
@@ -1163,6 +1171,7 @@ def add_energy_production(
     energy: str | None = None,
     pfd: str | None = None,
 ) -> Model:
+    """Add energy production (name) to model."""
     rxn = default_name(rxn, n.ps2)
     energy = default_name(energy, n.energy)
     pfd = default_name(pfd, n.pfd)

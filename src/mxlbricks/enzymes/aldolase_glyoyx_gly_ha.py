@@ -1,4 +1,4 @@
-"""EC: 4.1.3.14
+"""EC: 4.1.3.14.
 
 Equilibrator
 Glyoxylate(aq) + Glycine(aq) ⇌ 3-hydroxyaspartate(aq)
@@ -36,6 +36,7 @@ def add_hydroxyaspartate_aldolase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add hydroxyaspartate aldolase (EC: 4) to model."""
     rxn = default_name(rxn, n.hydroxyaspartate_aldolase)
     s1 = default_name(s1, n.glyoxylate)
     s2 = default_name(s2, n.glycine)

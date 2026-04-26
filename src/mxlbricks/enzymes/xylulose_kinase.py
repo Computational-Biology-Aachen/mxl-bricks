@@ -1,4 +1,4 @@
-"""XYLULOSE + ATP  <=> XYLULOSE_5_PHOSPHATE + ADP
+"""XYLULOSE + ATP  <=> XYLULOSE_5_PHOSPHATE + ADP.
 
 EC FIXME
 
@@ -40,6 +40,7 @@ def add_xylulose_kinase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add xylulose kinase (XYLULOSE + ATP  <=> XYLULOSE_5_PHOSPHATE + ADP) to model."""
     rxn = default_name(rxn, n.xylulose_kinase)
     xylulose = default_name(xylulose, n.xylulose)
     atp = default_name(atp, n.atp)

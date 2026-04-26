@@ -1,4 +1,4 @@
-"""R1P + ATP  <=> RUBP + ADP
+"""R1P + ATP  <=> RUBP + ADP.
 
 EC FIXME
 
@@ -36,6 +36,7 @@ def add_r1p_kinase(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add r1p kinase (R1P + ATP  <=> RUBP + ADP) to model."""
     rxn = default_name(rxn, n.r1p_kinase)
     r1p = default_name(r1p, n.r1p)
     atp = default_name(atp, n.atp)

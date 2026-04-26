@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC FIXME
 
@@ -47,6 +47,7 @@ def add_nitrogen_metabolism(
     kf: str | None = None,
     convf: str | None = None,
 ) -> Model:
+    """Add nitrogen metabolism (name) to model."""
     rxn = default_name(rxn, n.nitrogen_fixation)
     oxoglutarate = default_name(oxoglutarate, n.oxoglutarate)
     atp = default_name(atp, n.atp)

@@ -1,4 +1,4 @@
-"""Plastid terminal oxidase
+"""Plastid terminal oxidase.
 
 2 QH2 + O2 -> 2 Q + 2 H2O
 """
@@ -22,6 +22,7 @@ def add_ptox(
     o2: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add ptox (Plastid terminal oxidase) to model."""
     rxn = default_name(rxn, n.ptox)
     pq_ox = default_name(pq_ox, n.pq_ox)
     pq_red = default_name(pq_red, n.pq_red)

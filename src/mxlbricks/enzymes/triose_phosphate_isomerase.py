@@ -1,4 +1,4 @@
-"""triose-phosphate isomerase
+"""triose-phosphate isomerase.
 
 EC 5.3.1.1
 
@@ -27,6 +27,7 @@ def add_triose_phosphate_isomerase(
     kre: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add triose phosphate isomerase (triose-phosphate isomerase) to model."""
     rxn = default_name(rxn, n.triose_phosphate_isomerase)
     gap = default_name(gap, n.gap)
     dhap = default_name(dhap, n.dhap)

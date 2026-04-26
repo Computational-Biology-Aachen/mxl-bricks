@@ -1,4 +1,4 @@
-"""acetoacetate_coa_ligase
+"""acetoacetate_coa_ligase.
 
 EC 6.2.1.16
 
@@ -46,6 +46,7 @@ def add_acetoacetate_coa_ligase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add acetoacetate coa ligase (acetoacetate_coa_ligase) to model."""
     rxn = default_name(rxn, n.acetoacetate_coa_ligase)
     acac = default_name(acac, n.acetoacetate)
     atp = default_name(atp, n.atp)

@@ -1,4 +1,4 @@
-"""EC 1.2.1.75
+"""EC 1.2.1.75.
 
 Metacyc:
 MALONYL-COA_m + NADPH_m + PROTON_m <=> CO-A_m + MALONATE-S-ALD_m + NADP_m
@@ -42,6 +42,7 @@ def add_malonyl_coa_reductase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add malonyl coa reductase (EC 1) to model."""
     rxn = default_name(rxn, n.malonyl_coa_reductase)
     malonyl_coa = default_name(malonyl_coa, n.malonyl_coa)
     nadph = default_name(nadph, n.nadph)

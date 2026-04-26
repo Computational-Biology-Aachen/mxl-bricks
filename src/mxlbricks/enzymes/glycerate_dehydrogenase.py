@@ -1,4 +1,4 @@
-"""glycerate dehydrogenase
+"""glycerate dehydrogenase.
 
 NADH + Hydroxypyruvate <=> NAD  + D-Glycerate
 
@@ -39,6 +39,7 @@ def add_hpa_outflux(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add hpa outflux (glycerate dehydrogenase) to model."""
     rxn = default_name(rxn, n.glycerate_dehydrogenase)
     hydroxypyruvate = default_name(hydroxypyruvate, n.hydroxypyruvate)
 
@@ -79,6 +80,7 @@ def add_glycerate_dehydrogenase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glycerate dehydrogenase (glycerate dehydrogenase) to model."""
     rxn = default_name(rxn, n.glycerate_dehydrogenase)
     hydroxypyruvate = default_name(hydroxypyruvate, n.hydroxypyruvate)
     nadh = default_name(nadh, n.nadh)

@@ -1,4 +1,4 @@
-"""phosphoglycolate phosphatase, EC 3.1.3.18
+"""phosphoglycolate phosphatase, EC 3.1.3.18.
 
 H2O(chl) + PGO(chl) <=> Orthophosphate(chl) + Glycolate(chl)
 
@@ -35,6 +35,7 @@ def add_phosphoglycolate_influx(
     glycolate: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add phosphoglycolate influx (phosphoglycolate phosphatase, EC 3) to model."""
     rxn = default_name(rxn, n.phosphoglycolate_phosphatase)
     glycolate = default_name(glycolate, n.glycolate)
 
@@ -65,6 +66,7 @@ def add_phosphoglycolate_phosphatase(
     keq: str | None = None,
     ki_pi: str | None = None,
 ) -> Model:
+    """Add phosphoglycolate phosphatase (phosphoglycolate phosphatase, EC 3) to model."""
     rxn = default_name(rxn, n.phosphoglycolate_phosphatase)
     pgo = default_name(pgo, n.pgo)
     glycolate = default_name(glycolate, n.glycolate)

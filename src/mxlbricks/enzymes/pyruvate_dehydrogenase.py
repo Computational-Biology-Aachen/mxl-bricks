@@ -1,4 +1,4 @@
-"""pyruvate dehydrogenase
+"""pyruvate dehydrogenase.
 
 EC 1.2.4.1
 
@@ -43,6 +43,7 @@ def add_pyruvate_dehydrogenase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add pyruvate dehydrogenase (pyruvate dehydrogenase) to model."""
     rxn = default_name(rxn, n.pyruvate_dehydrogenase)
     nad = default_name(nad, n.nad)
     coa = default_name(coa, n.coa)

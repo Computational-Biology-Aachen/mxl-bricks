@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC FIXME
 
@@ -30,6 +30,7 @@ def add_mda_reductase1(
     dha: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add mda reductase1 (name) to model."""
     rxn = default_name(rxn, n.mda_reductase1)
     mda = default_name(mda, n.mda)
     dha = default_name(dha, n.dha)

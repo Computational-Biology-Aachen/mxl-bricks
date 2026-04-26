@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC FIXME
 
@@ -37,6 +37,7 @@ def add_lhc_protonation(
     kh_lhc: str | None = None,
     k_ph_sat: str | None = None,
 ) -> Model:
+    """Add lhc protonation (name) to model."""
     rxn = default_name(rxn, n.lhc_protonation)
     psbs_de = default_name(psbs_de, n.psbs_de)
     psbs_pr = default_name(psbs_pr, n.psbs_pr)

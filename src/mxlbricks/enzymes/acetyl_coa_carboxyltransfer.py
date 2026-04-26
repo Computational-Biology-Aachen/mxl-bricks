@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 6.4.1.2
 
@@ -53,6 +53,7 @@ def add_acetyl_coa_carboxyltransfer(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add acetyl coa carboxyltransfer (name) to model."""
     rxn = default_name(rxn, n.acetyl_coa_carboxyltransfer)
     s1 = default_name(s1, n.acetyl_coa)
     s2 = default_name(s2, n.atp)
@@ -117,6 +118,7 @@ def add_acetyl_coa_carboxyltransfer_1i(
     i1: str | None = None,
     ki: str | None = None,
 ) -> Model:
+    """Add acetyl coa carboxyltransfer 1i (name) to model."""
     rxn = default_name(rxn, n.acetyl_coa_carboxyltransfer)
     s1 = default_name(s1, n.acetyl_coa)
     s2 = default_name(s2, n.atp)

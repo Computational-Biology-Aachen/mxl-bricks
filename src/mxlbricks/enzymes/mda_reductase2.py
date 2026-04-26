@@ -1,5 +1,6 @@
-"""EC 1.6.5.4
-NADH + Proton + 2 Monodehydroascorbate <=> NAD + 2 ascorbate
+"""EC 1.6.5.4.
+
+NADH + Proton + 2 Monodehydroascorbate <=> NAD + 2 ascorbate.
 
 
 Equilibrator
@@ -22,7 +23,7 @@ def _rate_mda_reductase(
     km_nadph: float,
     km_mda: float,
 ) -> float:
-    """Compare Valero et al. 2016"""
+    """Compare Valero et al. 2016."""
     nom = vmax * nadph * mda
     denom = km_nadph * mda + km_mda * nadph + nadph * mda + km_nadph * km_mda
     return nom / denom
@@ -39,6 +40,7 @@ def add_mda_reductase2(
     km_mda: str | None = None,
     km_nadph: str | None = None,
 ) -> Model:
+    """Add mda reductase2 (EC 1) to model."""
     rxn = default_name(rxn, n.mda_reductase2)
     nadph = default_name(nadph, n.nadph)
     mda = default_name(mda, n.mda)

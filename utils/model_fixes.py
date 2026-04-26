@@ -1,4 +1,6 @@
 # ruff: noqa: INP001
+"""CST-based transforms for normalising mxlbricks enzyme-function signatures."""
+
 from __future__ import annotations
 
 import re
@@ -68,11 +70,14 @@ def _apply(path: Path, transformer: cst.CSTTransformer) -> bool:
 
 
 class AddFloatAnnotations(cst.CSTTransformer):
+    """CST transformer that adds `float` type annotations to unannotated params and return types."""
+
     def leave_Param(  # noqa: N802
         self,
         original_node: cst.Param,  # noqa: ARG002
         updated_node: cst.Param,
     ) -> cst.Param:
+        """Add float annotation to unannotated non-star parameters."""
         if updated_node.annotation is not None or updated_node.star in ("*", "**"):
             return updated_node
         return updated_node.with_changes(annotation=_FLOAT)
@@ -82,17 +87,21 @@ class AddFloatAnnotations(cst.CSTTransformer):
         original_node: cst.FunctionDef,  # noqa: ARG002
         updated_node: cst.FunctionDef,
     ) -> cst.FunctionDef:
+        """Add float return annotation to functions missing one."""
         if updated_node.returns is not None:
             return updated_node
         return updated_node.with_changes(returns=_FLOAT)
 
 
 class AddTrailingCommas(cst.CSTTransformer):
+    """CST transformer that adds trailing commas to function parameters and call arguments."""
+
     def leave_Parameters(  # noqa: N802
         self,
         original_node: cst.Parameters,  # noqa: ARG002
         updated_node: cst.Parameters,
     ) -> cst.Parameters:
+        """Add trailing comma to the last parameter in a function signature."""
         p = updated_node
         if p.star_kwarg is not None:
             return p.with_changes(star_kwarg=_with_trailing_comma_param(p.star_kwarg))
@@ -114,6 +123,7 @@ class AddTrailingCommas(cst.CSTTransformer):
         original_node: cst.Call,  # noqa: ARG002
         updated_node: cst.Call,
     ) -> cst.Call:
+        """Add trailing comma to the last argument in a function call."""
         if len(updated_node.args) < _MIN_CALL_ARGS:
             return updated_node
         last = _with_trailing_comma_arg(updated_node.args[-1])

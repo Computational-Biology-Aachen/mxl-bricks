@@ -1,4 +1,4 @@
-"""Phosphoglycerate kinase (PGK)
+"""Phosphoglycerate kinase (PGK).
 
 EC 2.7.2.3
 
@@ -51,6 +51,7 @@ def add_phosphoglycerate_kinase_poolman(
     kre: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add phosphoglycerate kinase poolman (Phosphoglycerate kinase (PGK)) to model."""
     rxn = default_name(rxn, n.phosphoglycerate_kinase)
     pga = default_name(pga, n.pga)
     atp = default_name(atp, n.atp)
@@ -95,6 +96,7 @@ def add_phosphoglycerate_kinase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add phosphoglycerate kinase (Phosphoglycerate kinase (PGK)) to model."""
     rxn = default_name(rxn, n.phosphoglycerate_kinase)
     pga = default_name(pga, n.pga)
     atp = default_name(atp, n.atp)

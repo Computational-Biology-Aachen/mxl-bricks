@@ -1,3 +1,5 @@
+"""Enzyme building block: ex atp."""
+
 from mxlpy import Model
 
 from mxlbricks import names as n
@@ -15,6 +17,7 @@ def add_atp_consumption(
     atp: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add atp consumption to model."""
     rxn = default_name(rxn, n.ex_atp)
     atp = default_name(atp, n.atp)
 

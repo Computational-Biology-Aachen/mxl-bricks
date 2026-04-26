@@ -1,7 +1,8 @@
-"""X5P + GAP <=> X5P + GAP
+"""X5P + GAP <=> X5P + GAP.
+
 F6P + E4P <=> F6P + E4P
 S7P + R5P <=> S7P + R5P
-O8P + G6P <=> O8P + G6P
+O8P + G6P <=> O8P + G6P.
 
 
 These reactions are only sensible in the case of label models

@@ -1,4 +1,4 @@
-"""phosphohexomutase
+"""phosphohexomutase.
 
 EC 5.3.1.9
 
@@ -27,6 +27,7 @@ def add_glucose_6_phosphate_isomerase_re(
     kre: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glucose 6 phosphate isomerase re (phosphohexomutase) to model."""
     rxn = default_name(rxn, n.g6pi)
     f6p = default_name(f6p, n.f6p)
     g6p = default_name(g6p, n.g6p)

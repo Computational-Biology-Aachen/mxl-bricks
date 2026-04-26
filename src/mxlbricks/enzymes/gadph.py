@@ -1,4 +1,4 @@
-"""Glyceraldehyde 3-phosphate dehydrogenase (GADPH)
+"""Glyceraldehyde 3-phosphate dehydrogenase (GADPH).
 
 EC 1.2.1.13
 
@@ -35,6 +35,7 @@ def add_gadph(
     kre: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add gadph (Glyceraldehyde 3-phosphate dehydrogenase (GADPH)) to model."""
     rxn = default_name(rxn, n.gadph)
     bpga = default_name(bpga, n.bpga)
     nadph = default_name(nadph, n.nadph)

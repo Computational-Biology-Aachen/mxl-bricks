@@ -1,4 +1,4 @@
-"""catalase
+"""catalase.
 
 2 H2O2 <=> 2 H2O + O2
 
@@ -32,6 +32,7 @@ def add_catalase(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add catalase (catalase) to model."""
     rxn = default_name(rxn, n.catalase)
     h2o2 = default_name(h2o2, n.h2o2)
 

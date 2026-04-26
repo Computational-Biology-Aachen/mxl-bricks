@@ -1,4 +1,4 @@
-"""glycerate kinase
+"""glycerate kinase.
 
 ATP + D-Glycerate <=> ADP + 3-Phospho-D-glycerate
 
@@ -39,6 +39,7 @@ def add_glycerate_kinase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glycerate kinase (glycerate kinase) to model."""
     rxn = default_name(rxn, n.glycerate_kinase)
     glycerate = default_name(glycerate, n.glycerate)
     atp = default_name(atp, n.atp)

@@ -1,4 +1,4 @@
-"""DHAP + EAP <=> SBP
+"""DHAP + EAP <=> SBP.
 
 EC 4.1.2.13
 
@@ -28,6 +28,7 @@ def add_aldolase_dhap_e4p_req(
     keq: str | None = None,
     kre: str | None = None,
 ) -> Model:
+    """Add aldolase dhap e4p req (DHAP + EAP <=> SBP) to model."""
     rxn = default_name(rxn, n.aldolase_dhap_e4p)
     dhap = default_name(dhap, n.dhap)
     e4p = default_name(e4p, n.e4p)

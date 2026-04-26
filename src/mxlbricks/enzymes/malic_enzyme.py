@@ -1,4 +1,4 @@
-"""malic enzyme == malate dehydrogenase decarboxylating
+"""malic enzyme == malate dehydrogenase decarboxylating.
 
 EC 1.1.1.39
 
@@ -41,6 +41,7 @@ def add_malic_enzyme(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add malic enzyme (malic enzyme == malate dehydrogenase decarboxylating) to model."""
     rxn = default_name(rxn, n.malic_enzyme)
     nad = default_name(nad, n.nad)
     malate = default_name(malate, n.malate)

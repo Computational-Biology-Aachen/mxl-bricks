@@ -1,4 +1,4 @@
-"""DHAP + A5P <=> OBP
+"""DHAP + A5P <=> OBP.
 
 Equilibrator
 metacyc.compound:DIHYDROXY-ACETONE-PHOSPHATE + metacyc.compound:ARABINOSE-5P
@@ -27,6 +27,7 @@ def add_aldolase_dhap_a5p_req(
     keq: str | None = None,
     kre: str | None = None,
 ) -> Model:
+    """Add aldolase dhap a5p req (DHAP + A5P <=> OBP) to model."""
     rxn = default_name(rxn, n.aldolase_dhap_e4p)
     dhap = default_name(dhap, n.dhap)
     a5p = default_name(a5p, n.arabinose_5_phosphate)

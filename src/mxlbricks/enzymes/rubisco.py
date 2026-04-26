@@ -1,4 +1,4 @@
-"""Ribulose-1,5-bisphosphate carboxylase/oxygenase
+"""Ribulose-1,5-bisphosphate carboxylase/oxygenase.
 
 Enzyme catalysing both carboxylation as well as oxygenation of ribulose-1,5-bisphosphate
 leading to either 2xPGA or 1xPGA and 1xPGO
@@ -157,6 +157,7 @@ def add_rubisco_poolman(
     ki_pi: str | None = None,
     ki_nadph: str | None = None,
 ) -> Model:
+    """Add rubisco poolman (Ribulose-1,5-bisphosphate carboxylase/oxygenase) to model."""
     rxn = default_name(rxn, n.rubisco_carboxylase)
     rubp = default_name(rubp, n.rubp)
     pga = default_name(pga, n.pga)
@@ -228,6 +229,7 @@ def add_rubisco(
     ki_pi: str | None = None,
     ki_nadph: str | None = None,
 ) -> Model:
+    """Add rubisco (Ribulose-1,5-bisphosphate carboxylase/oxygenase) to model."""
     enzyme = n.rubisco()
     rxn_carb = default_name(rxn_carb, n.rubisco_carboxylase)
     rxn_ox = default_name(rxn_ox, n.rubisco_oxygenase)

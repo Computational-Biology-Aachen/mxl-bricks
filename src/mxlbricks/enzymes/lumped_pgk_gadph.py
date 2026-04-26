@@ -1,8 +1,9 @@
-"""Lumped reaction of Glyceraldehyde 3-phosphate dehydrogenase (GADPH) and Phosphoglycerate kinase (PGK)
+"""Lumped reaction of Glyceraldehyde 3-phosphate dehydrogenase (GADPH) and Phosphoglycerate kinase (PGK).
+
     3-Phospho-D-glycerate(aq) + ATP(aq) ⇌ 3-Phospho-D-glyceroyl phosphate(aq) + ADP(aq)
     3-Phospho-D-glyceroyl phosphate(aq) + NADPH(aq) ⇌ D-Glyceraldehyde 3-phosphate(aq) + NADP (aq) + Orthophosphate(aq)
 Into
-    3-Phospho-D-glycerate(aq) + ATP(aq) + NADPH(aq) ⇌ D-Glyceraldehyde 3-phosphate(aq) + ADP(aq) + Orthophosphate(aq) + NADP(aq)
+    3-Phospho-D-glycerate(aq) + ATP(aq) + NADPH(aq) ⇌ D-Glyceraldehyde 3-phosphate(aq) + ADP(aq) + Orthophosphate(aq) + NADP(aq).
 
 Equilibrator
     Keq = 6.0e-4 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25)
@@ -44,6 +45,7 @@ def lumped_pgk_gadph(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add lumped pgk gadph (Lumped reaction of Glyceraldehyde 3-phosphate dehydrogenase (GADPH) and Phosphoglycerate kinase (PGK)) to model."""
     rxn = default_name(rxn, n.pgk_gadph)
     pga = default_name(pga, n.pga)
     atp = default_name(atp, n.atp)

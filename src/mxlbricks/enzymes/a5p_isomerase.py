@@ -1,4 +1,4 @@
-"""A5P <=> RU5P
+"""A5P <=> RU5P.
 
 EC 5.3.1.13
 
@@ -38,6 +38,7 @@ def add_a5p_isomerase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add a5p isomerase (A5P <=> RU5P) to model."""
     rxn = default_name(rxn, n.a5p_isomerase)
     a5p = default_name(a5p, n.arabinose_5_phosphate)
     ru5p = default_name(ru5p, n.ru5p)

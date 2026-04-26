@@ -1,3 +1,5 @@
+"""Derived quantities: moiety conservation and auxiliary variables."""
+
 import numpy as np
 from mxlpy import Model
 
@@ -14,6 +16,7 @@ def add_ascorbate_moiety(
     dha: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add ascorbate conservation moiety (ASC = total - MDA - DHA) to model."""
     model.add_derived(
         name=default_name(name, n.ascorbate),
         fn=moiety_2,
@@ -33,6 +36,7 @@ def add_adenosin_moiety(
     atp: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add adenine nucleotide conservation moiety (ADP = total - ATP) to model."""
     model.add_derived(
         name=default_name(name, n.adp),
         fn=moiety_1,
@@ -51,6 +55,7 @@ def add_enzyme_moiety(
     e_inactive: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add enzyme conservation moiety (E_active = total - E_inactive) to model."""
     model.add_derived(
         name=default_name(name, n.e_active),
         fn=moiety_1,
@@ -69,6 +74,7 @@ def add_ferredoxin_moiety(
     fd_ox: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add ferredoxin conservation moiety (Fd_red = total - Fd_ox) to model."""
     model.add_derived(
         name=default_name(name, n.fd_red),
         fn=moiety_1,
@@ -87,6 +93,7 @@ def add_glutamate_moiety(
     glutamate: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add glutamate/oxoglutarate conservation moiety to model."""
     model.add_derived(
         name=default_name(name, n.oxoglutarate),
         fn=moiety_1,
@@ -112,6 +119,7 @@ def add_glutathion_moiety(
     glutathion_ox: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add glutathione conservation moiety (GSH = total - 2*GSSG) to model."""
     model.add_derived(
         name=default_name(name, n.glutathion_red),
         fn=_glutathion_moiety,
@@ -130,6 +138,7 @@ def add_hco3_from_co2(
     co2: str | None = None,
     factor: str | None = None,
 ) -> Model:
+    """Add HCO3 derived from CO2 via a fixed CO2/HCO3 ratio to model."""
     return model.add_derived(
         name=default_name(name, n.hco3),
         fn=mass_action_1s,
@@ -147,6 +156,7 @@ def add_lhc_moiety(
     lhc: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add LHC conservation moiety (LHCp = total - LHC) to model."""
     model.add_derived(
         name=default_name(name, n.lhcp),
         fn=moiety_1,
@@ -165,6 +175,7 @@ def add_nad_moiety(
     nadh: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add NAD conservation moiety (NAD = total - NADH) to model."""
     model.add_derived(
         name=default_name(name, n.nad),
         fn=moiety_1,
@@ -183,6 +194,7 @@ def add_nadp_moiety(
     nadph: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add NADP conservation moiety (NADP = total - NADPH) to model."""
     model.add_derived(
         name=default_name(name, n.nadp),
         fn=moiety_1,
@@ -201,6 +213,7 @@ def add_plastocyanin_moiety(
     pc_ox: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add plastocyanin conservation moiety (PC_red = total - PC_ox) to model."""
     model.add_derived(
         name=default_name(name, n.pc_red),
         fn=moiety_1,
@@ -219,6 +232,7 @@ def add_plastoquinone_moiety(
     pq_ox: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add plastoquinone conservation moiety (PQ_red = total - PQ_ox) to model."""
     model.add_derived(
         name=default_name(name, n.pq_red),
         fn=moiety_1,
@@ -237,6 +251,7 @@ def add_carotenoid_moiety(
     vx: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add carotenoid conservation moiety (ZX = total - VX) to model."""
     model.add_derived(
         name=default_name(name, n.zx),
         fn=moiety_1,
@@ -255,6 +270,7 @@ def add_thioredoxin_moiety(
     tr_ox: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add thioredoxin conservation moiety (Tr_red = total - Tr_ox) to model."""
     model.add_derived(
         name=default_name(name, n.tr_red),
         fn=moiety_1,
@@ -273,7 +289,7 @@ def add_psbs_moietry(
     psbs_de: str | None = None,
     total: str | None = None,
 ) -> Model:
-    """Derive protonated form from deprotonated form"""
+    """Derive protonated form from deprotonated form."""
     model.add_derived(
         name=default_name(name, n.psbs_pr),
         fn=moiety_1,
@@ -291,6 +307,7 @@ def add_rt(
     r: str | None = None,
     t: str | None = None,
 ) -> Model:
+    """Add RT (gas constant * temperature) derived quantity to model."""
     model.add_derived(
         name=default_name(name, n.rt),
         fn=mass_action_1s,
@@ -322,6 +339,7 @@ def add_plastoquinone_keq(
     pq_red: str | None = None,
     ph: str | None = None,
 ) -> Model:
+    """Add thermodynamically derived Keq for PQ reduction to model."""
     model.add_parameter("E^0_QA", -0.14)
     model.add_parameter("E^0_PQ", 0.354)
 
@@ -351,11 +369,12 @@ def _quencher(
     y3: float,
     kZSat: float,
 ) -> float:
-    """co-operative 4-state quenching mechanism
+    """co-operative 4-state quenching mechanism.
+
     gamma0: slow quenching of (Vx - protonation)
     gamma1: fast quenching (Vx + protonation)
     gamma2: fastest possible quenching (Zx + protonation)
-    gamma3: slow quenching of Zx present (Zx - protonation)
+    gamma3: slow quenching of Zx present (Zx - protonation).
     """
     ZAnt = Zx / (Zx + kZSat)
     return y0 * Vx * Psbs + y1 * Vx * Psbsp + y2 * ZAnt * Psbsp + y3 * ZAnt * Psbs
@@ -370,6 +389,7 @@ def add_quencher(
     psbs_pr: str | None = None,
     zx: str | None = None,
 ) -> Model:
+    """Add NPQ quencher derived variable (4-state cooperative model) to model."""
     model.add_parameter("gamma0", 0.1)
     model.add_parameter("gamma1", 0.25)
     model.add_parameter("gamma2", 0.6)
@@ -409,6 +429,7 @@ def add_ph_lumen(
     t: str | None = None,
     h: str | None = None,
 ) -> Model:
+    """Add lumenal pH (from proton concentration) and dG_pH derived quantities to model."""
     model.add_derived(
         "dG_pH",
         _dg_ph,
@@ -531,6 +552,7 @@ def add_orthophosphate_moiety_cbb(
     atp: str | None = None,
     total: str | None = None,
 ) -> Model:
+    """Add orthophosphate conservation moiety for the CBB cycle to model."""
     model.add_derived(
         name=default_name(pi, n.pi),
         fn=_pi_cbb,
@@ -587,6 +609,7 @@ def add_orthophosphate_moiety_cbb_pr(
     total: str | None = None,
     pgo: str | None = None,
 ) -> Model:
+    """Add orthophosphate conservation moiety for CBB + photorespiration to model."""
     model.add_derived(
         name=default_name(pi, n.pi),
         fn=_pi_cbb,
@@ -642,6 +665,7 @@ def add_readouts(
     atp: bool = False,
     fluorescence: bool = False,
 ) -> Model:
+    """Add optional ratio readouts (PQ, Fd, PC, NADPH, ATP, fluorescence) to model."""
     if pq:
         model.add_readout(
             name="PQ_ox/tot",

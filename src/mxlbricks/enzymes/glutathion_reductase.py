@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 1.8.1.7
 
@@ -40,6 +40,7 @@ def add_glutathion_reductase_irrev(
     km_gssg: str | None = None,
     km_nadph: str | None = None,
 ) -> Model:
+    """Add glutathion reductase irrev (name) to model."""
     rxn = default_name(rxn, n.glutathion_reductase)
     nadph = default_name(nadph, n.nadph)
     glutathion_ox = default_name(glutathion_ox, n.glutathion_ox)

@@ -1,4 +1,4 @@
-"""Methenyltetrahydrofolate cyclohydrolase
+"""Methenyltetrahydrofolate cyclohydrolase.
 
 EC 3.5.4.9
 Metacyc: MTHFC
@@ -41,6 +41,7 @@ def add_mthfc(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add mthfc (Methenyltetrahydrofolate cyclohydrolase) to model."""
     rxn = default_name(rxn, n.mthfc)
     formyl_thf = default_name(formyl_thf, n.formyl_thf)
     methenyl_thf = default_name(methenyl_thf, n.methenyl_thf)

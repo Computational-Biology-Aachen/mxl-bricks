@@ -1,3 +1,5 @@
+"""Enzyme building block: fd reductase."""
+
 from mxlpy import Model
 
 from mxlbricks import names as n
@@ -16,10 +18,11 @@ def _rate_ferredoxin_reductase(
     kFdred: float,
     Keq_FAFd: float,
 ) -> float:
-    """rate of the redcution of Fd by the activity of PSI
+    """Rate of the redcution of Fd by the activity of PSI.
+
     used to be equall to the rate of PSI but now
     alternative electron pathway from Fd allows for the production of ROS
-    hence this rate has to be separate
+    hence this rate has to be separate.
     """
     return kFdred * Fd * A1 - kFdred / Keq_FAFd * Fdred * A2
 
@@ -36,6 +39,7 @@ def add_ferredoxin_reductase(
     e0: str | None = None,
     keq: str,  # derived from PSI
 ) -> Model:
+    """Add ferredoxin reductase to model."""
     rxn = default_name(rxn, n.ferredoxin_reductase)
     fd_ox = default_name(fd_ox, n.fd_ox)
     fd_red = default_name(fd_red, n.fd_red)

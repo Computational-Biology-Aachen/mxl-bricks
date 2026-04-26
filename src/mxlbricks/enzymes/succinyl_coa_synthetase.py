@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 6.2.1.5
 
@@ -44,6 +44,7 @@ def add_succinyl_coa_synthetase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add succinyl coa synthetase (name) to model."""
     rxn = default_name(rxn, n.succinyl_coa_synthetase)
     succinate = default_name(succinate, n.succinate)
     coa = default_name(coa, n.coa)

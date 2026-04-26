@@ -1,4 +1,4 @@
-"""EC 4.2.1.11
+"""EC 4.2.1.11.
 
 Equilibrator
 PEP(aq) + H2O(l) ⇌ 2-Phospho-D-glycerate(aq)
@@ -36,6 +36,7 @@ def add_enolase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add enolase (EC 4) to model."""
     rxn = default_name(rxn, n.enolase)
     pep = default_name(pep, n.pep)
     pga2 = default_name(pga2, n.pga2)

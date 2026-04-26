@@ -1,4 +1,4 @@
-"""GAP + S7P <=> R5P + X5P
+"""GAP + S7P <=> R5P + X5P.
 
 EC 2.2.1.1
 
@@ -30,6 +30,7 @@ def add_transketolase_x5p_r5p_s7p_gap(
     kre: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add transketolase x5p r5p s7p gap (GAP + S7P <=> R5P + X5P) to model."""
     rxn = default_name(rxn, n.transketolase_gap_s7p)
     gap = default_name(gap, n.gap)
     s7p = default_name(s7p, n.s7p)

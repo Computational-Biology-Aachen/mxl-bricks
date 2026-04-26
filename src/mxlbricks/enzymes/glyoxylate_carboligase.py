@@ -1,4 +1,4 @@
-"""glyoxylate carboligase == tartronate-semialdehyde synthase
+"""glyoxylate carboligase == tartronate-semialdehyde synthase.
 
 EC 4.1.1.47
 
@@ -39,6 +39,7 @@ def add_glyoxylate_carboligase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glyoxylate carboligase (glyoxylate carboligase == tartronate-semialdehyde synthase) to model."""
     rxn = default_name(rxn, n.glyoxylate_carboligase)
     glyoxylate = default_name(glyoxylate, n.glyoxylate)
     tartronate_semialdehyde = default_name(

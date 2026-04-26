@@ -1,4 +1,4 @@
-"""(2R,3S)-beta-Hydroxyasparate hydro-lyase (Iminosuccinate forming)
+"""(2R,3S)-beta-Hydroxyasparate hydro-lyase (Iminosuccinate forming).
 
 EC FIXME
 
@@ -37,6 +37,7 @@ def add_hydroxyaspartate_hydrolase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add hydroxyaspartate hydrolase ((2R,3S)-beta-Hydroxyasparate hydro-lyase (Iminosuccinate forming)) to model."""
     rxn = default_name(rxn, n.hydroxyaspartate_hydrolase)
     hydroxyaspartate = default_name(hydroxyaspartate, n.hydroxyaspartate)
     iminoaspartate = default_name(iminoaspartate, n.iminoaspartate)

@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 1.2.3.4
 
@@ -36,6 +36,7 @@ def add_oxalate_oxidase(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add oxalate oxidase (name) to model."""
     rxn = default_name(rxn, n.oxalate_oxidase)
     oxalate = default_name(oxalate, n.oxalate)
     o2 = default_name(o2, n.o2)

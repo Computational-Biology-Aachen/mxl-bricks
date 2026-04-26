@@ -1,4 +1,4 @@
-"""glycine decarboxylase
+"""glycine decarboxylase.
 
 2 Glycine + NAD + 2 H2O ⇌ Serine + NH3 + NADH + CO2
 
@@ -41,6 +41,7 @@ def add_glycine_decarboxylase_yokota(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add glycine decarboxylase yokota (glycine decarboxylase) to model."""
     rxn = default_name(rxn, n.glycine_decarboxylase)
 
     glycine = default_name(glycine, n.glycine)
@@ -86,6 +87,7 @@ def add_glycine_decarboxylase_irreversible(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add glycine decarboxylase irreversible (glycine decarboxylase) to model."""
     rxn = default_name(rxn, n.glycine_decarboxylase)
     glycine = default_name(glycine, n.glycine)
     nad = default_name(nad, n.nad)
@@ -142,6 +144,7 @@ def add_glycine_decarboxylase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glycine decarboxylase (glycine decarboxylase) to model."""
     rxn = default_name(rxn, n.glycine_decarboxylase)
     glycine = default_name(glycine, n.glycine)
     nad = default_name(nad, n.nad)

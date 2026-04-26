@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC FIXME
 
@@ -28,7 +28,7 @@ def add_cbb_pfd_linear_speedup(
     pfd: str | None = None,
     factor: str | None = None,
 ) -> Model:
-    """Add speed-up of CBB enzymes using a linear function"""
+    """Add speed-up of CBB enzymes using a linear function."""
     der = default_name(der, n.light_speedup)
     pfd = default_name(pfd, n.pfd)
 
@@ -51,7 +51,7 @@ def add_cbb_pfd_mm_speedup(
     km: str | None = None,
     vmax: str | None = None,
 ) -> Model:
-    """Add speed-up of CBB enzymes using a michaelis-menten curve"""
+    """Add speed-up of CBB enzymes using a michaelis-menten curve."""
     der = default_name(der, n.light_speedup)
     pfd = default_name(pfd, n.pfd)
 
@@ -77,9 +77,10 @@ def add_fd_tr_reductase_2021(
     fd_ox: str | None = None,
     kf: str | None = None,
 ) -> Model:
-    """Equilibrator
+    """Equilibrator.
+
     Thioredoxin(ox)(aq) + 2 ferredoxin(red)(aq) ⇌ Thioredoxin(red)(aq) + 2 ferredoxin(ox)(aq)
-    Keq = 4.9e3 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25)
+    Keq = 4.9e3 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25).
     """
     rxn = default_name(rxn, n.ferredoxin_thioredoxin_reductase)
     tr_ox = default_name(tr_ox, n.tr_ox)
@@ -118,9 +119,10 @@ def add_fd_tr_reductase(
     fd_ox: str | None = None,
     kf: str | None = None,
 ) -> Model:
-    """Equilibrator
+    """Equilibrator.
+
     Thioredoxin(ox)(aq) + 2 ferredoxin(red)(aq) ⇌ Thioredoxin(red)(aq) + 2 ferredoxin(ox)(aq)
-    Keq = 4.9e3 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25)
+    Keq = 4.9e3 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25).
     """
     rxn = default_name(rxn, n.ferredoxin_thioredoxin_reductase)
     tr_ox = default_name(tr_ox, n.tr_ox)
@@ -159,9 +161,10 @@ def add_nadph_tr_reductase(
     nadp: str | None = None,
     kf: str | None = None,
 ) -> Model:
-    """Equilibrator
+    """Equilibrator.
+
     Thioredoxin(ox)(aq) + NADPH(aq) ⇌ Thioredoxin(red)(aq) + NADP(aq)
-    Keq = 2e1 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25)
+    Keq = 2e1 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25).
     """
     rxn = default_name(rxn, n.ferredoxin_thioredoxin_reductase)
     tr_ox = default_name(tr_ox, n.tr_ox)
@@ -200,6 +203,7 @@ def add_tr_e_activation(
     tr_ox: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add tr e activation (name) to model."""
     rxn = default_name(rxn, n.tr_activation)
     e_inactive = default_name(e_inactive, n.e_inactive)
     tr_red = default_name(tr_red, n.tr_red)
@@ -237,6 +241,7 @@ def add_tr_e_activation2021(
     tr_ox: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add tr e activation2021 (name) to model."""
     rxn = default_name(rxn, n.tr_activation)
     e_inactive = default_name(e_inactive, n.e_inactive)
     tr_red = default_name(tr_red, n.tr_red)
@@ -272,6 +277,7 @@ def add_e_relaxation(
     e_inactive: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add e relaxation (name) to model."""
     rxn = default_name(rxn, n.tr_inactivation)
     e_active = default_name(e_active, n.e_active)
     e_inactive = default_name(e_inactive, n.e_inactive)
@@ -302,6 +308,7 @@ def add_e_relaxation_2021(
     e_inactive: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add e relaxation 2021 (name) to model."""
     rxn = default_name(rxn, n.tr_inactivation)
     e_active = default_name(e_active, n.e_active)
     e_inactive = default_name(e_inactive, n.e_inactive)
@@ -325,6 +332,7 @@ def add_e_relaxation_2021(
 
 
 def add_thioredoxin_regulation(model: Model) -> Model:
+    """Add thioredoxin regulation (name) to model."""
     add_fd_tr_reductase(model)
     add_tr_e_activation(model)
     add_e_relaxation(model)
@@ -332,6 +340,7 @@ def add_thioredoxin_regulation(model: Model) -> Model:
 
 
 def add_thioredoxin_regulation2021(model: Model) -> Model:
+    """Add thioredoxin regulation2021 (name) to model."""
     add_fd_tr_reductase_2021(model)
     add_tr_e_activation2021(model)
     add_e_relaxation_2021(model)
@@ -339,6 +348,7 @@ def add_thioredoxin_regulation2021(model: Model) -> Model:
 
 
 def add_thioredoxin_regulation_from_nadph(model: Model) -> Model:
+    """Add thioredoxin regulation from nadph (name) to model."""
     add_nadph_tr_reductase(model)
     add_tr_e_activation(model)
     add_e_relaxation(model)

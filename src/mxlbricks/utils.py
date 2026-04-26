@@ -1,3 +1,5 @@
+"""Utility helpers for building mxlpy models from mxlbricks."""
+
 from collections.abc import Callable, Mapping
 
 import numpy as np
@@ -17,11 +19,13 @@ def static(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Add a fixed parameter to model and return its name."""
     model.add_parameter(name, value, unit=unit, source=source)
     return name
 
 
 def fcbb_regulated(model: Model, name: str, value: float) -> str:
+    """Add a parameter scaled by the CBB light-speedup factor and return its derived name."""
     new_name = f"{name}_fcbb"
 
     model.add_parameter(name, value)
@@ -30,6 +34,7 @@ def fcbb_regulated(model: Model, name: str, value: float) -> str:
 
 
 def thioredixon_regulated(model: Model, name: str, value: float) -> str:
+    """Add a parameter scaled by the active enzyme fraction and return its derived name."""
     new_name = f"{name}_active"
     model.add_parameter(name, value)
     model.add_derived(new_name, mul, args=[name, n.e_active()])
@@ -41,7 +46,7 @@ def filter_stoichiometry(
     stoichiometry: Mapping[str, float | Derived],
     optional: dict[str, float] | None = None,
 ) -> Mapping[str, float | Derived]:
-    """Only use components that are actually compounds in the model"""
+    """Only use components that are actually compounds in the model."""
     variables = model.get_raw_variables(as_copy=False)
 
     new = {}
@@ -58,6 +63,7 @@ def filter_stoichiometry(
 
 
 def default_name(name: str | None, name_fn: Callable[[], str]) -> str:
+    """Return name if given, otherwise call name_fn to get the default."""
     if name is None:
         return name_fn()
     return name
@@ -72,6 +78,7 @@ def default_par(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return par if given, otherwise add a static parameter with the default value."""
     if par is not None:
         return par
     return static(model=model, name=name, value=value, unit=unit, source=source)
@@ -86,6 +93,7 @@ def default_keq(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the equilibrium constant parameter for a reaction."""
     return default_par(
         model=model,
         par=par,
@@ -105,6 +113,7 @@ def default_kf(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the forward rate constant parameter for a reaction."""
     return default_par(
         model=model,
         par=par,
@@ -125,6 +134,7 @@ def default_km(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the Michaelis constant parameter for a substrate."""
     return default_par(
         model=model,
         par=par,
@@ -144,6 +154,7 @@ def default_kms(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the substrate Michaelis constant parameter for a reaction."""
     return default_par(
         model=model,
         par=par,
@@ -163,6 +174,7 @@ def default_kmp(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the product Michaelis constant parameter for a reaction."""
     return default_par(
         model=model,
         par=par,
@@ -182,6 +194,7 @@ def default_ki(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the inhibition constant parameter for a reaction."""
     return default_par(
         model=model,
         par=par,
@@ -202,6 +215,7 @@ def default_kis(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the substrate-specific inhibition constant parameter."""
     return default_par(
         model=model,
         par=par,
@@ -221,6 +235,7 @@ def default_kre(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the rapid-equilibrium rate constant parameter for a reaction."""
     return default_par(
         model=model,
         par=par,
@@ -240,6 +255,7 @@ def default_e0(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the total enzyme concentration parameter for a reaction."""
     return default_par(
         model=model,
         par=par,
@@ -259,6 +275,7 @@ def default_kcat(
     unit: sympy.Expr | None = None,
     source: str | None = None,
 ) -> str:
+    """Return or create the catalytic rate constant parameter for a reaction."""
     return default_par(
         model=model,
         par=par,
@@ -282,6 +299,7 @@ def default_vmax(
     kcat_unit: sympy.Expr | None = None,
     kcat_source: str | None = None,
 ) -> str:
+    """Add vmax = kcat * E0 as a derived quantity and return its name."""
     e0 = default_e0(
         model=model,
         par=e0,
@@ -303,6 +321,7 @@ def default_vmax(
 
 
 def get_idxs_of_peaks(light: pd.Series) -> list[list[int]]:
+    """Return groups of indices where light equals its maximum value."""
     cnt = 0
     idx_groups = []
 
@@ -322,16 +341,13 @@ def get_idxs_of_peaks(light: pd.Series) -> list[list[int]]:
 
 
 def get_idxs_of_peaks_(light: pd.Series) -> list[pd.Index]:
-    """Alternative implementation of get_idxs_of_peaks that returns the
-    indices instead
-    """
+    """Return peak indices as pandas Index objects instead of integer lists."""
     mask = light == max(light)
     return list(mask[mask].groupby((1 - mask).cumsum()).apply(lambda x: x.index).values)
 
 
 def get_npq(ppfd: pd.Series, fluorescence: pd.Series) -> pd.Series:
-    """Calculates the non-photochemical quenching from the extracted
-    important points of the PAM simulations
+    """Calculate non-photochemical quenching from PAM simulation peak points.
 
     Returns
     -------
@@ -340,6 +356,7 @@ def get_npq(ppfd: pd.Series, fluorescence: pd.Series) -> pd.Series:
     tm: Exact time points of peaks in PAM trace
     Fo: Fo (first element of list) and Ft' values
     to: Exact time points of Fo and Ft' values
+
     """
     # container for lists. Each list contains the positions of fluorescence values for one peak
     # container for position of Fo'

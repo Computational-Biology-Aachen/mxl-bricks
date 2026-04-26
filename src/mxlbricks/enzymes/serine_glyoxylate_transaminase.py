@@ -1,4 +1,4 @@
-"""serine glyoxylate transaminase
+"""serine glyoxylate transaminase.
 
 Glyoxylate + L-Serine <=> Glycine + Hydroxypyruvate
 
@@ -44,6 +44,7 @@ def add_serine_glyoxylate_transaminase_irreversible(
     km_gox: str | None = None,
     km_ser: str | None = None,
 ) -> Model:
+    """Add serine glyoxylate transaminase irreversible (serine glyoxylate transaminase) to model."""
     rxn = default_name(rxn, n.serine_glyoxylate_transaminase)
     glyoxylate = default_name(glyoxylate, n.glyoxylate)
     serine = default_name(serine, n.serine)
@@ -94,6 +95,7 @@ def add_serine_glyoxylate_transaminase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add serine glyoxylate transaminase (serine glyoxylate transaminase) to model."""
     rxn = default_name(rxn, n.serine_glyoxylate_transaminase)
     glyoxylate = default_name(glyoxylate, n.glyoxylate)
     serine = default_name(serine, n.serine)

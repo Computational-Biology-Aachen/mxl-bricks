@@ -1,4 +1,4 @@
-"""ERYTHRULOSE_4P <=> ERYTHROSE_4P
+"""ERYTHRULOSE_4P <=> ERYTHROSE_4P.
 
 EC 5.3.1.34
 
@@ -38,6 +38,7 @@ def add_e4p_isomerase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add e4p isomerase (ERYTHRULOSE_4P <=> ERYTHROSE_4P) to model."""
     rxn = default_name(rxn, n.e4p_isomerase)
     e4p = default_name(e4p, n.erythrulose_4p)
     eu4p = default_name(eu4p, n.e4p)

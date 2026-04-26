@@ -54,8 +54,9 @@ def _keq_atp_synth(
     T: float,
     Pi: float,
 ) -> float:
-    """Equilibrium constant of ATP synthase. For more
-    information see Matuszynska et al 2016 or Ebenhöh et al. 2011,2014.
+    """Return equilibrium constant of ATP synthase.
+
+    See Matuszynska et al 2016 or Ebenhöh et al. 2011,2014.
     """
     RT = R * T
     DG = DG_ATP - np.log(10) * (pH_st - pH_lu) * (14 / 3) * RT

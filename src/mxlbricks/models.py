@@ -1,3 +1,5 @@
+"""Pre-assembled mxlpy model builders for common photosynthesis networks."""
+
 from __future__ import annotations
 
 from typing import Literal
@@ -97,6 +99,7 @@ mmol_mol_chl = units.mmol / mol_chl
 
 
 def get_yokota1985() -> Model:
+    """Build the Yokota 1985 photorespiration model."""
     model = Model()
     model.add_variables(
         {
@@ -123,6 +126,7 @@ def get_yokota1985() -> Model:
 
 
 def get_poolman2000() -> Model:
+    """Build the Poolman 2000 Calvin-Benson-Bassham cycle model."""
     model = Model()
     model.add_variables(
         {
@@ -194,6 +198,7 @@ def get_matuszynska2016_phd(
     mode: Literal["matrix", "analytical", "analytical-split"] = "analytical",
     chl_lumen: str = "_lumen",
 ) -> Model:
+    """Build the Matuszynska 2016 (PhD) photosynthesis + NPQ model."""
     model = Model()
     model.add_variables(
         {
@@ -279,6 +284,7 @@ def get_matuszynska2019(
     mode: Literal["matrix", "analytical", "analytical-split"] = "analytical",
     chl_lumen: str = "_lumen",
 ) -> Model:
+    """Build the Matuszynska 2019 combined CBB + NPQ model."""
     model = Model()
     model.add_variables(
         {
@@ -444,6 +450,7 @@ def get_saadat2021(
     mode: Literal["matrix", "analytical", "analytical-split"] = "analytical",
     chl_lumen: str = "_lumen",
 ) -> Model:
+    """Build the Saadat 2021 photosynthesis model."""
     model = Model()
     model.add_variables(
         {
@@ -619,6 +626,7 @@ def get_saadat2021(
 
 
 def get_cbb_regulated() -> Model:
+    """Build the thioredoxin-regulated CBB cycle model."""
     model = Model()
     model.add_variables(
         {

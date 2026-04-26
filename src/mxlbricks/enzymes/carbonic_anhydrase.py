@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 4.2.1.1
 
@@ -27,6 +27,7 @@ def add_carbonic_anhydrase_mass_action(
     kf: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add carbonic anhydrase mass action (name) to model."""
     rxn = default_name(rxn, n.carbonic_anhydrase)
     s1 = default_name(s1, n.co2)
     p1 = default_name(p1, n.hco3)

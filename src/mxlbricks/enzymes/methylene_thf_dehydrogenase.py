@@ -1,4 +1,4 @@
-"""EC 1.5.1.5
+"""EC 1.5.1.5.
 
 Metacyc: METHYLENETHFDEHYDROG-NADP-RXN
 METHENYL-THF_m + NADPH_m + 0.93 PROTON_m <=> METHYLENE-THF_m + NADP_m
@@ -41,6 +41,7 @@ def add_methylene_thf_dehydrogenase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add methylene thf dehydrogenase (EC 1) to model."""
     rxn = default_name(rxn, n.methylene_thf_dehydrogenase)
     methenyl_thf = default_name(methenyl_thf, n.methenyl_thf)
     nadph = default_name(nadph, n.nadph)

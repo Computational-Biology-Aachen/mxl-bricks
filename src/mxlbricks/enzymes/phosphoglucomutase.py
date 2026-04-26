@@ -1,4 +1,4 @@
-"""glucose phosphomutase
+"""glucose phosphomutase.
 
 EC 5.4.2.2
 
@@ -29,6 +29,7 @@ def add_phosphoglucomutase(
     kre: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add phosphoglucomutase (glucose phosphomutase) to model."""
     rxn = default_name(rxn, n.phosphoglucomutase)
     g6p = default_name(g6p, n.g6p)
     g1p = default_name(g1p, n.g1p)

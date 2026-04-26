@@ -1,3 +1,5 @@
+"""Pre-defined reaction building blocks for mechanistic ODE models."""
+
 from __future__ import annotations
 
 __all__ = [

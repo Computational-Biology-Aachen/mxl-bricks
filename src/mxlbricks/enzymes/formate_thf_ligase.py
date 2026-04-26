@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 6.3.4.3
     Metacyc: FORMATETHFLIG-RXN
@@ -44,6 +44,7 @@ def add_formate_thf_ligase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add formate thf ligase (name) to model."""
     rxn = default_name(rxn, n.formate_thf_ligase)
     formate = default_name(formate, n.formate)
     atp = default_name(atp, n.atp)

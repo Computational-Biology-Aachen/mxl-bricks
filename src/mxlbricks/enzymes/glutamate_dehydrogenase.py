@@ -1,4 +1,4 @@
-"""EC 1.4.1.3
+"""EC 1.4.1.3.
 
 Equilibrator
 NADPH(aq) + NH3(aq) + 2-Oxoglutarate(aq) ⇌ H2O(l) + NADP(aq) + L-Glutamate(aq)
@@ -39,6 +39,7 @@ def add_glutamate_dehydrogenase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glutamate dehydrogenase (EC 1) to model."""
     rxn = default_name(rxn, n.glutamate_dehydrogenase)
     nadph = default_name(nadph, n.nadph)
     nh4 = default_name(nh4, n.nh4)

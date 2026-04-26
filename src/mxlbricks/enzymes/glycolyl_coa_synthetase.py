@@ -1,4 +1,4 @@
-"""GCS: atp + coa + glyclt -> Diphosphate + amp + glyccoa
+"""GCS: atp + coa + glyclt -> Diphosphate + amp + glyccoa.
 
 dG' = 9.25
 Keq = 0.024
@@ -40,6 +40,7 @@ def add_glycolyl_coa_synthetase_irrev(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add glycolyl coa synthetase irrev (GCS: atp + coa + glyclt -> Diphosphate + amp + glyccoa) to model."""
     rxn = default_name(rxn, n.glycolyl_coa_synthetase)
     atp = default_name(atp, n.atp)
     coa = default_name(coa, n.coa)
@@ -96,6 +97,7 @@ def add_glycolyl_coa_synthetase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glycolyl coa synthetase (GCS: atp + coa + glyclt -> Diphosphate + amp + glyccoa) to model."""
     rxn = default_name(rxn, n.glycolyl_coa_synthetase)
     atp = default_name(atp, n.atp)
     coa = default_name(coa, n.coa)

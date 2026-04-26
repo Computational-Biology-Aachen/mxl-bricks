@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 2.3.1.9
 
@@ -42,6 +42,7 @@ def add_acetyl_coa_acetyltransfer(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add acetyl coa acetyltransfer (name) to model."""
     rxn = default_name(rxn, n.acetyl_coa_acetyltransfer)
     acac = default_name(acac, n.acetoacetyl_coa)
     coa = default_name(coa, n.coa)

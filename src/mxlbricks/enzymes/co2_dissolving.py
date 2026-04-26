@@ -1,3 +1,5 @@
+"""Enzyme building block: co2 dissolving."""
+
 from mxlpy import Model
 
 from mxlbricks import names as n
@@ -16,6 +18,7 @@ def add_co2_dissolving(
     co2_atmosphere: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add co2 dissolving to model."""
     rxn = default_name(rxn, n.co2_dissolving)
     co2 = default_name(co2, n.co2)
     co2_atmosphere = default_name(co2_atmosphere, n.co2_atmosphere)

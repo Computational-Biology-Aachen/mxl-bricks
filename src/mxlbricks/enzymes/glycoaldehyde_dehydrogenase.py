@@ -1,4 +1,4 @@
-"""Glycolyl-CoA + NADPH <=> Glycolaldehyde + NADP + CoA
+"""Glycolyl-CoA + NADPH <=> Glycolaldehyde + NADP + CoA.
 
 EC 1.2.1.12
 
@@ -41,6 +41,7 @@ def add_glycolaldehyde_dehydrogenase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glycolaldehyde dehydrogenase (Glycolyl-CoA + NADPH <=> Glycolaldehyde + NADP + CoA) to model."""
     rxn = default_name(rxn, n.glycolaldehyde_dehydrogenase)
     glycolyl_coa = default_name(glycolyl_coa, n.glycolyl_coa)
     nadph = default_name(nadph, n.nadph)

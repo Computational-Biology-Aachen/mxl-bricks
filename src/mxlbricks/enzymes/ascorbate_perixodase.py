@@ -1,4 +1,4 @@
-"""ascorbate peroxidase
+"""ascorbate peroxidase.
 
 EC FIXME
 
@@ -32,11 +32,12 @@ def _rate_ascorbate_peroxidase(
     kf5: float,
     XT: float,
 ) -> float:
-    """lumped reaction of ascorbate peroxidase
+    """Lumped reaction of ascorbate peroxidase.
+
     the cycle stretched to a linear chain with
     two steps producing the MDA
     two steps releasing ASC
-    and one step producing hydrogen peroxide
+    and one step producing hydrogen peroxide.
     """
     nom = A * H * XT
     denom = (
@@ -60,6 +61,7 @@ def add_ascorbate_peroxidase(
     s2: str | None = None,
     p1: str | None = None,
 ) -> Model:
+    """Add ascorbate peroxidase (ascorbate peroxidase) to model."""
     rxn = default_name(rxn, n.ascorbate_peroxidase)
     s1 = default_name(s1, n.ascorbate)
     s2 = default_name(s2, n.h2o2)

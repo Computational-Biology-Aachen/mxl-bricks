@@ -1,3 +1,5 @@
+"""Enzyme building block: oxidative phosphorylation."""
+
 from mxlpy import Model
 
 from mxlbricks import names as n
@@ -21,6 +23,7 @@ def add_oxidative_phosphorylation(
     kf: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add oxidative phosphorylation to model."""
     rxn = default_name(rxn, n.oxidative_phosphorylation)
     nadph = default_name(nadph, n.nadph)
     adp = default_name(adp, n.adp)

@@ -1,4 +1,4 @@
-"""EC 1.1.99.14
+"""EC 1.1.99.14.
 
 Equilibrator
 ------------
@@ -40,6 +40,7 @@ def add_glycolate_dehydrogenase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add glycolate dehydrogenase (EC 1) to model."""
     rxn = default_name(rxn, n.glycolate_dehydrogenase)
     glycolate = default_name(glycolate, n.glycolate)
     nad = default_name(nad, n.nad)

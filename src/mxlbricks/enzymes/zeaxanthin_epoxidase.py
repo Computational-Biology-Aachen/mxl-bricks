@@ -1,6 +1,7 @@
-"""Zeaxanthin Epoxidase (stroma):
+"""Zeaxanthin Epoxidase (stroma):.
+
 Zeaxanthin + NADPH + O2 -> Anteraxanthin + NADP + H2O
-Antheraxanthin + NADPH + O2 -> Violaxanthin + NADP + H2O
+Antheraxanthin + NADPH + O2 -> Violaxanthin + NADP + H2O.
 """
 
 from mxlpy import Model
@@ -21,6 +22,7 @@ def add_zeaxanthin_epoxidase(
     zx: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add zeaxanthin epoxidase (Zeaxanthin Epoxidase (stroma):) to model."""
     rxn = default_name(rxn, n.zeaxanthin_epoxidase)
     vx = default_name(vx, n.vx)
     zx = default_name(zx, n.zx)

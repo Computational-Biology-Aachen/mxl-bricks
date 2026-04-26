@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 2.7.1.209
 
@@ -40,6 +40,7 @@ def add_erythrulose_kinase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add erythrulose kinase (name) to model."""
     rxn = default_name(rxn, n.erythrulose_kinase)
     s1 = default_name(s1, n.erythrulose)
     s2 = default_name(s2, n.atp)

@@ -1,4 +1,4 @@
-"""Glycolaldehyde + S7P <=> RIBOSE_5P  + ERYTHRULOSE
+"""Glycolaldehyde + S7P <=> RIBOSE_5P  + ERYTHRULOSE.
 
 EC 2.2.1.1
 
@@ -41,6 +41,7 @@ def add_transketolase_gad_s7p_eru_r5p(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add transketolase gad s7p eru r5p (Glycolaldehyde + S7P <=> RIBOSE_5P  + ERYTHRULOSE) to model."""
     rxn = default_name(rxn, n.transketolase_gad_s7p_r5p_eru)
     glycolaldehyde = default_name(glycolaldehyde, n.glycolaldehyde)
     s7p = default_name(s7p, n.s7p)

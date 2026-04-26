@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 5.3.1.33
 
@@ -37,6 +37,7 @@ def add_e4p_epimerase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add e4p epimerase (name) to model."""
     rxn = default_name(rxn, n.e4p_epimerase)
     e1p = default_name(e1p, n.erythrulose_1p)
     e4p = default_name(e4p, n.erythrulose_4p)

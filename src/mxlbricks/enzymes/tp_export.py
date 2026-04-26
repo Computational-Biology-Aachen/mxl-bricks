@@ -1,3 +1,5 @@
+"""Enzyme building block: tp export."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -47,6 +49,7 @@ def add_pga_exporter(
     vmax_export: str,
     km_pga: str,
 ) -> Model:
+    """Add pga exporter to model."""
     rxn = default_name(rxn, n.ex_pga)
 
     model.add_reaction(
@@ -73,6 +76,7 @@ def add_gap_exporter(
     vmax_export: str,
     km_gap: str,
 ) -> Model:
+    """Add gap exporter to model."""
     rxn = default_name(rxn, n.ex_gap)
 
     model.add_reaction(
@@ -101,6 +105,7 @@ def add_dhap_exporter(
     vmax_export: str,
     km_dhap: str,
 ) -> Model:
+    """Add dhap exporter to model."""
     rxn = default_name(rxn, n.ex_dhap)
 
     model.add_reaction(
@@ -137,6 +142,7 @@ def add_triose_phosphate_exporters(
     km_pi: str | None = None,
     kcat_export: str | None = None,
 ) -> Model:
+    """Add triose phosphate exporters to model."""
     n_translocator = "N_translocator"
     pga_rxn = default_name(pga_rxn, n.ex_pga)
     gap_rxn = default_name(gap_rxn, n.ex_gap)

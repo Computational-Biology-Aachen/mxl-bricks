@@ -1,3 +1,5 @@
+"""Enzyme building block: lhc deprotonation."""
+
 from mxlpy import Model
 
 from mxlbricks import names as n
@@ -17,6 +19,7 @@ def add_lhc_deprotonation(
     psbs_de: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add lhc deprotonation to model."""
     rxn = default_name(rxn, n.lhc_deprotonation)
     psbs_pr = default_name(psbs_pr, n.psbs_pr)
     psbs_de = default_name(psbs_de, n.psbs_de)

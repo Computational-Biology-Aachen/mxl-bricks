@@ -1,3 +1,5 @@
+"""Enzyme building block: b6f."""
+
 import math
 
 from mxlpy import Derived, Model
@@ -82,6 +84,7 @@ def add_b6f(
     pc_red: str | None = None,
     bh: str | None = None,
 ) -> Model:
+    """Add b6f to model."""
     rxn = default_name(rxn, n.b6f)
     ph_stroma = default_name(ph_stroma, n.ph)
     ph_lumen = default_name(ph_lumen, lambda: n.ph("_lumen"))
@@ -139,6 +142,7 @@ def add_b6f_2024(
     pq_red: str | None = None,
     pc_red: str | None = None,
 ) -> Model:
+    """Add b6f 2024 to model."""
     rxn = default_name(rxn, n.b6f)
     ph_stroma = default_name(ph_stroma, n.ph)
     ph_lumen = default_name(ph_lumen, lambda: n.ph("_lumen"))

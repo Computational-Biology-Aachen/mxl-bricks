@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC FIXME
 
@@ -38,6 +38,7 @@ def add_r1p_aldolase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add r1p aldolase (name) to model."""
     rxn = default_name(rxn, n.r1p_aldolase)
     s1 = default_name(s1, n.glycolaldehyde)
     s2 = default_name(s2, n.dhap)

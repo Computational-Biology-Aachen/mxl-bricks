@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 Equilibrator
 """
@@ -20,6 +20,7 @@ def add_nadph_consumption(
     nadph: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add nadph consumption (name) to model."""
     rxn = default_name(rxn, n.ex_nadph)
     nadph = default_name(nadph, n.nadph)
 

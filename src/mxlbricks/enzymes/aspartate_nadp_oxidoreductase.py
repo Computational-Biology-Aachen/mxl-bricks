@@ -1,4 +1,4 @@
-"""Aspartate:NADP oxidoreductase
+"""Aspartate:NADP oxidoreductase.
 
 EC FIXME
 
@@ -36,6 +36,7 @@ def add_aspartate_nadp_oxidoreductase(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add aspartate nadp oxidoreductase (Aspartate:NADP oxidoreductase) to model."""
     rxn = default_name(rxn, n.aspartate_oxidoreductase)
     s1 = default_name(s1, n.iminoaspartate)
     s2 = default_name(s2, n.nadph)

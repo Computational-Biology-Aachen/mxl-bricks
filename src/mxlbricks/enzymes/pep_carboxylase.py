@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 4.1.1.31
 
@@ -40,6 +40,7 @@ def add_pep_carboxylase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add pep carboxylase (name) to model."""
     rxn = default_name(rxn, n.pep_carboxylase)
     pep = default_name(pep, n.pep)
     hco3 = default_name(hco3, n.hco3)

@@ -1,3 +1,5 @@
+"""Plotting helpers for mxlbricks model outputs."""
+
 from __future__ import annotations
 
 import pandas as pd
@@ -14,8 +16,7 @@ from mxlpy.plot import (
 def _combine_small_groups(
     groups: list[list[str]], min_group_size: int
 ) -> list[list[str]]:
-    """
-    Combine adjacent groups if their size is smaller than min_group_size.
+    """Combine adjacent groups if their size is smaller than min_group_size.
 
     Args:
         groups: List of lists of strings
@@ -23,6 +24,7 @@ def _combine_small_groups(
 
     Returns:
         List of lists with small adjacent groups combined
+
     """
     result = []
     current_group = groups[0]
@@ -57,6 +59,7 @@ def line_autogrouped(
     linewidth: float | None = None,
     linestyle: Linestyle | None = None,
 ) -> FigAxs:
+    """Plot a Series or DataFrame with auto-grouped subplots by order of magnitude."""
     group_names = (
         _partition_by_order_of_magnitude(s)
         if isinstance(s, pd.Series)

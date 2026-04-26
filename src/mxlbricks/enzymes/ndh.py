@@ -1,4 +1,4 @@
-"""NAD(P)H dehydrogenase-like complex (NDH)
+"""NAD(P)H dehydrogenase-like complex (NDH).
 
 PQH2 -> PQ
 
@@ -21,6 +21,7 @@ def add_ndh(
     pq_ox: str | None = None,
     kf: str | None = None,
 ) -> Model:
+    """Add ndh (NAD(P)H dehydrogenase-like complex (NDH)) to model."""
     rxn = default_name(rxn, n.ndh)
     pq_ox = default_name(pq_ox, n.pq_ox)
 

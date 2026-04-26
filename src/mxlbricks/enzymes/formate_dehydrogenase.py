@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 1.17.1.9
     Metacyc: 1.2.1.2-RXN
@@ -42,6 +42,7 @@ def add_formate_dehydrogenase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add formate dehydrogenase (name) to model."""
     rxn = default_name(rxn, n.formate_dehydrogenase)
     nad = default_name(nad, n.nad)
     formate = default_name(formate, n.formate)

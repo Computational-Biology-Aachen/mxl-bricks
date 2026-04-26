@@ -1,4 +1,4 @@
-"""Ferredoxin-NADP reductase
+"""Ferredoxin-NADP reductase.
 
 2 reduced ferredoxin + NADP+ + H+ ⇌ 2 oxidized ferredoxin + NADPH
 
@@ -98,6 +98,7 @@ def add_fnr_mmol_chl(
     km_nadp: str | None = None,
     e0: str | None = None,
 ) -> Model:
+    """Add fnr mmol chl (Ferredoxin-NADP reductase) to model."""
     rxn = default_name(rxn, n.fnr)
     fd_ox = default_name(fd_ox, n.fd_ox)
     fd_red = default_name(fd_red, n.fd_red)
@@ -161,6 +162,7 @@ def add_fnr_mm(
     e0: str | None = None,
     convf: str | None = None,
 ) -> Model:
+    """Add fnr mm (Ferredoxin-NADP reductase) to model."""
     rxn = default_name(rxn, n.fnr)
     fd_ox = default_name(fd_ox, n.fd_ox)
     fd_red = default_name(fd_red, n.fd_red)
@@ -222,7 +224,7 @@ def add_fnr_static(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
-    """Saadat version to put into Poolman model"""
+    """Saadat version to put into Poolman model."""
     rxn = default_name(rxn, n.fnr)
     nadp = default_name(nadp, n.nadp)
     nadph = default_name(nadph, n.nadph)
@@ -265,6 +267,7 @@ def add_fnr_energy_dependent(
     e0: str | None = None,
     kms: str | None = None,
 ) -> Model:
+    """Add fnr energy dependent (Ferredoxin-NADP reductase) to model."""
     rxn = default_name(rxn, n.fnr)
     nadp = default_name(nadp, n.nadp)
     nadph = default_name(nadph, n.nadph)

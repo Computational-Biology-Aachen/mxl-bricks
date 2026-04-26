@@ -1,4 +1,4 @@
-"""ribose-5-phosphate isomerase
+"""ribose-5-phosphate isomerase.
 
 EC 5.3.1.6
 
@@ -27,6 +27,7 @@ def add_ribose_5_phosphate_isomerase(
     kre: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add ribose 5 phosphate isomerase (ribose-5-phosphate isomerase) to model."""
     rxn = default_name(rxn, n.ribose_phosphate_isomerase)
     r5p = default_name(r5p, n.r5p)
     ru5p = default_name(ru5p, n.ru5p)

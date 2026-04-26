@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 2.7.9.1
 
@@ -41,6 +41,7 @@ def add_pyruvate_phosphate_dikinase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add pyruvate phosphate dikinase (name) to model."""
     rxn = default_name(rxn, n.pyruvate_phosphate_dikinase)
     pyruvate = default_name(pyruvate, n.pyruvate)
     atp = default_name(atp, n.atp)

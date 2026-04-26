@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC FIXME
 
@@ -37,6 +37,7 @@ def add_state_transition_12(
     kms: str | None = None,
     n_st: str | None = None,
 ) -> Model:
+    """Add state transition 12 (name) to model."""
     rxn = default_name(rxn, n.lhc_state_transition_12)
     lhc = default_name(lhc, n.lhc)
     pq_ox = default_name(pq_ox, n.pq_ox)
@@ -68,6 +69,7 @@ def add_state_transition_21(
     lhcp: str | None = None,
     kpph: str | None = None,
 ) -> Model:
+    """Add state transition 21 (name) to model."""
     rxn = n.lhc_state_transition_21()
     lhc = default_name(lhc, n.lhc)
     lhcp = default_name(lhcp, n.lhcp)
@@ -100,6 +102,7 @@ def add_state_transitions(
     n_st: str | None = None,
     kpph: str | None = None,
 ) -> Model:
+    """Add state transitions (name) to model."""
     add_state_transition_12(
         model=model,
         rxn=rxn_12,

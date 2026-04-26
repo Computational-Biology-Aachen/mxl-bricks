@@ -1,4 +1,4 @@
-"""Aspartate aminotransferase
+"""Aspartate aminotransferase.
 
 EC 2.6.1.1
 
@@ -40,6 +40,7 @@ def add_aspartate_aminotransferase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add aspartate aminotransferase (Aspartate aminotransferase) to model."""
     rxn = default_name(rxn, n.aspartate_aminotransferase)
     s1 = default_name(s1, n.aspartate)
     s2 = default_name(s2, n.oxoglutarate)

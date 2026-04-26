@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 1.1.1.37
 
@@ -40,6 +40,7 @@ def add_malate_dehydrogenase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add malate dehydrogenase (name) to model."""
     rxn = default_name(rxn, n.malate_dehydrogenase)
     oxaloacetate = default_name(oxaloacetate, n.oxaloacetate)
     nadh = default_name(nadh, n.nadh)

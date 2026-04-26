@@ -1,4 +1,4 @@
-"""name
+"""name.
 
 EC 5.3.1.22
 
@@ -38,6 +38,7 @@ def add_hydroxypyruvate_isomerase(
     kmp: str | None = None,
     keq: str | None = None,
 ) -> Model:
+    """Add hydroxypyruvate isomerase (name) to model."""
     rxn = default_name(rxn, n.hydroxypyruvate_isomerase)
 
     hydroxypyruvate = default_name(hydroxypyruvate, n.hydroxypyruvate)
