@@ -162,6 +162,76 @@ class _ApplyRenames(cst.CSTTransformer):
         return updated_node.with_changes(attr=original_node.attr)
 
 
+class _CollectPrivateFnParamRenames(cst.CSTVisitor):
+    def __init__(self) -> None:
+        self.renames: dict[str, str] = {}
+
+    def visit_FunctionDef(self, node: cst.FunctionDef) -> None:  # noqa: N802
+        if not node.name.value.startswith("_"):
+            return
+        all_params = [
+            *node.params.params,
+            *node.params.posonly_params,
+            *node.params.kwonly_params,
+        ]
+        if isinstance(node.params.star_arg, cst.Param):
+            all_params.append(node.params.star_arg)
+        if node.params.star_kwarg is not None:
+            all_params.append(node.params.star_kwarg)
+        for param in all_params:
+            old = param.name.value
+            new = _to_snake(old)
+            if old != new:
+                self.renames[old] = new
+
+
+class _ApplyParamRenames(cst.CSTTransformer):
+    """Rename params and their usages, scoped to _-prefixed functions only."""
+
+    def __init__(self, renames: dict[str, str]) -> None:
+        self.renames = renames
+        self._in_private: list[bool] = []
+
+    def visit_FunctionDef(self, node: cst.FunctionDef) -> bool:  # noqa: N802
+        self._in_private.append(node.name.value.startswith("_"))
+        return True
+
+    def leave_FunctionDef(  # noqa: N802
+        self,
+        original_node: cst.FunctionDef,  # noqa: ARG002
+        updated_node: cst.FunctionDef,
+    ) -> cst.FunctionDef:
+        self._in_private.pop()
+        return updated_node
+
+    def leave_Param(  # noqa: N802
+        self,
+        original_node: cst.Param,  # noqa: ARG002
+        updated_node: cst.Param,
+    ) -> cst.Param:
+        if not self._in_private or not self._in_private[-1]:
+            return updated_node
+        new = self.renames.get(updated_node.name.value)
+        return updated_node.with_changes(name=cst.Name(new)) if new else updated_node
+
+    def leave_Name(  # noqa: N802
+        self,
+        original_node: cst.Name,  # noqa: ARG002
+        updated_node: cst.Name,
+    ) -> cst.Name:
+        if not self._in_private or not self._in_private[-1]:
+            return updated_node
+        new = self.renames.get(updated_node.value)
+        return updated_node.with_changes(value=new) if new else updated_node
+
+    def leave_Attribute(  # noqa: N802
+        self,
+        original_node: cst.Attribute,
+        updated_node: cst.Attribute,
+    ) -> cst.Attribute:
+        return updated_node.with_changes(attr=original_node.attr)
+
+
 # ---------------------------------------------------------------------------
 # Commands
 # ---------------------------------------------------------------------------
@@ -197,6 +267,31 @@ def normalize_names(
             typer.echo(f"  {old} → {new}")
 
         new_code = tree.visit(_ApplyRenames(collector.renames)).code
+        if new_code != source:
+            path.write_text(new_code)
+            typer.echo(f"updated {path}")
+
+
+@app.command()
+def normalize_fn_pars(
+    files: list[Path] = typer.Argument(..., help="Python files to normalise"),  # noqa: B008
+) -> None:
+    """Convert camelCase/PascalCase param names to snake_case in _-prefixed functions."""
+    for path in files:
+        source = path.read_text()
+        tree = cst.parse_module(source)
+
+        collector = _CollectPrivateFnParamRenames()
+        tree.visit(collector)
+
+        if not collector.renames:
+            typer.echo(f"no changes {path}")
+            continue
+
+        for old, new in collector.renames.items():
+            typer.echo(f"  {old} → {new}")
+
+        new_code = tree.visit(_ApplyParamRenames(collector.renames)).code
         if new_code != source:
             path.write_text(new_code)
             typer.echo(f"updated {path}")
