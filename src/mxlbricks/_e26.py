@@ -47,60 +47,60 @@ def _mass_action_22_rev(
 def _kquencher(
     s: float,
     q: float,
-    kH_Qslope: float,
-    kH0: float,
+    k_h_qslope: float,
+    k_h0: float,
 ) -> float:
-    return (kH0 + kH_Qslope * q) * s
+    return (k_h0 + k_h_qslope * q) * s
 
 
 def _v_ps1(
-    P700FA: float,
+    p700_fa: float,
     ps2cs: float,
     pfd: float,
 ) -> float:
-    return (1 - ps2cs) * pfd * P700FA
+    return (1 - ps2cs) * pfd * p700_fa
 
 
 def _v_mehler(
-    PSI_red_acceptor: float,
-    O2ext: float,
-    kMehler: float,
+    psi_red_acceptor: float,
+    o2ext: float,
+    k_mehler: float,
 ) -> float:
-    return kMehler * O2ext * PSI_red_acceptor
+    return k_mehler * o2ext * psi_red_acceptor
 
 
 def _fluo(
-    Q: float,
-    B0: float,
-    B2: float,
+    q: float,
+    b0: float,
+    b2: float,
     ps2cs: float,
     k2: float,
-    kF: float,
-    kH_Qslope: float,
-    kH0: float,
+    k_f: float,
+    k_h_qslope: float,
+    k_h0: float,
 ) -> float:
-    kH = kH0 + kH_Qslope * Q
-    return (ps2cs * kF * B0) / (kF + k2 + kH) + (ps2cs * kF * B2) / (kF + kH)
+    kH = k_h0 + k_h_qslope * q
+    return (ps2cs * k_f * b0) / (k_f + k2 + kH) + (ps2cs * k_f * b2) / (k_f + kH)
 
 
 def _keq_pcp700(
-    E0_PC: float,
-    F: float,
-    E0_P700: float,
-    RT: float,
+    e0_pc: float,
+    f: float,
+    e0_p700: float,
+    rt: float,
 ) -> float:
-    DG = -(-E0_PC * F) + (-E0_P700 * F)
-    return np.exp(-DG / RT)
+    DG = -(-e0_pc * f) + (-e0_p700 * f)
+    return np.exp(-DG / rt)
 
 
 def _keq_faf_d(
-    E0_FA: float,
-    F: float,
-    E0_Fd: float,
-    RT: float,
+    e0_fa: float,
+    f: float,
+    e0_fd: float,
+    rt: float,
 ) -> float:
-    DG = -(-E0_FA * F) + (-E0_Fd * F)
-    return np.exp(-DG / RT)
+    DG = -(-e0_fa * f) + (-e0_fd * f)
+    return np.exp(-DG / rt)
 
 
 ### b6f ###
@@ -113,25 +113,25 @@ def _four_div_by(
 
 
 def _k_b6f(
-    pH: float,
-    pKreg: float,
+    p_h: float,
+    p_kreg: float,
     b6f_content: float,
     max_b6f: float,
 ) -> float:
-    pHmod = 1 - (1 / (10 ** (pH - pKreg) + 1))
+    pHmod = 1 - (1 / (10 ** (p_h - p_kreg) + 1))
     return pHmod * b6f_content * max_b6f
 
 
 def _vb6f_2024(
-    PC: float,
-    PCred: float,
-    PQ: float,
-    PQred: float,
+    pc: float,
+    p_cred: float,
+    pq: float,
+    p_qred: float,
     _k_b6f: float,
-    Keq: float,
+    keq: float,
 ) -> float:
-    f = PQred / (PQred + PQ)
-    return f * PC * _k_b6f - (1 - f) * PCred * (_k_b6f / Keq)
+    f = p_qred / (p_qred + pq)
+    return f * pc * _k_b6f - (1 - f) * p_cred * (_k_b6f / keq)
 
 
 def _reversible_mass_action_1s_1p(
@@ -150,145 +150,145 @@ def _half(
 
 
 def _protons_lumen(
-    pH_lumen: float,
+    p_h_lumen: float,
 ) -> float:
-    return (10 ** (-pH_lumen)) / 2.5e-4
+    return (10 ** (-p_h_lumen)) / 2.5e-4
 
 
 def _protons_stroma(
-    pH_stroma: float,
+    p_h_stroma: float,
 ) -> float:
-    return (10 ** (-pH_stroma)) / 3.2e-5
+    return (10 ** (-p_h_stroma)) / 3.2e-5
 
 
 def _v_at_psynthase_mod(
-    ATP: float,
-    ATP_activity: float,
+    atp: float,
+    atp_activity: float,
     _atp_pmf_activity: float,
-    k_ATPsynthase: float,
-    ADP: float,
+    k_at_psynthase: float,
+    adp: float,
     _keq_atp: float,
     convf: float,
 ) -> float:
     return (
-        ATP_activity
+        atp_activity
         * _atp_pmf_activity
-        * k_ATPsynthase
-        * (ADP / convf - ATP / convf / _keq_atp)
+        * k_at_psynthase
+        * (adp / convf - atp / convf / _keq_atp)
     )
 
 
 def _atp_pmf_activity(
-    pK0E: float,
+    p_k0_e: float,
     b: float,
-    pH_lumen: float,
-    pH: float,
-    F: float,
-    RT: float,
+    p_h_lumen: float,
+    p_h: float,
+    f: float,
+    rt: float,
     delta_psi: float,
 ) -> float:
-    _pmf = delta_psi - np.log(10) * ((RT) / F) * (pH_lumen - pH)
-    x = np.log(10 ** (-pK0E)) + b * (_pmf * F) / (RT)
+    _pmf = delta_psi - np.log(10) * ((rt) / f) * (p_h_lumen - p_h)
+    x = np.log(10 ** (-p_k0_e)) + b * (_pmf * f) / (rt)
     return (np.e**x) / (1 + np.e**x)
 
 
 def _v_at_pactivity(
-    ATPactivity: float,
+    at_pactivity: float,
     light: float,
-    kActATPase: float,
-    kDeactATPase: float,
+    k_act_at_pase: float,
+    k_deact_at_pase: float,
 ) -> float:
     """Activation of ATPsynthase by light."""
     if light > 0.0:
-        return kActATPase * (1 - ATPactivity)
-    return -kDeactATPase * ATPactivity
+        return k_act_at_pase * (1 - at_pactivity)
+    return -k_deact_at_pase * at_pactivity
 
 
 def _atp_pmf_activity2(
-    pK0E: float,
+    p_k0_e: float,
     b: float,
-    pH_lumen: float,
-    pH: float,
-    F: float,
-    RT: float,
+    p_h_lumen: float,
+    p_h: float,
+    f: float,
+    rt: float,
     delta_psi: float,
 ) -> float:
-    _pmf = delta_psi - np.log(10) * ((RT) / F) * (pH_lumen - pH)
-    x = np.log(10 ** (-pK0E)) + b * (_pmf * F) / (RT)
+    _pmf = delta_psi - np.log(10) * ((rt) / f) * (p_h_lumen - p_h)
+    x = np.log(10 ** (-p_k0_e)) + b * (_pmf * f) / (rt)
     return (np.e**x) / (1 + np.e**x)
 
 
 def _deltap_h(
-    pH: float,
-    pH_lumen: float,
-    dG: float,
+    p_h: float,
+    p_h_lumen: float,
+    d_g: float,
 ) -> float:
-    return dG * (pH - pH_lumen)
+    return d_g * (p_h - p_h_lumen)
 
 
 def _pmf(
     _deltap_h: float,
     delta_psi: float,
-    F: float,
+    f: float,
 ) -> float:
-    return F * delta_psi + _deltap_h
+    return f * delta_psi + _deltap_h
 
 
 def _pmf_in_v(
     delta_psi: float,
-    pH_lumen: float,
-    pH: float,
-    RT: float,
-    F: float,
+    p_h_lumen: float,
+    p_h: float,
+    rt: float,
+    f: float,
 ) -> float:
-    return delta_psi - np.log(10) * ((RT) / F) * (pH_lumen - pH)
+    return delta_psi - np.log(10) * ((rt) / f) * (p_h_lumen - p_h)
 
 
 def _voltage_turnover_mol_chl_per_mmol(
     capacitance_specific: float,
-    molChl_per_area_membrane: float,
-    F: float,
+    mol_chl_per_area_membrane: float,
+    f: float,
 ) -> float:
-    area_permolChl = 1 / molChl_per_area_membrane
-    return F / (capacitance_specific * area_permolChl)
+    area_permolChl = 1 / mol_chl_per_area_membrane
+    return f / (capacitance_specific * area_permolChl)
 
 
 def _initial_delta_psi(
-    pH: float,
-    pH_lumen: float,
-    R: float,
-    F: float,
-    T: float,
+    p_h: float,
+    p_h_lumen: float,
+    r: float,
+    f: float,
+    t: float,
 ) -> float:
     """Estimate delta psi in the dark, assuming delta_pH and delta_psi contribute equally to pmf."""
-    return np.log(10) * ((R * T) / F) * (pH - pH_lumen)
+    return np.log(10) * ((r * t) / f) * (p_h - p_h_lumen)
 
 
 def _keq_atp(
     _pmf: float,
-    DeltaG0_ATP: float,
-    Pi_mol: float,
-    HPR: float,
-    RT: float,
+    delta_g0_atp: float,
+    pi_mol: float,
+    hpr: float,
+    rt: float,
 ) -> float:
-    DG = DeltaG0_ATP - HPR * _pmf
+    DG = delta_g0_atp - hpr * _pmf
 
-    return Pi_mol * np.exp(-DG / RT)
+    return pi_mol * np.exp(-DG / rt)
 
 
 def _keq_cytb6f(
-    pH: float,
+    p_h: float,
     _pmf: float,
-    F: float,
-    E0_PQ: float,
-    E0_PC: float,
-    RT: float,
-    dG_pH: float,
+    f: float,
+    e0_pq: float,
+    e0_pc: float,
+    rt: float,
+    d_g_p_h: float,
 ) -> float:
-    DG1 = -2 * F * E0_PQ
-    DG2 = -F * E0_PC
-    DG = -(DG1 + 2 * dG_pH * pH) + 2 * DG2 + 2 * _pmf
-    return np.exp(-DG / RT)
+    DG1 = -2 * f * e0_pq
+    DG2 = -f * e0_pc
+    DG = -(DG1 + 2 * d_g_p_h * p_h) + 2 * DG2 + 2 * _pmf
+    return np.exp(-DG / rt)
 
 
 def _one_div(
@@ -316,10 +316,10 @@ def _neg_one_div(
 
 
 def _atp_div(
-    HPR: float,
+    hpr: float,
     x: float,
 ) -> float:
-    return -HPR * x
+    return -hpr * x
 
 
 def _four_div(
@@ -329,60 +329,60 @@ def _four_div(
 
 
 def _reg_kea(
-    pH: float,
-    ATP: float,
-    KEA3_pH_reg: float,
-    KEA3_ATP_treshold: float,
+    p_h: float,
+    atp: float,
+    kea3_p_h_reg: float,
+    kea3_atp_treshold: float,
 ) -> float:
-    pH_inhib = (1 - 0.1) / (1 + np.exp((pH - KEA3_pH_reg) / 0.001))
-    ATP_inhib = (1 - 0.1) / (1 + np.exp((KEA3_ATP_treshold - ATP) / 0.01))
+    pH_inhib = (1 - 0.1) / (1 + np.exp((p_h - kea3_p_h_reg) / 0.001))
+    ATP_inhib = (1 - 0.1) / (1 + np.exp((kea3_atp_treshold - atp) / 0.01))
     return pH_inhib * ATP_inhib
 
 
 def _dg_k(
-    Klumen: float,
-    Kstroma: float,
+    klumen: float,
+    kstroma: float,
     delta_psi: float,
-    RT: float,
-    F: float,
+    rt: float,
+    f: float,
 ) -> float:
-    return (-(RT / F) * np.log10(Kstroma / Klumen) + delta_psi) * F
+    return (-(rt / f) * np.log10(kstroma / klumen) + delta_psi) * f
 
 
 def _cl_driving_force(
     delta_psi: float,
-    Cl_lumen: float,
-    Cl_stroma: float,
-    RT: float,
-    F: float,
+    cl_lumen: float,
+    cl_stroma: float,
+    rt: float,
+    f: float,
 ) -> float:
-    return ((RT / F) * np.log10(Cl_stroma / Cl_lumen) + delta_psi) * F
+    return ((rt / f) * np.log10(cl_stroma / cl_lumen) + delta_psi) * f
 
 
 def _keq_ndh1(
     _pmf: float,
-    E0_Fd: float,
-    F: float,
-    E0_PQ: float,
-    pHstroma: float,
-    dG_pH: float,
-    RT: float,
+    e0_fd: float,
+    f: float,
+    e0_pq: float,
+    p_hstroma: float,
+    d_g_p_h: float,
+    rt: float,
 ) -> float:
-    DG1 = -E0_Fd * F
-    DG2 = -2 * E0_PQ * F
-    DG = -2 * DG1 + DG2 + 2 * dG_pH * pHstroma + 4 * _pmf
-    return np.exp(-DG / RT)
+    DG1 = -e0_fd * f
+    DG2 = -2 * e0_pq * f
+    DG = -2 * DG1 + DG2 + 2 * d_g_p_h * p_hstroma + 4 * _pmf
+    return np.exp(-DG / rt)
 
 
 def _v_kea(
-    Klumen: float,
-    H: float,
-    Kstroma: float,
-    k_KEA: float,
-    Hstroma: float,
+    klumen: float,
+    h: float,
+    kstroma: float,
+    k_kea: float,
+    hstroma: float,
     _reg_kea: float,
 ) -> float:
-    v_KEA = k_KEA * (H * Kstroma - Hstroma * Klumen) * _reg_kea
+    v_KEA = k_kea * (h * kstroma - hstroma * klumen) * _reg_kea
     return max(
         v_KEA,
         0,
@@ -391,97 +391,97 @@ def _v_kea(
 
 def _v_voltage_k_channel(
     delta_psi_ions: float,
-    Klumen: float,
-    Kstroma: float,
+    klumen: float,
+    kstroma: float,
     _dg_k: float,
-    perm_K: float,
-    K_delta_psi_treshold: float,
+    perm_k: float,
+    k_delta_psi_treshold: float,
 ) -> float:
     voltage_dependence = (1 - 0.1) / (
-        1 + np.exp(-(delta_psi_ions - K_delta_psi_treshold) / 0.001)
+        1 + np.exp(-(delta_psi_ions - k_delta_psi_treshold) / 0.001)
     )
     return (
-        perm_K * _dg_k * voltage_dependence * (Klumen / Kstroma)
+        perm_k * _dg_k * voltage_dependence * (klumen / kstroma)
     )  # why divided K_total/2
 
 
 def _v_vccn1(
-    Cl_stroma: float,
-    Cl_lumen: float,
+    cl_stroma: float,
+    cl_lumen: float,
     _cl_driving_force: float,
     delta_psi_ions: float,
-    k_VCCN1: float,
-    VCCN_delta_psi_treshold: float,
+    k_vccn1: float,
+    vccn_delta_psi_treshold: float,
 ) -> float:
     voltage_gate = (1 - 0.1) / (
-        1 + np.exp(-(delta_psi_ions - VCCN_delta_psi_treshold) / 0.001)
+        1 + np.exp(-(delta_psi_ions - vccn_delta_psi_treshold) / 0.001)
     )
-    return voltage_gate * k_VCCN1 * _cl_driving_force * (Cl_stroma / Cl_lumen)
+    return voltage_gate * k_vccn1 * _cl_driving_force * (cl_stroma / cl_lumen)
 
 
 def _v_cl_ce(
-    Cl_lumen: float,
-    Cl_stroma: float,
-    kClCe: float,
-    PQ: float,
+    cl_lumen: float,
+    cl_stroma: float,
+    k_cl_ce: float,
+    pq: float,
     _cl_driving_force: float,
-    ClCe_PQ: float,
+    cl_ce_pq: float,
 ) -> float:  # correct
-    activation = (0.2 - 0.1) / (1 + np.exp(-(PQ - ClCe_PQ) / 0.1))
-    return kClCe * activation * _cl_driving_force * (Cl_stroma / Cl_lumen)
+    activation = (0.2 - 0.1) / (1 + np.exp(-(pq - cl_ce_pq) / 0.1))
+    return k_cl_ce * activation * _cl_driving_force * (cl_stroma / cl_lumen)
 
 
 def _cl_ce_activation(
-    ATP: float,
-    ClCe_ATP_threshold: float,
+    atp: float,
+    cl_ce_atp_threshold: float,
 ) -> float:
-    return (1 - 0.1) / (1 + np.exp((ATP - ClCe_ATP_threshold) / 0.01))
+    return (1 - 0.1) / (1 + np.exp((atp - cl_ce_atp_threshold) / 0.01))
 
 
 def _cl_ce_bi(
-    Cl_lumen: float,
-    Cl_stroma: float,
-    kClCe: float,
+    cl_lumen: float,
+    cl_stroma: float,
+    k_cl_ce: float,
     activation: float,
 ) -> float:  # correct
-    return kClCe * (Cl_stroma - Cl_lumen) * activation
+    return k_cl_ce * (cl_stroma - cl_lumen) * activation
 
 
 def _cl_ce_ch(
-    Cl_lumen: float,
-    Cl_stroma: float,
-    kClCe: float,
+    cl_lumen: float,
+    cl_stroma: float,
+    k_cl_ce: float,
     activation: float,
     protons: float,
     _protons_lumen: float,
 ) -> float:  # correct
-    return kClCe * ((Cl_lumen * protons) / (_protons_lumen * Cl_stroma)) * activation
+    return k_cl_ce * ((cl_lumen * protons) / (_protons_lumen * cl_stroma)) * activation
 
 
 def _v_cl_leak(
-    kCl_leak: float,
-    Cl_lumen: float,
-    Cl_stroma: float,
-    PQ: float,
-    Cl_leak_PQ: float,
+    k_cl_leak: float,
+    cl_lumen: float,
+    cl_stroma: float,
+    pq: float,
+    cl_leak_pq: float,
     total_div: float,
 ) -> float:
-    activation = (1 - 0.1) / (1 + np.exp(-(PQ - Cl_leak_PQ) / 0.1))
-    return kCl_leak * ((Cl_lumen - Cl_stroma) ** 2) / (total_div) * activation
+    activation = (1 - 0.1) / (1 + np.exp(-(pq - cl_leak_pq) / 0.1))
+    return k_cl_leak * ((cl_lumen - cl_stroma) ** 2) / (total_div) * activation
 
 
 def _v_ndh1(
-    A1: float,
-    Fdred: float,
-    PQ: float,
-    pHlumen: float,
-    kNDH1: float,
+    a1: float,
+    fdred: float,
+    pq: float,
+    p_hlumen: float,
+    k_ndh1: float,
 ) -> float:
     return (
-        kNDH1
-        * ((Fdred**2) * PQ)
-        * ((1 - 0.1) / (1 + np.exp(-((A1 - 0.02) / 0.01))))
-        * (10 ** (pHlumen - 6.5) / (10 ** (pHlumen - 6.5) + 0.5))
+        k_ndh1
+        * ((fdred**2) * pq)
+        * ((1 - 0.1) / (1 + np.exp(-((a1 - 0.02) / 0.01))))
+        * (10 ** (p_hlumen - 6.5) / (10 ** (p_hlumen - 6.5) + 0.5))
     )
 
 
@@ -497,7 +497,7 @@ def _build_full_model(
     chl_lumen: str = "_lumen",
     lumen_reactions: list[str] | None = None,
     stroma_reactions: list[str] | None = None,
-    ClCe: str = "exporter",
+    cl_ce: str = "exporter",
 ) -> Model:
     """Build full e26 model with extended dynamics.
 
@@ -804,7 +804,7 @@ def _build_full_model(
         args=["pH_lumen"],
     )
 
-    HPR = cast(
+    hpr = cast(
         float,
         m.get_raw_parameters()["HPR"].value,
     )
@@ -819,7 +819,7 @@ def _build_full_model(
         elif r == "proton_leak":
             stoich["pH_lumen"] = 1 / bH  # type: ignore
         elif r == "atp_synthase":
-            stoich["pH_lumen"] = HPR / bH  # type: ignore
+            stoich["pH_lumen"] = hpr / bH  # type: ignore
         else:
             continue
         m.update_reaction(
@@ -860,7 +860,7 @@ def _build_full_model(
         elif r == "b6f":
             stoich["pH"] = 4 / buffering
         elif r == "atp_synthase":
-            stoich["pH"] = -HPR / buffering
+            stoich["pH"] = -hpr / buffering
         elif r == "proton_leak":
             stoich["pH"] = -1 / buffering
         else:
@@ -1212,7 +1212,7 @@ def _build_full_model(
         },
     )
 
-    if ClCe == "bi":
+    if cl_ce == "bi":
         m.remove_reaction("ClCe")
         m.add_parameter(
             "ClCe_ATP_threshold",
@@ -1237,7 +1237,7 @@ def _build_full_model(
         )
         m.update_parameters({"k_ClCe": 0.5})
 
-    if ClCe == "antiport":
+    if cl_ce == "antiport":
         m.remove_reaction("ClCe")
         m.add_parameter(
             "ClCe_ATP_threshold",
@@ -1319,5 +1319,5 @@ def _build_full_model(
 def get_ebeling_2026() -> Model:
     return _build_full_model(
         get_saadat2021(),
-        ClCe="bi",
+        cl_ce="bi",
     )
