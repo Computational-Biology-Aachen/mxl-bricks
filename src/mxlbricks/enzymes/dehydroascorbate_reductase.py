@@ -23,6 +23,7 @@ def _rate_dhar(
     km_gsh: float,
     k: float,
 ) -> float:
+    """Dehydroascorbate reductase rate: bi-substrate random-order Michaelis-Menten."""
     nom = vmax * dha * gsh
     denom = k + km_dha * gsh + km_gsh * dha + dha * gsh
     return nom / denom

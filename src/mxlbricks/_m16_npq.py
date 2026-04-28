@@ -6,10 +6,12 @@ from mxlpy.surrogates import qss
 
 
 def _ph(h: float) -> float:
+    """Convert lumenal proton concentration to pH (conversion factor 2.5e-4)."""
     return -np.log10(h * 2.5e-4)
 
 
 def _ph_inv(ph: float) -> float:
+    """Convert pH to lumenal proton concentration (inverse of _ph)."""
     return 3.2e4 * 10**-ph
 
 
@@ -21,6 +23,7 @@ def _keq_qapq(
     r: float,
     t: float,
 ) -> float:
+    """Equilibrium constant for QA -> PQ electron transfer, including stroma pH correction."""
     RT = r * t
     DG1 = -f * e0_qa
     DG2 = -2 * f * e0_pq + 2 * p_h_st * np.log(10) * RT
@@ -143,6 +146,7 @@ def _psii(
 
 
 def _two_divided_value(x: float) -> float:
+    """Return 2/x; used for scaling 2-proton stoichiometry by buffering capacity."""
     return 2 / x
 
 
@@ -164,6 +168,7 @@ def _ptox(
 
 
 def _four_divided_value(x: float) -> float:
+    """Return 4/x; used for scaling 4-proton stoichiometry by buffering capacity."""
     return 4 / x
 
 
@@ -179,6 +184,7 @@ def _atp_synthase(
 
 
 def _neg_fourteenthirds_divided_value(x: float) -> float:
+    """Return -(14/3)/x; used for HPR proton stoichiometry of ATP synthase scaled by buffering capacity."""
     return -(14 / 3) / x
 
 
@@ -205,6 +211,7 @@ def _proton_leak(
 
 
 def _neg_divided_value(x: float) -> float:
+    """Return -1/x; used for negative proton leak stoichiometry scaled by buffering capacity."""
     return -1 / x
 
 
@@ -256,6 +263,7 @@ def _ps2states_2016a_matrix(
     kp: float,
     psii_tot: float,
 ) -> tuple[float, float, float, float]:
+    """PSII state populations (Matuszynska 2016 NPQ, matrix solver variant)."""
     b0 = pfd + k_pqh2 * pq_red / keq_qapq
     b1 = kh * quencher + kf
     b2 = kh * quencher + kf + kp
@@ -286,6 +294,7 @@ def _ps2states_2016a_analytical(
     kp: float,
     psii_tot: float,
 ) -> tuple[float, float, float, float]:
+    """PSII state populations (Matuszynska 2016 NPQ, analytical closed-form variant)."""
     x0 = kf**2
     x1 = kf * kp
     x2 = kh * quencher
@@ -345,6 +354,7 @@ def b0(
     kp: float,
     psii_tot: float,
 ) -> float:
+    """Analytical PSII B0 state (dark-closed, Matuszynska 2016): fraction with PQ oxidised."""
     return (
         k_pqh2
         * keq_qapq
@@ -392,6 +402,7 @@ def b1(
     kp: float,
     psii_tot: float,
 ) -> float:
+    """Analytical PSII B1 state (light-open, Matuszynska 2016): fraction absorbing light with PQ oxidised."""
     return (
         k_pqh2
         * keq_qapq
@@ -434,6 +445,7 @@ def b2(
     kp: float,
     psii_tot: float,
 ) -> float:
+    """Analytical PSII B2 state (dark-closed, Matuszynska 2016): fraction with PQ reduced."""
     return (
         psii_tot
         * (
@@ -480,6 +492,7 @@ def b3(
     kp: float,
     psii_tot: float,
 ) -> float:
+    """Analytical PSII B3 state (light-open, Matuszynska 2016): fraction absorbing light with PQ reduced."""
     return (
         pfd
         * psii_tot
@@ -515,6 +528,7 @@ def b3(
 def get_matuszynska2016_npq(
     mode: Literal["matrix", "analytical", "analytical-split"] = "analytical",
 ) -> Model:
+    """Build the Matuszynska 2016 NPQ model with PSII state computation in the chosen mode."""
     m = Model()
 
     m.add_variable("pq_red", initial_value=0)

@@ -23,6 +23,7 @@ def _rate_state_transition_ps1_ps2(
     km_st: float,
     n_st: float,
 ) -> float:
+    """STT7-kinase phosphorylation of LHC; inhibited by oxidised PQ (state 1 → 2 transition)."""
     return k_stt7 * (1 / (1 + (pox / p_tot / km_st) ** n_st)) * ant
 
 

@@ -8,7 +8,7 @@ Equilibrator
 from mxlpy import Derived, Model
 
 from mxlbricks import names as n
-from mxlbricks.fns import protons_stroma
+from mxlbricks.fns import protons_stroma_2016
 from mxlbricks.utils import (
     default_name,
     static,
@@ -16,6 +16,7 @@ from mxlbricks.utils import (
 
 
 def _neg_one_div_by(x: float) -> float:
+    """Return -1/x; used for negated unit stoichiometry scaled by buffering capacity."""
     return -1.0 / x
 
 
@@ -24,7 +25,8 @@ def _rate_leak(
     ph_stroma: float,
     k_leak: float,
 ) -> float:
-    return k_leak * (protons_lumen - protons_stroma(ph_stroma))
+    """Passive proton leak across the thylakoid membrane, proportional to the proton gradient."""
+    return k_leak * (protons_lumen - protons_stroma_2016(ph_stroma))
 
 
 def add_proton_leak(

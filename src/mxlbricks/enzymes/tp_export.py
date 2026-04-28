@@ -27,6 +27,7 @@ def _rate_translocator(
     k_gap: float,
     k_dhap: float,
 ) -> float:
+    """Denominator term N for the phosphate translocator shared by all triose-P export reactions."""
     return 1 + (1 + k_pxt / p_ext) * (
         pi / k_pi + pga / k_pga + gap / k_gap + dhap / k_dhap
     )
@@ -38,6 +39,7 @@ def _rate_out(
     vmax_efflux: float,
     k_efflux: float,
 ) -> float:
+    """Individual substrate export rate normalised by the translocator occupancy N."""
     return vmax_efflux * s1 / (n_total * k_efflux)
 
 

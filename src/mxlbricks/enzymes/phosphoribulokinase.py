@@ -39,6 +39,7 @@ def _rate_prk(
     ki134: float,
     ki135: float,
 ) -> float:
+    """Phosphoribulokinase rate: ordered bi-substrate kinetics with PGA, RuBP, Pi and ADP inhibition."""
     return (
         v13
         * ru5p

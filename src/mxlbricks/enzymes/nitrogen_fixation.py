@@ -20,6 +20,7 @@ from mxlbricks.utils import (
 
 
 def _two_times_convf(convf: float) -> float:
+    """Return 2 * convf for scaling Fd_ox stoichiometry."""
     return 2.0 * convf
 
 
@@ -31,6 +32,7 @@ def _rate_nitrogen_fixation(
     k_fwd: float,
     convf: float,
 ) -> float:
+    """Nitrogen fixation rate: mass action on 2-oxoglutarate, ATP, NH4+ and reduced ferredoxin."""
     return k_fwd * oxo * atp * nh4 * (2 * fd_red * convf)
 
 

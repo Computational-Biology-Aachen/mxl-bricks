@@ -12,6 +12,7 @@ from mxlbricks.utils import (
 
 
 def _four_div_by(x: float) -> float:
+    """Return 4/x; used for the 4-proton stoichiometry of b6f scaled by buffering capacity."""
     return 4.0 / x
 
 
@@ -24,6 +25,7 @@ def _keq_cytb6f(
     RT: float,
     dG_pH: float,
 ) -> float:
+    """Equilibrium constant of cytochrome b6f from redox potentials and transmembrane pH gradient."""
     DG1 = -2 * F * E0_PQ
     DG2 = -F * E0_PC
     DG = -(DG1 + 2 * dG_pH * pH) + 2 * DG2 + 2 * dG_pH * (pHstroma - pH)
@@ -38,6 +40,7 @@ def _b6f(
     Keq_B6f: float,
     kCytb6f: float,
 ) -> float:
+    """Cytochrome b6f rate: reversible mass action clamped to -kCytb6f to avoid runaway reverse flux."""
     return max(
         kCytb6f * (PQ_red * PC_ox**2 - PQ_ox * PC_red**2 / Keq_B6f),
         -kCytb6f,
@@ -50,6 +53,7 @@ def _k_b6f(
     b6f_content: float,
     max_b6f: float,
 ) -> float:
+    """Effective b6f rate constant modulated by lumenal pH via a sigmoid around pKreg."""
     pHmod = 1 - (1 / (10 ** (pH - pKreg) + 1))
     b6f_deprot = pHmod * b6f_content
     return b6f_deprot * max_b6f
@@ -63,6 +67,7 @@ def _b6f_2024(
     k_b6f: float,
     Keq_cytb6f: float,
 ) -> float:
+    """2024 b6f rate using PQH2/PQ fractions instead of absolute concentrations."""
     k_b6f_reverse = k_b6f / Keq_cytb6f
     f_PQH2 = PQred / (
         PQred + PQ

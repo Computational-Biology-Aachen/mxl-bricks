@@ -656,6 +656,9 @@ def rapid_equilibrium_3s_3p(
 # Misc
 
 
-def protons_stroma(ph: float) -> float:
-    """Convert stromal pH to proton concentration (µmol/L)."""
+def protons_stroma_2016(ph: float) -> float:
+    """Convert stromal pH to proton concentration (µmol/L).
+
+    Introduced by the Matuszynska 2016 PhD model.
+    """
     return 4000.0 * 10 ** (-ph)

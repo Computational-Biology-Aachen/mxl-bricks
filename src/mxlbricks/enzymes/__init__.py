@@ -217,7 +217,6 @@ __all__ = [
     "add_mthfc",
     "add_ps2_cross_section",
     "add_psii",
-    "add_psii_analytic",
     "add_psi_2019",
     "add_psi_2021",
     "add_mehler",

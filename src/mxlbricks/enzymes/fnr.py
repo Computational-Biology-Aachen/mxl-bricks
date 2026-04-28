@@ -35,6 +35,7 @@ def _keq_fnr(
     dG_pH: float,
     RT: float,
 ) -> float:
+    """Equilibrium constant for FNR: Fd-mediated NADP+ reduction, pH-corrected."""
     dg1 = -E0_Fd * F
     dg2 = -2 * E0_NADP * F
     dg = -2 * dg1 + dg2 + dG_pH * pHstroma
@@ -51,6 +52,7 @@ def _rate_fnr2016(
     km_nadph: float,
     keq: float,
 ) -> float:
+    """FNR rate (2016 formulation): reversible ping-pong with Fd^2 stoichiometry, mmol/mmol_Chl units."""
     fdred = fd_red / km_fd_red
     fdox = fd_ox / km_fd_red
     nadph = nadph / km_nadph
@@ -73,6 +75,7 @@ def _rate_fnr_2019(
     Keq_FNR: float,
     convf: float,
 ) -> float:
+    """FNR rate (2019 formulation): same as 2016 but NADP/H concentrations scaled by convf."""
     fdred = Fd_red / KM_FNR_F
     fdox = Fd_ox / KM_FNR_F
     nadph = NADPH / convf / KM_FNR_N

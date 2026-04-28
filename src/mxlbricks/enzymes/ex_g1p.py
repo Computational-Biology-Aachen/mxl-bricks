@@ -35,6 +35,7 @@ def _rate_starch(
     kast2: float,
     kast3: float,
 ) -> float:
+    """Starch synthesis rate via G1P+ATP with ADP inhibition and allosteric activation by PGA/F6P/FBP."""
     return (
         v_st
         * g1p

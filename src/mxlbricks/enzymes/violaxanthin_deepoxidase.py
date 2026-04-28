@@ -7,7 +7,7 @@ Antheraxanthin + Ascorbate -> Zeaxanthin + Dehydroascorbate + H2O.
 from mxlpy import Model
 
 from mxlbricks import names as n
-from mxlbricks.fns import protons_stroma
+from mxlbricks.fns import protons_stroma_2016
 from mxlbricks.utils import (
     default_name,
     static,
@@ -21,7 +21,8 @@ def _rate_protonation_hill(
     nH: float,
     kphSat: float,
 ) -> float:
-    return k_fwd * (H**nH / (H**nH + protons_stroma(kphSat) ** nH)) * Vx  # type: ignore
+    """Hill-type deepoxidase rate activated by lumenal proton concentration."""
+    return k_fwd * (H**nH / (H**nH + protons_stroma_2016(kphSat) ** nH)) * Vx  # type: ignore
 
 
 def add_violaxanthin_epoxidase(

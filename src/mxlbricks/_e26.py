@@ -15,6 +15,7 @@ def _moiety_3(
     c3: float,
     total: float,
 ) -> float:
+    """Conservation moiety: fourth species = total - c1 - c2 - c3."""
     return total - c1 - c2 - c3
 
 
@@ -22,6 +23,7 @@ def _normalize_concentration(
     concentration: float,
     total: float,
 ) -> float:
+    """Return concentration/total as a dimensionless fraction."""
     return concentration / total
 
 
@@ -30,6 +32,7 @@ def _normalize_2_concentrations(
     c2: float,
     total: float,
 ) -> float:
+    """Return (c1+c2)/total as a combined dimensionless fraction."""
     return (c1 + c2) / total
 
 
@@ -41,6 +44,7 @@ def _mass_action_22_rev(
     kf: float,
     keq: float,
 ) -> float:
+    """Reversible bimolecular mass-action rate: kf*(s1*s2) - (kf/keq)*(p1*p2)."""
     return kf * s1 * s2 - (kf / keq) * p1 * p2
 
 
@@ -50,6 +54,7 @@ def _kquencher(
     k_h_qslope: float,
     k_h0: float,
 ) -> float:
+    """Effective quenching rate on state s: linear quencher dependence with baseline k_h0."""
     return (k_h0 + k_h_qslope * q) * s
 
 
@@ -58,6 +63,7 @@ def _v_ps1(
     ps2cs: float,
     pfd: float,
 ) -> float:
+    """PSI electron transfer rate: open PSI fraction * light absorbed by PSI antenna."""
     return (1 - ps2cs) * pfd * p700_fa
 
 
@@ -66,6 +72,7 @@ def _v_mehler(
     o2ext: float,
     k_mehler: float,
 ) -> float:
+    """Mehler reaction rate: O2 reduction by PSI-reduced acceptor (pseudo-Mehler/flavodiiron)."""
     return k_mehler * o2ext * psi_red_acceptor
 
 
@@ -79,6 +86,7 @@ def _fluo(
     k_h_qslope: float,
     k_h0: float,
 ) -> float:
+    """Chlorophyll fluorescence yield from open (B0) and closed (B2) PSII centres with quencher-dependent kH."""
     kH = k_h0 + k_h_qslope * q
     return (ps2cs * k_f * b0) / (k_f + k2 + kH) + (ps2cs * k_f * b2) / (k_f + kH)
 
@@ -89,6 +97,7 @@ def _keq_pcp700(
     e0_p700: float,
     rt: float,
 ) -> float:
+    """Equilibrium constant for PC -> P700 electron transfer from standard redox potentials."""
     DG = -(-e0_pc * f) + (-e0_p700 * f)
     return np.exp(-DG / rt)
 
@@ -99,6 +108,7 @@ def _keq_faf_d(
     e0_fd: float,
     rt: float,
 ) -> float:
+    """Equilibrium constant for FA -> Fd electron transfer from standard redox potentials."""
     DG = -(-e0_fa * f) + (-e0_fd * f)
     return np.exp(-DG / rt)
 
@@ -109,6 +119,7 @@ def _keq_faf_d(
 def _four_div_by(
     x: float,
 ) -> float:
+    """Return 4/x; used for the 4-proton b6f stoichiometry scaled by buffering capacity."""
     return 4.0 / x
 
 
@@ -118,6 +129,7 @@ def _k_b6f(
     b6f_content: float,
     max_b6f: float,
 ) -> float:
+    """Effective b6f rate constant modulated by lumenal pH via a sigmoid around pKreg."""
     pHmod = 1 - (1 / (10 ** (p_h - p_kreg) + 1))
     return pHmod * b6f_content * max_b6f
 
@@ -130,6 +142,7 @@ def _vb6f_2024(
     _k_b6f: float,
     keq: float,
 ) -> float:
+    """2024 b6f rate using PQH2/PQ fractions instead of absolute concentrations."""
     f = p_qred / (p_qred + pq)
     return f * pc * _k_b6f - (1 - f) * p_cred * (_k_b6f / keq)
 
@@ -140,24 +153,28 @@ def _reversible_mass_action_1s_1p(
     kf: float,
     kb: float,
 ) -> float:
+    """Reversible unimolecular mass-action rate: kf*s - kb*p."""
     return kf * s - kb * p
 
 
 def _half(
     x: float,
 ) -> float:
+    """Return x/2; used for halving a stoichiometric coefficient."""
     return x / 2
 
 
 def _protons_lumen(
     p_h_lumen: float,
 ) -> float:
+    """Convert lumenal pH to proton concentration in mmol/mmol_Chl (conversion factor 2.5e-4)."""
     return (10 ** (-p_h_lumen)) / 2.5e-4
 
 
-def _protons_stroma(
+def _protons_stroma_ebeling(
     p_h_stroma: float,
 ) -> float:
+    """Convert stromal pH to proton concentration in mmol/mmol_Chl (Ebeling model, factor 3.2e-5)."""
     return (10 ** (-p_h_stroma)) / 3.2e-5
 
 
@@ -170,6 +187,7 @@ def _v_at_psynthase_mod(
     _keq_atp: float,
     convf: float,
 ) -> float:
+    """ATP synthase flux modulated by light-activation state and PMF-dependent activity sigmoid."""
     return (
         atp_activity
         * _atp_pmf_activity
@@ -187,6 +205,7 @@ def _atp_pmf_activity(
     rt: float,
     delta_psi: float,
 ) -> float:
+    """Sigmoidal ATP synthase activity as function of PMF (delta_psi and delta_pH combined)."""
     _pmf = delta_psi - np.log(10) * ((rt) / f) * (p_h_lumen - p_h)
     x = np.log(10 ** (-p_k0_e)) + b * (_pmf * f) / (rt)
     return (np.e**x) / (1 + np.e**x)
@@ -213,6 +232,7 @@ def _atp_pmf_activity2(
     rt: float,
     delta_psi: float,
 ) -> float:
+    """Variant of _atp_pmf_activity used in a second ATP synthase module instance."""
     _pmf = delta_psi - np.log(10) * ((rt) / f) * (p_h_lumen - p_h)
     x = np.log(10 ** (-p_k0_e)) + b * (_pmf * f) / (rt)
     return (np.e**x) / (1 + np.e**x)
@@ -223,6 +243,7 @@ def _deltap_h(
     p_h_lumen: float,
     d_g: float,
 ) -> float:
+    """Proton motive force component from transmembrane pH difference (in energy units)."""
     return d_g * (p_h - p_h_lumen)
 
 
@@ -231,6 +252,7 @@ def _pmf(
     delta_psi: float,
     f: float,
 ) -> float:
+    """Total proton motive force: electrical (F*delta_psi) + chemical (delta_pH) contributions."""
     return f * delta_psi + _deltap_h
 
 
@@ -241,6 +263,7 @@ def _pmf_in_v(
     rt: float,
     f: float,
 ) -> float:
+    """Total PMF expressed in volts: delta_psi - (RT/F)*ln(10)*delta_pH."""
     return delta_psi - np.log(10) * ((rt) / f) * (p_h_lumen - p_h)
 
 
@@ -249,6 +272,7 @@ def _voltage_turnover_mol_chl_per_mmol(
     mol_chl_per_area_membrane: float,
     f: float,
 ) -> float:
+    """Voltage change per charge transferred, scaled to mol_Chl units from membrane capacitance."""
     area_permolChl = 1 / mol_chl_per_area_membrane
     return f / (capacitance_specific * area_permolChl)
 
@@ -264,18 +288,6 @@ def _initial_delta_psi(
     return np.log(10) * ((r * t) / f) * (p_h - p_h_lumen)
 
 
-def _keq_atp(
-    _pmf: float,
-    delta_g0_atp: float,
-    pi_mol: float,
-    hpr: float,
-    rt: float,
-) -> float:
-    DG = delta_g0_atp - hpr * _pmf
-
-    return pi_mol * np.exp(-DG / rt)
-
-
 def _keq_cytb6f(
     p_h: float,
     _pmf: float,
@@ -285,6 +297,7 @@ def _keq_cytb6f(
     rt: float,
     d_g_p_h: float,
 ) -> float:
+    """Equilibrium constant of cytochrome b6f including PMF contribution to free energy."""
     DG1 = -2 * f * e0_pq
     DG2 = -f * e0_pc
     DG = -(DG1 + 2 * d_g_p_h * p_h) + 2 * DG2 + 2 * _pmf
@@ -294,24 +307,14 @@ def _keq_cytb6f(
 def _one_div(
     x: float,
 ) -> float:
+    """Identity passthrough; used as a no-op stoichiometry wrapper."""
     return x
-
-
-def _two_div(
-    x: float,
-) -> float:
-    return 2 * x
-
-
-def _three_div(
-    x: float,
-) -> float:
-    return 3 * x
 
 
 def _neg_one_div(
     x: float,
 ) -> float:
+    """Negate x; used as a sign-flipping stoichiometry wrapper."""
     return -1 * x
 
 
@@ -319,12 +322,14 @@ def _atp_div(
     hpr: float,
     x: float,
 ) -> float:
+    """Return -hpr*x for the HPR-scaled proton stoichiometry of ATP synthase (negative = lumen consumption)."""
     return -hpr * x
 
 
 def _four_div(
     x: float,
 ) -> float:
+    """Return 4*x; used for the 4-proton lumenal stoichiometry of the b6f complex."""
     return 4 * x
 
 
@@ -334,6 +339,7 @@ def _reg_kea(
     kea3_p_h_reg: float,
     kea3_atp_treshold: float,
 ) -> float:
+    """KEA3 K+/H+ antiporter regulation: product of pH and ATP inhibition sigmoids."""
     pH_inhib = (1 - 0.1) / (1 + np.exp((p_h - kea3_p_h_reg) / 0.001))
     ATP_inhib = (1 - 0.1) / (1 + np.exp((kea3_atp_treshold - atp) / 0.01))
     return pH_inhib * ATP_inhib
@@ -346,6 +352,7 @@ def _dg_k(
     rt: float,
     f: float,
 ) -> float:
+    """Electrochemical driving force for K+ transport across the thylakoid membrane."""
     return (-(rt / f) * np.log10(kstroma / klumen) + delta_psi) * f
 
 
@@ -356,6 +363,7 @@ def _cl_driving_force(
     rt: float,
     f: float,
 ) -> float:
+    """Electrochemical driving force for Cl- transport across the thylakoid membrane."""
     return ((rt / f) * np.log10(cl_stroma / cl_lumen) + delta_psi) * f
 
 
@@ -368,6 +376,7 @@ def _keq_ndh1(
     d_g_p_h: float,
     rt: float,
 ) -> float:
+    """Equilibrium constant for NDH-1 (Fd-dependent PQ reduction) including PMF and stromal pH."""
     DG1 = -e0_fd * f
     DG2 = -2 * e0_pq * f
     DG = -2 * DG1 + DG2 + 2 * d_g_p_h * p_hstroma + 4 * _pmf
@@ -382,6 +391,7 @@ def _v_kea(
     hstroma: float,
     _reg_kea: float,
 ) -> float:
+    """KEA3 antiporter rate: regulated K+/H+ exchange clamped to zero for back-flux."""
     v_KEA = k_kea * (h * kstroma - hstroma * klumen) * _reg_kea
     return max(
         v_KEA,
@@ -397,6 +407,7 @@ def _v_voltage_k_channel(
     perm_k: float,
     k_delta_psi_treshold: float,
 ) -> float:
+    """Voltage-gated K+ channel flux: sigmoid voltage activation times electrochemical driving force."""
     voltage_dependence = (1 - 0.1) / (
         1 + np.exp(-(delta_psi_ions - k_delta_psi_treshold) / 0.001)
     )
@@ -413,6 +424,7 @@ def _v_vccn1(
     k_vccn1: float,
     vccn_delta_psi_treshold: float,
 ) -> float:
+    """VCCN1 anion channel flux: voltage-gated Cl- transport driven by electrochemical force."""
     voltage_gate = (1 - 0.1) / (
         1 + np.exp(-(delta_psi_ions - vccn_delta_psi_treshold) / 0.001)
     )
@@ -427,6 +439,7 @@ def _v_cl_ce(
     _cl_driving_force: float,
     cl_ce_pq: float,
 ) -> float:  # correct
+    """CLCe Cl- channel flux: PQ-redox-activated transport driven by electrochemical force."""
     activation = (0.2 - 0.1) / (1 + np.exp(-(pq - cl_ce_pq) / 0.1))
     return k_cl_ce * activation * _cl_driving_force * (cl_stroma / cl_lumen)
 
@@ -435,6 +448,7 @@ def _cl_ce_activation(
     atp: float,
     cl_ce_atp_threshold: float,
 ) -> float:
+    """CLCe activation factor: sigmoid inhibited by high ATP (low-energy stress signal)."""
     return (1 - 0.1) / (1 + np.exp((atp - cl_ce_atp_threshold) / 0.01))
 
 
@@ -444,6 +458,7 @@ def _cl_ce_bi(
     k_cl_ce: float,
     activation: float,
 ) -> float:  # correct
+    """CLCe bidirectional flux: simple concentration-gradient driven Cl- transport."""
     return k_cl_ce * (cl_stroma - cl_lumen) * activation
 
 
@@ -455,6 +470,7 @@ def _cl_ce_ch(
     protons: float,
     _protons_lumen: float,
 ) -> float:  # correct
+    """CLCe channel flux including proton-coupled Cl- exchange term."""
     return k_cl_ce * ((cl_lumen * protons) / (_protons_lumen * cl_stroma)) * activation
 
 
@@ -466,6 +482,7 @@ def _v_cl_leak(
     cl_leak_pq: float,
     total_div: float,
 ) -> float:
+    """Passive Cl- leak flux: PQ-activated quadratic concentration-difference driving force."""
     activation = (1 - 0.1) / (1 + np.exp(-(pq - cl_leak_pq) / 0.1))
     return k_cl_leak * ((cl_lumen - cl_stroma) ** 2) / (total_div) * activation
 
@@ -477,6 +494,7 @@ def _v_ndh1(
     p_hlumen: float,
     k_ndh1: float,
 ) -> float:
+    """NDH-1 flux: Fd-dependent PQ reduction activated by open PSI fraction and lumenal pH."""
     return (
         k_ndh1
         * ((fdred**2) * pq)
@@ -488,6 +506,7 @@ def _v_ndh1(
 def _squared(
     x: float,
 ) -> float:
+    """Return x^2; used for second-order stoichiometry terms."""
     return x**2
 
 
@@ -840,7 +859,7 @@ def _build_full_model(
     )
     m.add_derived(
         "protons",
-        _protons_stroma,
+        _protons_stroma_ebeling,
         args=["pH"],
     )
 
@@ -1317,6 +1336,7 @@ def _build_full_model(
 
 
 def get_ebeling_2026() -> Model:
+    """Build the Ebeling 2026 extended model with CLCe bidirectional Cl- transport."""
     return _build_full_model(
         get_saadat2021(),
         cl_ce="bi",

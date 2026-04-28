@@ -14,6 +14,7 @@ def _rate_cyclic_electron_flow(
     Fdred: float,
     kcyc: float,
 ) -> float:
+    """Cyclic electron flow rate: mass action on Fd_red^2 and PQ_ox."""
     return kcyc * Fdred**2 * Pox
 
 

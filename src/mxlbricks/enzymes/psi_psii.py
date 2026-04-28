@@ -28,6 +28,7 @@ if TYPE_CHECKING:
 
 
 def _two_div_by(x: float) -> float:
+    """Return 2/x; used for the 2-proton stoichiometry of PSII scaled by buffering capacity."""
     return 2.0 / x
 
 
@@ -37,6 +38,7 @@ def _keq_pcp700(
     eo_p700: float,
     rt: float,
 ) -> float:
+    """Equilibrium constant for PC -> P700 electron transfer from standard redox potentials."""
     dg1 = -e0_pc * f
     dg2 = -eo_p700 * f
     dg = -dg1 + dg2
@@ -49,6 +51,7 @@ def _keq_faf_d(
     e0_fd: float,
     rt: float,
 ) -> float:
+    """Equilibrium constant for FA -> Fd electron transfer from standard redox potentials."""
     dg1 = -e0_fa * f
     dg2 = -e0_fd * f
     dg = -dg1 + dg2
@@ -60,6 +63,7 @@ def _rate_ps1(
     ps2cs: float,
     pfd: float,
 ) -> float:
+    """PSI electron transfer rate: open PSI centers (a) * light absorbed by PSI antenna."""
     return (1 - ps2cs) * pfd * a
 
 
@@ -67,6 +71,7 @@ def _rate_ps2(
     b1: float,
     k2: float,
 ) -> float:
+    """PSII electron transfer rate from the open-excited state B1 and photochemistry rate constant k2."""
     return 0.5 * k2 * b1
 
 
@@ -161,6 +166,7 @@ def _ps2_crosssection(
     static_ant_ii: float,
     static_ant_i: float,
 ) -> float:
+    """Equilibrium constant for PQ reduction by QA, pH-corrected via stroma proton contribution."""
     return static_ant_ii + (1 - static_ant_ii - static_ant_i) * lhc
 
 
@@ -176,6 +182,7 @@ def _ps2states_2016_npq_matrix(
     kp: float,
     psii_tot: float,
 ) -> Iterable[float]:
+    """PSII state populations (NPQ model, 2016) solved via linear matrix equation."""
     b0 = pfd + k_pqh2 * pq_red / keq_qapq
     b1 = kh * quencher + kf
     b2 = kh * quencher + kf + kp
@@ -207,6 +214,7 @@ def _ps2states_2016_phd_matrix(
     pfd: float,
     k_h0: float,
 ) -> Iterable[float]:
+    """PSII state populations (PHD quenching model, 2016) solved via linear matrix equation."""
     absorbed = ps2cs * pfd
     kH = k_h0 + _kh * q
     k3p = k_pq_red * pq_ox
@@ -238,6 +246,7 @@ def _ps2states_2016_npq_surrogate(
     kp: float,
     psii_tot: float,
 ) -> tuple[float, float, float, float]:
+    """PSII state populations (NPQ model, 2016) via analytical closed-form surrogate."""
     x0 = kf**2
     x1 = kf * kp
     x2 = kh * quencher
@@ -299,6 +308,7 @@ def _ps2states_2016_phd_surrogate(
     pfd: float,
     k_h0: float,
 ) -> tuple[float, float, float, float]:
+    """PSII state populations (PHD quenching model, 2016) via analytical closed-form surrogate."""
     x0 = k_f**2
     x1 = k_h0**2
     x2 = k2 * k_f
@@ -375,6 +385,7 @@ def _b0_npq(
     kp: float,
     psii_tot: float,
 ) -> float:
+    """Analytical PSII B0 state (dark-closed, NPQ model): fraction with PQ oxidised and no light excitation."""
     return (
         k_pqh2
         * keq_qapq
@@ -422,6 +433,7 @@ def _b1_npq(
     kp: float,
     psii_tot: float,
 ) -> float:
+    """Analytical PSII B1 state (light-open, NPQ model): fraction absorbing light with PQ oxidised."""
     return (
         k_pqh2
         * keq_qapq
@@ -464,6 +476,7 @@ def _b2_npq(
     kp: float,
     psii_tot: float,
 ) -> float:
+    """Analytical PSII B2 state (dark-closed, NPQ model): fraction with PQ reduced and no light excitation."""
     return (
         psii_tot
         * (
@@ -510,6 +523,7 @@ def _b3_npq(
     kp: float,
     psii_tot: float,
 ) -> float:
+    """Analytical PSII B3 state (light-open, NPQ model): fraction absorbing light with PQ reduced."""
     return (
         pfd
         * psii_tot
@@ -556,6 +570,7 @@ def _b0_phd(
     pfd: float,
     k_h0: float,
 ) -> float:
+    """Analytical PSII B0 state (PHD model): dark-closed fraction with oxidised PQ."""
     return (
         k_pq_red
         * keq_pq_red
@@ -620,6 +635,7 @@ def _b1_phd(
     pfd: float,
     k_h0: float,
 ) -> float:
+    """Analytical PSII B1 state (PHD model): light-open fraction with oxidised PQ."""
     return (
         k_pq_red
         * keq_pq_red
@@ -676,6 +692,7 @@ def _b2_phd(
     pfd: float,
     k_h0: float,
 ) -> float:
+    """Analytical PSII B2 state (PHD model): dark-closed fraction with reduced PQ."""
     return (
         psii_tot
         * (
@@ -740,6 +757,7 @@ def _b3_phd(
     pfd: float,
     k_h0: float,
 ) -> float:
+    """Analytical PSII B3 state (PHD model): light-open fraction with reduced PQ."""
     return (
         pfd
         * ps2cs

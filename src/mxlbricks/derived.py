@@ -109,6 +109,7 @@ def _glutathion_moiety(
     gssg: float,
     gs_total: float,
 ) -> float:
+    """Conservation moiety: GSH = total - 2*GSSG (one GSSG releases two GSH)."""
     return gs_total - 2 * gssg
 
 
@@ -327,6 +328,7 @@ def _keq_pq_red(
     dG_pH: float,
     RT: float,
 ) -> float:
+    """Equilibrium constant for PQ reduction by QA, pH-corrected via stroma proton contribution."""
     dg1 = -E0_QA * F
     dg2 = -2 * E0_PQ * F
     dg = -2 * dg1 + dg2 + 2 * pHstroma * dG_pH
@@ -414,10 +416,12 @@ def add_quencher(
 
 
 def _ph_lumen(protons: float) -> float:
+    """Lumenal pH from proton concentration in mmol/mmol_Chl (conversion factor 0.00025)."""
     return -np.log10(protons * 0.00025)
 
 
 def _dg_ph(r: float, t: float) -> float:
+    """Thermodynamic coefficient dG/dpH = RT*ln(10) in kJ/mol."""
     return np.log(10) * r * t
 
 
@@ -468,6 +472,7 @@ def _pi_cbb(
     ru5p: float,
     atp: float,
 ) -> float:
+    """Free orthophosphate from total minus all phosphorylated CBB intermediates (bisphosphates count twice)."""
     return phosphate_total - (
         pga
         + 2 * bpga
@@ -508,6 +513,7 @@ def _pi_cbb_pr(
     atp: float,
     pgo: float,
 ) -> float:
+    """Free orthophosphate as _pi_cbb but also subtracting phosphoglycolate (photorespiration variant)."""
     return phosphate_total - (
         pga
         + 2 * bpga
@@ -652,6 +658,7 @@ def _rate_fluorescence(
     kF: float,
     kH: float,
 ) -> float:
+    """Chlorophyll fluorescence yield from open (B0) and closed (B2) PSII centres."""
     return ps2cs * kF * B0 / (kF + k2 + kH * Q) + ps2cs * kF * B2 / (kF + kH * Q)
 
 

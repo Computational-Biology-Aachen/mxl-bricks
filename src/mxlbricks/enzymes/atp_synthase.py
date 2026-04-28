@@ -33,6 +33,7 @@ def _keq_atp(
     Pi_mol: float,
     RT: float,
 ) -> float:
+    """Equilibrium constant for ATP synthase, driven by the transmembrane proton gradient."""
     delta_g = DeltaG0_ATP - dG_pH * HPR * (pHstroma - pH)
     return Pi_mol * math.exp(-delta_g / RT)
 
@@ -44,6 +45,7 @@ def _rate_atp_synthase_2000(
     km161: float,
     km162: float,
 ) -> float:
+    """ATP synthase rate (Poolman 2000): bi-substrate Michaelis-Menten on ADP and Pi."""
     return v16 * adp * pi / ((adp + km161) * (pi + km162))
 
 
@@ -53,6 +55,7 @@ def _rate_atp_synthase_2016(
     Keq_ATPsynthase: float,
     kATPsynth: float,
 ) -> float:
+    """ATP synthase rate (2016 formulation): linear reversible kinetics driven by Keq."""
     return kATPsynth * (ADP - ATP / Keq_ATPsynthase)
 
 
@@ -63,6 +66,7 @@ def _rate_atp_synthase_2019(
     kATPsynth: float,
     convf: float,
 ) -> float:
+    """ATP synthase rate (2019 formulation): same as 2016 but ADP/ATP scaled by convf."""
     return kATPsynth * (ADP / convf - ATP / convf / Keq_ATPsynthase)
 
 
@@ -74,6 +78,7 @@ def _rate_static_energy(
     km161: float,
     km162: float,
 ) -> float:
+    """ATP synthase rate scaled by an energy variable representing photosynthetic driving force."""
     return adp * pi * energy * v16 / ((adp + km161) * (pi + km162))
 
 
@@ -83,6 +88,7 @@ def _atp_gamma(
     ADP: float,
     convf: float,
 ) -> float:
+    """Mass-action ratio Γ = [ATP] / ([ADP][Pi]) for ATP synthase free-energy calculation."""
     return (ATP / convf) / ((ADP / convf) * (Pi / 1000))
 
 
@@ -95,6 +101,7 @@ def _delta_g_atp_synthase(
     pHstroma: float,
     RT: float,
 ) -> float:
+    """Free-energy change of ATP synthesis including PMF contribution and mass-action correction."""
     return DeltaG0_ATP - dG_pH * HPR * (pHstroma - pH) + RT * math.log(gammaATP)
 
 
@@ -102,6 +109,7 @@ def _atp_synthase2(
     DeltaGATPsyn: float,
     ATPturnover: float,
 ) -> float:
+    """ATP synthase flux proportional to free-energy drop and turnover number."""
     return -DeltaGATPsyn * ATPturnover
 
 

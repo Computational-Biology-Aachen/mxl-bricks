@@ -24,6 +24,7 @@ def _rate_glutathion_reductase(
     km_nadph: float,
     km_gssg: float,
 ) -> float:
+    """Glutathione reductase rate: bi-substrate Michaelis-Menten for NADPH + GSSG."""
     nom = vmax * nadph * gssg
     denom = km_nadph * gssg + km_gssg * nadph + nadph * gssg + km_nadph * km_gssg
     return nom / denom

@@ -4,11 +4,9 @@ import ast
 import itertools as it
 from pathlib import Path
 
-import black
-import isort
-
 
 def top_level_fns(module: ast.Module) -> list[str]:
+    """Return names of all top-level public functions in a parsed module."""
     return [
         f.name
         for f in module.body
@@ -28,20 +26,12 @@ if __name__ == "__main__":
 
     with (components / "__init__.py").open("w+") as fp:
         fp.write(
-            black.format_str(
-                isort.api.sort_code_string(
-                    "\n".join(
-                        f"from .{name} import ({','.join(fns)})"
-                        for name, fns in fns_by_files.items()
-                    )
-                ),
-                mode=black.Mode(),  # type: ignore
+            "\n".join(
+                f"from .{name} import ({','.join(fns)})"
+                for name, fns in fns_by_files.items()
             )
         )
 
         fp.write(
-            black.format_str(
-                f"__all__ = {list(it.chain.from_iterable(fns_by_files.values()))}",
-                mode=black.Mode(),  # type: ignore
-            )
+            f"__all__ = {list(it.chain.from_iterable(fns_by_files.values()))}",
         )

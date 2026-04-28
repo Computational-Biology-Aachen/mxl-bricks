@@ -8,7 +8,7 @@ Equilibrator
 from mxlpy import Model
 
 from mxlbricks import names as n
-from mxlbricks.fns import protons_stroma
+from mxlbricks.fns import protons_stroma_2016
 from mxlbricks.utils import (
     default_name,
     filter_stoichiometry,
@@ -23,7 +23,8 @@ def _protonation_hill(
     k_fwd: float,
     k_ph_sat: float,
 ) -> float:
-    return k_fwd * (h**nh / (h**nh + protons_stroma(k_ph_sat) ** nh)) * vx  # type: ignore
+    """Hill-type protonation rate scaled by lumenal proton concentration."""
+    return k_fwd * (h**nh / (h**nh + protons_stroma_2016(k_ph_sat) ** nh)) * vx  # type: ignore
 
 
 def add_lhc_protonation(

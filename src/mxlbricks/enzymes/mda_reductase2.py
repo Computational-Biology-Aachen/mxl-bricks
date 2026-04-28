@@ -16,7 +16,7 @@ from mxlbricks.utils import (
 )
 
 
-def _rate_mda_reductase(
+def _rate_mda_reductase2(
     nadph: float,
     mda: float,
     vmax: float,
@@ -47,7 +47,7 @@ def add_mda_reductase2(
 
     model.add_reaction(
         name=rxn,
-        fn=_rate_mda_reductase,
+        fn=_rate_mda_reductase2,
         stoichiometry={
             nadph: -1,
             mda: -2,

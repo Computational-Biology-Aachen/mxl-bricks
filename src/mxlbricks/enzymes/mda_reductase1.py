@@ -15,10 +15,11 @@ from mxlbricks.utils import (
 )
 
 
-def _rate_mda_reductase(
+def _rate_mda_reductase1(
     mda: float,
     k3: float,
 ) -> float:
+    """MDA reductase rate: second-order disproportionation of monodehydroascorbate."""
     return k3 * mda**2
 
 
@@ -37,7 +38,7 @@ def add_mda_reductase1(
 
     model.add_reaction(
         name=rxn,
-        fn=_rate_mda_reductase,
+        fn=_rate_mda_reductase1,
         stoichiometry={
             mda: -2,
             dha: 1,

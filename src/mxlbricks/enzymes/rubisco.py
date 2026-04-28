@@ -79,6 +79,7 @@ def _rate_poolman_5i(
     nadph: float,
     ki_nadph: float,
 ) -> float:
+    """Rubisco carboxylation rate (Poolman 2000): bi-substrate with 5 competitive inhibitors."""
     top = vmax * rubp * co2
     btm = (
         rubp
@@ -118,6 +119,7 @@ def _rate_witzel_5i(
     i5: float,  # nadph
     ki5: float,
 ) -> float:
+    """Rubisco rate (Witzel 2010): apparent Michaelis-Menten derived from random bi-bi mechanism with 5 inhibitors."""
     vmax_app = (gamma_or_omega * vmax * s2 / lr) / (1 / lr + co2 / lrc + o2 / lro)
     km_app = 1 / (1 / lr + co2 / lrc + o2 / lro)
     return (vmax_app * rubp) / (
