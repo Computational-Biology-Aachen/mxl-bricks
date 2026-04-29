@@ -14,32 +14,13 @@
 [docs-badge]: https://img.shields.io/badge/docs-main-green.svg?style=flat-square
 [docs]: https://computational-biology-aachen.github.io/mxl-bricks/
 
-MxlBricks is a Python package to build mechanistic models composed of pre-defined reactions (bricks). This facilitates re-use and interoperability between different models by sharing common parts.
+`MxlBricks` is a Python package to build mechanistic models composed of pre-defined reactions (bricks). This facilitates re-use and interoperability between different models by sharing common parts.
 
 ## Installation
 
+You can install mxlpy using pip: `pip install mxlmodels`.
 
-You can install mxlpy using pip: `pip install mxlbricks`.
-
-
-If you want access to the sundials solver suite via the [assimulo](https://jmodelica.org/assimulo/) package, we recommend setting up a virtual environment via [pixi](https://pixi.sh/) or [mamba / conda](https://mamba.readthedocs.io/en/latest/) using the [conda-forge](https://conda-forge.org/) channel.
-
-```bash
-pixi init
-pixi add python assimulo
-pixi add --pypi mxlbricks
-```
-
-
-## Development setup
-
-Install pixi [as described in the docs](https://pixi.sh/latest/#installation).
-
-Run
-
-```bash
-pixi install
-```
+Done. Simple as that.
 
 
 ## Models
