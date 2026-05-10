@@ -1586,7 +1586,7 @@ dev = [
 
 [[package]]
 name = "mxlpy"
-version = "0.43.0"
+version = "0.44.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dill" },
@@ -1616,9 +1616,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "wadler-lindig" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c4/41/9180bc9bf9473c6c7fb940eec3628fa4ffb611eec8184a8a7faf4bf92b47/mxlpy-0.43.0.tar.gz", hash = "sha256:cde30b48442604fc1065aabe203f6430b417856651af2f788f1cd88bbd6477e3", size = 5242834, upload-time = "2026-05-05T05:28:04.07Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/8c/5e/90aca5a39a4d06d578d7a7510284d9aa100ab92f8b679423d6d02b56a2ef/mxlpy-0.44.0.tar.gz", hash = "sha256:e34a4d863c312c0c16a6e10ddd1fb67cdb22af9f9f86a5f7f4f541aa1ac8a345", size = 5257478, upload-time = "2026-05-06T05:32:49.77Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d7/c8/9d7e2700b2a6d54dbaae381ebbf7d95bc4c4e0a037de944de7ff0542769e/mxlpy-0.43.0-py3-none-any.whl", hash = "sha256:53517ba79fcf8b83d5a0d2d815eff33f19fda0b415ba933db23e87b22be74dd3", size = 195469, upload-time = "2026-05-05T05:28:01.814Z" },
+    { url = "https://files.pythonhosted.org/packages/c1/45/7122d84ba064aba19e1e66cf5b3fb944f8569e8501a18c4f1b89500ee78c/mxlpy-0.44.0-py3-none-any.whl", hash = "sha256:e6be2d710bf415cd532de08f9b576ee696fd224fa53ad0f923b787e1c95b6d93", size = 205224, upload-time = "2026-05-06T05:32:47.379Z" },
 ]
 
 [[package]]
