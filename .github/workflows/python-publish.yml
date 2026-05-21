@@ -10,6 +10,9 @@ permissions:
 
 jobs:
   release-build:
+    needs:
+      - default-tests
+      - build-documentation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
