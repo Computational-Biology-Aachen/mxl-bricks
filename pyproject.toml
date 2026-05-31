@@ -35,9 +35,7 @@ classifiers = [
   "Topic :: Scientific/Engineering",
   "Topic :: Software Development",
 ]
-dependencies = [
-  "mxlpy>=0.38.0",
-]
+dependencies = ["mxlpy>=0.38.0"]
 description = "MxlBricks is a Python package to quickly build large mechanistic models"
 keywords = ["metabolic", "modelling", "ode"]
 license = "MIT"
@@ -55,18 +53,8 @@ include = ["mxlbricks"]
 
 [tool.pyright]
 deprecateTypingAliases = true
-exclude = [
-  "**/.*",
-  "**/__pycache__",
-  "**/node_modules",
-  ".venv",
-  "tmp",
-]
-include = [
-  "docs",
-  "src",
-  "tests",
-]
+exclude = ["**/.*", "**/__pycache__", "**/node_modules", ".venv", "tmp"]
+include = ["docs", "src", "tests"]
 pythonVersion = "3.13"
 reportMissingModuleSource = "none"
 strict = []
@@ -134,7 +122,7 @@ trailing_comma_inline_array = true
 
 [tool.uv]
 package = true
-exclude-newer = "1 week"
+exclude-newer = "3 days"
 
 [tool.uv.sources]
 mxlbricks = { workspace = true }
