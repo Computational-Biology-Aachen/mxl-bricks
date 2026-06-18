@@ -1,0 +1,268 @@
+# MxlBricks
+
+> MxlBricks is a Python package to build mechanistic models composed of **pre-defined reaction building blocks** (bricks). Each brick is a self-contained `add_*` function that adds a fully parameterised enzyme reaction to an [MxlPy](https://github.com/Computational-Biology-Aachen/mxl-py) `Model`. The package ships 90+ enzyme bricks covering photosynthesis (CBB cycle, electron transport, photorespiration, NPQ, Mehler reaction, thioredoxin regulation), plus pre-assembled model builders for classic literature models. Maintained by the Computational Biology group at RWTH Aachen.
+
+Targets Python ≥ 3.13. Requires `mxlpy ≥ 0.38.0`.
+
+## Installation
+
+```bash
+pip install mxlbricks          # PyPI
+uv sync                        # dev (uv)
+```
+
+## Quick start
+
+> Build a model by calling pre-assembled model builders, or compose one from individual bricks.
+
+```python
+from mxlpy import Model, Simulator
+from mxlbricks import get_poolman2000, names as n
+from mxlbricks.enzymes import add_rubisco_poolman, add_phosphoribulokinase
+
+# Option A: use a pre-assembled model builder
+model = get_poolman2000()
+variables, fluxes = Simulator(model).simulate(t_end=10).get_result().unwrap_or_err()
+
+# Option B: compose a model from individual bricks
+model = (
+    Model()
+    .add_variables({n.pga(): 0.6, n.rubp(): 0.2, n.atp(): 0.4})
+    .add_parameters({n.co2(): 0.2, n.nadph(): 0.2})
+)
+add_rubisco_poolman(model)
+add_phosphoribulokinase(model)
+```
+
+## The brick pattern
+
+Every enzyme brick is an `add_*` function that takes a `Model` (and optional keyword overrides for parameter names/values) and returns the mutated `Model`. Bricks are composable — call them in any order and they share metabolites by name.
+
+```python
+from mxlbricks.enzymes import add_rubisco_poolman
+from mxlbricks import names as n
+
+add_rubisco_poolman(
+    model,
+    e0=static(model, n.e0(n.rubisco()), 1.0),  # optional: override enzyme concentration
+)
+```
+
+Bricks use `utils.default_*` helpers to create parameters with sensible defaults only when not already present. This means you can override any kinetic parameter by passing it as a keyword argument, or let the brick create it automatically.
+
+### Key enzyme bricks (selection)
+
+| Function | Description |
+|----------|-------------|
+| `add_rubisco_poolman` | Rubisco (carboxylation, Poolman 2000 kinetics, 5 inhibitors) |
+| `add_phosphoribulokinase` | PRK — phosphorylation of Ru5P to RuBP |
+| `add_gadph` | Lumped GAPDH + PGK |
+| `add_fbpase` | Fructose-1,6-bisphosphatase |
+| `add_sbpase` | Sedoheptulose-1,7-bisphosphatase |
+| `add_triose_phosphate_isomerase` | TPI — GAP ↔ DHAP |
+| `add_aldolase_dhap_gap_req` | Aldolase (DHAP + GAP → FBP) |
+| `add_transketolase_x5p_r5p_s7p_gap` | Transketolase (X5P + R5P → S7P + GAP) |
+| `add_transketolase_x5p_e4p_f6p_gap` | Transketolase (X5P + E4P → F6P + GAP) |
+| `add_atp_synthase_mm` | ATP synthase (Michaelis-Menten) |
+| `add_b6f` | Cytochrome b6f |
+| `add_photosystems` | PSII + PSI (matrix/analytical modes) |
+| `add_fnr_mm` | Ferredoxin-NADP+ reductase |
+| `add_cyclic_electron_flow` | Cyclic electron flow around PSI |
+| `add_proton_leak` | Proton leak across thylakoid membrane |
+| `add_lhc_protonation` | LHC protonation (NPQ) |
+| `add_lhc_deprotonation` | LHC deprotonation (NPQ recovery) |
+| `add_violaxanthin_epoxidase` | Violaxanthin epoxidase (zeaxanthin → violaxanthin) |
+| `add_zeaxanthin_epoxidase` | Zeaxanthin de-epoxidase (violaxanthin → zeaxanthin) |
+| `add_ndh` | NADH dehydrogenase (NDH) complex |
+| `add_ptox` | Plastid terminal oxidase |
+| `add_state_transitions` | LHCII state transitions (qE/qI) |
+| `add_glycolate_oxidase_yokota` | Glycolate oxidase (Yokota 1985) |
+| `add_glycine_decarboxylase_yokota` | Glycine decarboxylase (Yokota 1985) |
+| `add_ascorbate_peroxidase` | Ascorbate peroxidase (Mehler) |
+| `add_glutathion_reductase_irrev` | Glutathione reductase (irreversible) |
+| `add_ferredoxin_reductase` | Ferredoxin reductase (Mehler) |
+| `add_thioredoxin_regulation2021` | Thioredoxin-mediated enzyme regulation |
+
+The full list is in `mxlbricks.enzymes` (90+ bricks).
+
+## Rate functions (`fns.py`)
+
+Pure, typed rate-law functions used by bricks. Always pass named references — never lambdas.
+
+| Function | Signature | Formula |
+|----------|-----------|---------|
+| `mass_action_1s` | `(s1, k_fwd)` | `k * s1` |
+| `mass_action_2s` | `(s1, s2, k_fwd)` | `k * s1 * s2` |
+| `mass_action_3s` | `(s1, s2, s3, k_fwd)` | `k * s1 * s2 * s3` |
+| `mass_action_4s` | `(s1, s2, s3, s4, k_fwd)` | `k * s1 * s2 * s3 * s4` |
+| `reversible_mass_action_keq_*s_*p` | various | `kf * (∏s - ∏p / keq)` |
+| `michaelis_menten_1s` | `(s, vmax, km)` | `vmax * s / (km + s)` |
+| `michaelis_menten_1s_1i` | `(s, i, vmax, km, ki)` | `vmax * s / (s + km * (1 + i/ki))` |
+| `michaelis_menten_2s` | `(s1, s2, vmax, km)` | `vmax * s1 * s2 / (s1*s2 + km*(s1+s2))` |
+| `michaelis_menten_2s_1i` | `(s1, s2, vmax, km, i1, ki1)` | with one inhibitor |
+| `michaelis_menten_2s_2km` | `(s1, s2, vmax, km_s1, km_s2)` | individual Km values |
+| `michaelis_menten_3s` | `(s1, s2, s3, vmax, km)` | three substrates, shared Km |
+| `michaelis_menten_*s_*i` | various | up to 3 substrates, 4 inhibitors |
+| `reversible_michaelis_menten_*s_*p` | various | reversible MM, up to 3 substrates, 4 products |
+| `reversible_michaelis_menten_3s_3p_*i` | various | reversible MM with inhibitors |
+| `ping_pong_bi_bi` | `(s1, s2, vmax, km_s1, km_s2)` | `vmax * s1 * s2 / (1/(km_s1*km_s2) + s1/km_s1 + s2/km_s2 + s1*s2)` |
+| `rapid_equilibrium_*s_*p` | various | `k_re * (∏s - ∏p / q)` |
+| `protons_stroma_2016` | `(ph)` | `4000 * 10^(-ph)` |
+| `diffusion` | `(inside, outside, k)` | `k * (outside - inside)` |
+| `moiety_1` | `(concentration, total)` | `total - concentration` |
+| `moiety_2` | `(x1, x2, total)` | `total - x1 - x2` |
+
+Utility functions: `value`, `neg`, `minus`, `mul`, `div`, `one_div`, `neg_div`, `twice`, `proportional`.
+
+## Names module (`names.py`)
+
+Standardised name constructors for metabolites, enzymes, and parameters. Using `names` ensures consistent naming across bricks and models.
+
+### Metabolites
+
+```python
+from mxlbricks import names as n
+
+n.atp()           # "ATP"
+n.adp()           # "ADP"
+n.nadph()         # "NADPH"
+n.nadp()          # "NADP"
+n.pq_ox()         # "PQ_ox"
+n.pq_red()        # "PQ_red"  (derived)
+n.pc_ox()         # "PC_ox"
+n.fd_ox()         # "Fd_ox"
+n.pga()           # "PGA"  (3-phosphoglycerate)
+n.bpga()          # "BPGA" (1,3-bisphosphoglycerate)
+n.gap()           # "GAP"
+n.dhap()          # "DHAP"
+n.rubp()          # "RuBP"
+n.co2()           # "CO2"
+n.o2()            # "O2"
+n.h()             # "H"
+n.ph()            # "pH"
+n.pi()            # "Pi"  (orthophosphate)
+```
+
+All metabolite functions accept optional `compartment` and `tissue` arguments: `n.atp("_lumen")`.
+
+### Enzyme parameters
+
+```python
+n.e0("rubisco")        # "E0_rubisco"     — total enzyme concentration
+n.kcat("rubisco")      # "kcat_rubisco"   — catalytic rate constant
+n.vmax("rubisco")      # "vmax_rubisco"   — maximum reaction rate
+n.km("rubisco", "s")   # "km_rubisco_s"   — Michaelis constant (substrate)
+n.km("rubisco", "p")   # "km_rubisco_p"   — Michaelis constant (product)
+n.kms("rubisco")       # "km_rubisco_s"   — shortcut for substrate Km
+n.kmp("rubisco")       # "km_rubisco_p"   — shortcut for product Km
+n.ki("rubisco", "pga") # "ki_rubisco_pga" — inhibition constant
+n.kf("rubisco")        # "kf_rubisco"     — forward rate constant
+n.keq("rubisco")       # "keq_rubisco"    — equilibrium constant
+n.kre("rubisco")       # "kre_rubisco"    — rapid-equilibrium constant
+```
+
+### Moieties (total pools)
+
+```python
+n.total_adenosines()       # "total_adenosines"
+n.total_nadp()             # "total_NADP"
+n.total_pq()               # "total_PQ"
+n.total_pc()               # "total_PC"
+n.total_ferredoxin()       # "total_Fd"
+n.total_carotenoids()      # "total_carotenoids"
+n.total_thioredoxin()      # "total_Tr"
+n.total_orthophosphate()   # "total_Pi"
+n.total_lhc()              # "total_LHC"
+n.total_psbs()             # "total_PsbS"
+n.total_ascorbate()        # "total_ASC"
+n.total_glutathion()       # "total_GSH"
+```
+
+### Other
+
+```python
+n.fluorescence()    # "fluorescence"
+n.quencher()        # "quencher"
+n.rt()              # "RT"  (gas constant * temperature)
+n.light_speedup()   # "light_speedup" (CBB variant)
+```
+
+## Derived quantities (`derived.py`)
+
+Add conservation moieties and auxiliary variables to a model. Each `add_*` function follows the same brick pattern (takes `Model`, returns `Model`).
+
+### Moiety conservation
+
+| Function | Derived variable | Formula |
+|----------|-----------------|---------|
+| `add_adenosin_moiety` | ADP | `total_adenosines - ATP` |
+| `add_nadp_moiety` | NADP | `total_NADP - NADPH` |
+| `add_ferredoxin_moiety` | Fd_red | `total_Fd - Fd_ox` |
+| `add_plastocyanin_moiety` | PC_red | `total_PC - PC_ox` |
+| `add_plastoquinone_moiety` | PQ_red | `total_PQ - PQ_ox` |
+| `add_carotenoid_moiety` | ZX | `total_carotenoids - VX` |
+| `add_thioredoxin_moiety` | Tr_red | `total_Tr - Tr_ox` |
+| `add_psbs_moietry` | PsbS_protonated | `total_PsbS - PsbS_de` |
+| `add_lhc_moiety` | LHC_protonated | `total_LHC - LHC` |
+| `add_ascorbate_moiety` | ASC | `total_ASC - MDA - DHA` |
+| `add_glutathion_moiety` | GSH | `total_GSH - 2*GSSG` |
+| `add_enzyme_moiety` | E_active | `E_total - E_inactive` |
+| `add_orthophosphate_moiety_cbb` | Pi | `total_Pi - Σ(phosphorylated CBB intermediates)` |
+
+### Auxiliary variables
+
+| Function | Description |
+|----------|-------------|
+| `add_ph_lumen` | Lumenal pH from proton concentration + dG_pH |
+| `add_plastoquinone_keq` | Thermodynamic Keq for PQ reduction |
+| `add_quencher` | 4-state cooperative NPQ quencher model |
+| `add_rt` | RT (gas constant × temperature) |
+| `add_readouts` | Ratio readouts: PQ_ox/tot, Fd_ox/tot, PC_ox/tot, NADPH/tot, ATP/tot, fluorescence |
+
+## Utility helpers (`utils.py`)
+
+| Function | Description |
+|----------|-------------|
+| `static(model, name, value)` | Add a fixed parameter, return its name |
+| `fcbb_regulated(model, name, value)` | Parameter scaled by CBB light-speedup factor |
+| `thioredixon_regulated(model, name, value)` | Parameter scaled by active enzyme fraction |
+| `default_par(model, par, name, value)` | Return `par` if given, else create static parameter |
+| `default_keq / default_kf / default_km / default_kms / default_kmp / default_ki / default_kre / default_e0 / default_kcat` | Create-or-return kinetic parameters |
+| `default_vmax(model, e0, kcat, rxn, ...)` | Add `vmax = kcat * E0` as a derived quantity |
+| `filter_stoichiometry(model, stoichiometry)` | Filter stoichiometry to only model variables |
+| `get_npq(ppfd, fluorescence)` | Calculate NPQ from PAM simulation data |
+
+## Pre-assembled model builders
+
+Each function returns a fully parameterised `Model` ready for simulation.
+
+| Builder | Description | Reference |
+|---------|-------------|-----------|
+| `get_yokota1985()` | Photorespiration (glycolate oxidase, glycine decarboxylase, serine transaminase, catalase) | Yokota 1985 |
+| `get_poolman2000()` | Calvin-Benson-Bassham cycle (16 CBB intermediates, 15 enzymes) | Poolman 2000 |
+| `get_matuszynska2016_phd(mode=)` | Photosynthesis + NPQ (PSII, PSI, b6f, ATP synthase, LHC, violaxanthin cycle, state transitions) | Matuszynska 2016 PhD |
+| `get_matuszynska2016_npq()` | PSII + 4-state quencher (standalone NPQ model, no CBB) | Matuszynska 2016 |
+| `get_matuszynska2019(variant=, mode=)` | Combined CBB + NPQ (merges Poolman 2000 with Matuszynska 2016) | Matuszynska 2019 |
+| `get_saadat2021(mode=)` | Extended photosynthesis (2019 + Mehler + thioredoxin regulation + ascorbate/glutathione) | Saadat 2021 |
+| `get_ebeling_2026()` | Unpublished extension of Saadat 2021 | Ebeling 2026 |
+| `get_cbb_regulated()` | Thioredoxin-regulated CBB cycle (standalone) | — |
+
+### Model builder options
+
+- `mode`: `"analytical"` (default), `"analytical-split"`, or `"matrix"` — controls how electron transport reactions are computed
+- `variant`: `"linear-speedup"` or `"mm-speedup"` — adds a PFD-dependent speedup factor to CBB enzymes (Matuszynska 2019 only)
+
+## MCP tool reference
+
+For interactive exploration, see the [mxl-mcp documentation](https://computational-biology-aachen.github.io/mxl-mcp/mxlpy/latest).
+
+## Tool family
+
+| Package | Description |
+|---------|-------------|
+| [MxlPy](https://github.com/Computational-Biology-Aachen/mxl-py) | Core mechanistic learning library (ODEs + ML) |
+| [MxlBricks](https://github.com/Computational-Biology-Aachen/mxl-bricks) | Pre-defined reaction building blocks (this package) |
+| [MxlModels](https://github.com/Computational-Biology-Aachen/mxl-bricks/tree/main/mxlmodels) | Flat single-file model versions (generated from mxlbricks) |
+| [MxlWeb](https://github.com/Computational-Biology-Aachen/mxl-web) | Browser-based ODE solver (SvelteKit + WASM) |
+| [PySBML](https://github.com/Computational-Biology-Aachen/pysbml) | SBML import/export bridge |
+| [Parameteriser](https://github.com/Computational-Biology-Aachen/parameteriser) | Kinetic parameter lookup (BRENDA DB) |
