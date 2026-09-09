@@ -1,4 +1,13 @@
+default_stages: [pre-commit]
 repos:
+  - repo: local
+    hooks:
+      - id: no-session-trailer
+        name: Block leaked Claude-Session URLs in commit messages
+        entry: bash scripts/check-commit-msg.sh
+        language: system
+        pass_filenames: true
+        stages: [commit-msg]
   # Lint & format
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.0
