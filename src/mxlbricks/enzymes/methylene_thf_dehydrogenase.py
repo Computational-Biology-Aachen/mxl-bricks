@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """EC 1.5.1.5.
 
 Metacyc: METHYLENETHFDEHYDROG-NADP-RXN

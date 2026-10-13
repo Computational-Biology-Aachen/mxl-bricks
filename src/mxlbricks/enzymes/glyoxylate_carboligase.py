@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """glyoxylate carboligase == tartronate-semialdehyde synthase.
 
 EC 4.1.1.47

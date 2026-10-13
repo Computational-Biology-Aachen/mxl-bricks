@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """phosphoribulokinase.
 
 EC 2.7.1.19

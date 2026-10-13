@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """ribose-5-phosphate isomerase.
 
 EC 5.3.1.6

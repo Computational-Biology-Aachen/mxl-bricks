@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """F6P + Glycolaldehyde <=> GAP + XYLULOSE.
 
 EC 2.2.1.2

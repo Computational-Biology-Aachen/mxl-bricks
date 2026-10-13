@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """glycerate dehydrogenase.
 
 NADH + Hydroxypyruvate <=> NAD  + D-Glycerate

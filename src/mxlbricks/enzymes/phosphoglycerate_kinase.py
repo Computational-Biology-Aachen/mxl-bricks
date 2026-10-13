@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Phosphoglycerate kinase (PGK).
 
 EC 2.7.2.3

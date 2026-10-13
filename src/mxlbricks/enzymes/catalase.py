@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """catalase.
 
 2 H2O2 <=> 2 H2O + O2

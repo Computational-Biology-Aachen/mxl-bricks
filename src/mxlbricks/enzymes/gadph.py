@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Glyceraldehyde 3-phosphate dehydrogenase (GADPH).
 
 EC 1.2.1.13

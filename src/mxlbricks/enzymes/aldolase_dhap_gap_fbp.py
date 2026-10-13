@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """DHAP + GAP <=> FBP.
 
 EC 4.1.2.13

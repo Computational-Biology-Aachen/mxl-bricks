@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 # x1 = default_name(x1, n.)
 # x2 = default_name(x2, n.)
 # x3 = default_name(x3, n.)

@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Plastid terminal oxidase.
 
 2 QH2 + O2 -> 2 Q + 2 H2O

@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """fructose-1,6-bisphosphatase.
 
 EC 3.1.3.11

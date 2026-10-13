@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Methenyltetrahydrofolate cyclohydrolase.
 
 EC 3.5.4.9

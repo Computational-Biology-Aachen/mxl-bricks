@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Enzyme building block: fd reductase."""
 
 from mxlpy import Model

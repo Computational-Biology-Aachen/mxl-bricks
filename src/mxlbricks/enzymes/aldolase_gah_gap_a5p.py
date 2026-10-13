@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Glycolaldehyde + GAP <=> A5P.
 
 EC 4.1.2.?

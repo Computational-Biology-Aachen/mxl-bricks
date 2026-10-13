@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Tartronate semialdehyde(aq) + NADH(aq) ⇌ Glycerate(aq) + NAD (aq).
 
 Keq = 1.6e5 (@ pH = 7.5, pMg = 3.0, Ionic strength = 0.25).

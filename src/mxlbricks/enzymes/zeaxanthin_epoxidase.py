@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Zeaxanthin Epoxidase (stroma):.
 
 Zeaxanthin + NADPH + O2 -> Anteraxanthin + NADP + H2O

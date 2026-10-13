@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Aspartate aminotransferase.
 
 EC 2.6.1.1

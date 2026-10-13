@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Utility helpers for building mxlpy models from mxlbricks."""
 
 from collections.abc import Callable, Mapping

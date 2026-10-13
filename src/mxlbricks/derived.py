@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Derived quantities: moiety conservation and auxiliary variables."""
 
 import numpy as np

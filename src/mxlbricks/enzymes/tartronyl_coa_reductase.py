@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """TCR1: nadph + tarcoa -> nadp + coa + 2h3oppan.
 
 Tartronyl-Coa + NADPH -> Tartronate-semialdehyde + NADP + CoA

@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Ferredoxin-NADP reductase.
 
 2 reduced ferredoxin + NADP+ + H+ ⇌ 2 oxidized ferredoxin + NADPH

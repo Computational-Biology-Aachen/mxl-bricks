@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Glycolyl-CoA + NADPH <=> Glycolaldehyde + NADP + CoA.
 
 EC 1.2.1.12

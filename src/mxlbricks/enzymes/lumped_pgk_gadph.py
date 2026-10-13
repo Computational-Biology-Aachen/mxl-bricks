@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Lumped reaction of Glyceraldehyde 3-phosphate dehydrogenase (GADPH) and Phosphoglycerate kinase (PGK).
 
     3-Phospho-D-glycerate(aq) + ATP(aq) ⇌ 3-Phospho-D-glyceroyl phosphate(aq) + ADP(aq)

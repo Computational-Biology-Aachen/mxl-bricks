@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """NAD(P)H dehydrogenase-like complex (NDH).
 
 PQH2 -> PQ

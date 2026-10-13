@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """ribulose-phosphate 3-epimerase.
 
 EC 5.1.3.1

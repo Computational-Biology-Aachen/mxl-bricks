@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """A5P <=> RU5P.
 
 EC 5.3.1.13

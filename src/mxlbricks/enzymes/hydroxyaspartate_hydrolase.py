@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """(2R,3S)-beta-Hydroxyasparate hydro-lyase (Iminosuccinate forming).
 
 EC FIXME

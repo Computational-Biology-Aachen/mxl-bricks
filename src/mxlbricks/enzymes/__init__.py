@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Enzyme reaction building blocks for mxlpy models."""
 
 from .a5p_isomerase import add_a5p_isomerase

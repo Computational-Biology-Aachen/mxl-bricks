@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Reusable rate-law and algebraic functions for mxlpy models."""
 
 from __future__ import annotations

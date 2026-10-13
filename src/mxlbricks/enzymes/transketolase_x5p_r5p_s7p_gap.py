@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """GAP + S7P <=> R5P + X5P.
 
 EC 2.2.1.1

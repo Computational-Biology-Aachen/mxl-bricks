@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """phosphoglycolate phosphatase, EC 3.1.3.18.
 
 H2O(chl) + PGO(chl) <=> Orthophosphate(chl) + Glycolate(chl)

@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """DHAP + A5P <=> OBP.
 
 Equilibrator

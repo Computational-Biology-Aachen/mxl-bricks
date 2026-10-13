@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """R1P + ATP  <=> RUBP + ADP.
 
 EC FIXME

@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """glycolate oxidase.
 
 O2 + Glycolate(chl) <=> H2O2 + Glyoxylate

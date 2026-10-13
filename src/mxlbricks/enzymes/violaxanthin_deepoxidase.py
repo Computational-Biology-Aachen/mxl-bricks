@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Violaxanthin Deepoxidase (lumen).
 
 Violaxanthin + Ascorbate -> Antheraxanthin + Dehydroascorbate + H2O

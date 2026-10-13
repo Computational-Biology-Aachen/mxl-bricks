@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """DHAP + EAP <=> SBP.
 
 EC 4.1.2.13

@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """acetoacetate_coa_ligase.
 
 EC 6.2.1.16

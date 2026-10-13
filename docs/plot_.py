@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Plotting helpers for mxlbricks model outputs."""
 
 from __future__ import annotations

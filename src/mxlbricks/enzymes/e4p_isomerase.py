@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """ERYTHRULOSE_4P <=> ERYTHROSE_4P.
 
 EC 5.3.1.34

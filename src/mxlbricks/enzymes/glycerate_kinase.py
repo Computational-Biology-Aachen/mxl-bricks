@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """glycerate kinase.
 
 ATP + D-Glycerate <=> ADP + 3-Phospho-D-glycerate

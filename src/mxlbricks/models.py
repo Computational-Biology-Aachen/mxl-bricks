@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Pre-assembled mxlpy model builders for common photosynthesis networks."""
 
 from __future__ import annotations

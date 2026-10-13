@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """EC: 4.1.3.14.
 
 Equilibrator

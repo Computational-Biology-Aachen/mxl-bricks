@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Enzyme building block: co2 dissolving."""
 
 from mxlpy import Model

@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """EC 1.6.5.4.
 
 NADH + Proton + 2 Monodehydroascorbate <=> NAD + 2 ascorbate.

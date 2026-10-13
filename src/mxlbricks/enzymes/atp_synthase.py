@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """H+-transporting two-sector ATPase.
 
 ADP + Orthophosphate -> ATP

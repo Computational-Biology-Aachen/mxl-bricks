@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """GCS: atp + coa + glyclt -> Diphosphate + amp + glyccoa.
 
 dG' = 9.25

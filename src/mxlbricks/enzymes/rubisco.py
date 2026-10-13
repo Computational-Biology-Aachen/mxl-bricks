@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Ribulose-1,5-bisphosphate carboxylase/oxygenase.
 
 Enzyme catalysing both carboxylation as well as oxygenation of ribulose-1,5-bisphosphate

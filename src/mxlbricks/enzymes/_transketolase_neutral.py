@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """X5P + GAP <=> X5P + GAP.
 
 F6P + E4P <=> F6P + E4P

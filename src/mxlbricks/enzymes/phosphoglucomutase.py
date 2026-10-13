@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """glucose phosphomutase.
 
 EC 5.4.2.2

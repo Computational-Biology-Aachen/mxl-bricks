@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """glycine decarboxylase.
 
 2 Glycine + NAD + 2 H2O ⇌ Serine + NH3 + NADH + CO2

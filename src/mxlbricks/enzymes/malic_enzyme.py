@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """malic enzyme == malate dehydrogenase decarboxylating.
 
 EC 1.1.1.39

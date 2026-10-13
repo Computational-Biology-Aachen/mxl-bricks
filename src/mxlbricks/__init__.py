@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Pre-defined reaction building blocks for mechanistic ODE models."""
 
 from __future__ import annotations

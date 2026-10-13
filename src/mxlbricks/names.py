@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """Standardized name constructors for metabolites, enzymes, and kinetic parameters."""
 
 from __future__ import annotations

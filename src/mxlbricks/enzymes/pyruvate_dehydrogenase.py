@@ -1,3 +1,5 @@
+# Copyright 2025 Marvin van Aalst, Anna Matuszyńska
+
 """pyruvate dehydrogenase.
 
 EC 1.2.4.1
