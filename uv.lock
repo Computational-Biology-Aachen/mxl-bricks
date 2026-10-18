@@ -1,5 +1,5 @@
 version = 1
-revision = 5
+revision = 3
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -1847,7 +1847,7 @@ dev = [
 
 [[package]]
 name = "mxlpy"
-version = "0.60.0"
+version = "0.62.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dill" },
@@ -1877,9 +1877,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "wadler-lindig" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cf/74/8e58298f196c78f9476910b015a90e40ae12018ddde5b9746b2aca2698f2/mxlpy-0.60.0.tar.gz", hash = "sha256:9567c06242903441df1f91f71c2693516c2dccbad14b101997bf81a60219e395", size = 5468062, upload-time = "2026-10-09T07:38:47.963Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9f/f5/af8e0f9a7e27832be5fca993c977a1674448bb55298c4b01e0c5fdc87271/mxlpy-0.62.0.tar.gz", hash = "sha256:5123ad03667f07b40effa6832f84f558e52027bd3b6e5157aec40fada2ef5352", size = 5504670, upload-time = "2026-10-14T08:12:12.27Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/06/2a/8224e57ecf3f1cb2c68cb4dd26641237e9cbee5325d2a49361d9c1b1cda5/mxlpy-0.60.0-py3-none-any.whl", hash = "sha256:23dda9f1b4e9687397774d7bc004718467a1eec92f3c15c120fe651d4af9cbec", size = 313668, upload-time = "2026-10-09T07:38:45.652Z" },
+    { url = "https://files.pythonhosted.org/packages/17/e9/b7d5817d5fa6c0b8413488b4a87e21c75a7bdd4df7570c64ea8c06943fa6/mxlpy-0.62.0-py3-none-any.whl", hash = "sha256:75fb479f29c63ecd7426a1068cd792bb70c2b35f89d3b4df25ecbcc0e9a1544c", size = 329740, upload-time = "2026-10-14T08:12:10.661Z" },
 ]
 
 [[package]]
@@ -2288,7 +2288,7 @@ wheels = [
 
 [[package]]
 name = "pre-commit"
-version = "4.6.2"
+version = "4.7.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cfgv" },
@@ -2297,9 +2297,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "virtualenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/74/89/1f3e8e1fc3e97de0fa963495832f581f025f29471602a309e48808244292/pre_commit-4.6.2.tar.gz", hash = "sha256:8f5d7bfb021ecdbcd9d49d89847082dd24172ccde534390081a679ad046e2441", size = 198670, upload-time = "2026-08-10T22:07:18.421Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3a/c3/6965c2690ddce885ec75121572d065a5b94c5a5d8d3e657927ecda9fd715/pre_commit-4.7.0.tar.gz", hash = "sha256:1f3deee12b914c8fa184bd2b5953391c2e4f36763e403d4a23dc9983fa7c6e86", size = 198120, upload-time = "2026-10-12T20:45:40.32Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/45/e2/bbb7129c9e7999a6b8ee9cca3b66486c25c423ab5a75f34071798b74ce94/pre_commit-4.6.2-py2.py3-none-any.whl", hash = "sha256:e2dde9a75d3bce11bd3831c26d134df00a2803c1d818be6a0383c3dcda25dc4e", size = 226202, upload-time = "2026-08-10T22:07:16.942Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/83/ce0a196e4f7b20b11ce3aa1fc72fb973f64b7628d51c1b8aebad37fb7f81/pre_commit-4.7.0-py2.py3-none-any.whl", hash = "sha256:2e229038ad3656081b70c27913157e4b636ef306f643f024a8a8e3f0f7b2f877", size = 226261, upload-time = "2026-10-12T20:45:38.858Z" },
 ]
 
 [[package]]
