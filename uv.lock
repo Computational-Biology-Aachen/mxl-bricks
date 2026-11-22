@@ -3,10 +3,10 @@ revision = 5
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.15' and sys_platform == 'win32'",
-    "python_full_version == '3.14.*' and sys_platform == 'win32'",
     "python_full_version >= '3.15' and sys_platform == 'emscripten'",
-    "python_full_version == '3.14.*' and sys_platform == 'emscripten'",
     "python_full_version >= '3.15' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version == '3.14.*' and sys_platform == 'win32'",
+    "python_full_version == '3.14.*' and sys_platform == 'emscripten'",
     "python_full_version == '3.14.*' and sys_platform != 'emscripten' and sys_platform != 'win32'",
     "python_full_version < '3.14' and sys_platform == 'win32'",
     "python_full_version < '3.14' and sys_platform == 'emscripten'",
@@ -1359,15 +1359,6 @@ wheels = [
 ]
 
 [[package]]
-name = "lazy-import"
-version = "0.2.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "six" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/44/2e/5378f9b9cbc893826c2ecb022646c97ece9efbaad351adf89425fff33990/lazy_import-0.2.2.tar.gz", hash = "sha256:2149aef8579459407c62cfeccf118527939c9931ace124f355236360644f8a3d", size = 15265, upload-time = "2018-01-22T02:19:32.029Z" }
-
-[[package]]
 name = "loky"
 version = "3.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1877,13 +1868,12 @@ dev = [
 
 [[package]]
 name = "mxlpy"
-version = "0.68.0"
+version = "0.72.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dill" },
     { name = "kiwisolver" },
     { name = "latexify-py" },
-    { name = "lazy-import" },
     { name = "loky" },
     { name = "matplotlib" },
     { name = "mike" },
@@ -1907,9 +1897,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "wadler-lindig" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9e/69/0f6f241b02688356a91009f93b23bfbdf908e429e665cf8a1aa562be1909/mxlpy-0.68.0.tar.gz", hash = "sha256:588bd7154bca41cef09cba2363c8ad2d372415650c9618e8e9d8a748d9377ac3", size = 5718475, upload-time = "2026-11-10T07:34:04.601Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/de/3d/7663b65947434711599aa2a3bc05e9dfd18c2ea0676c7b26d37b23215193/mxlpy-0.72.0.tar.gz", hash = "sha256:9012a08657982017465ba638a0b71e6262e1b89fb43a2643d0e317fae5c29d14", size = 5779699, upload-time = "2026-11-18T14:52:05.797Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/49/24/4feb30576eb07cb9bd850d891423efd0fd57d28aa7a773bbcf7532e9603b/mxlpy-0.68.0-py3-none-any.whl", hash = "sha256:cb0db74b2255cff17b78a2aa67698bf4fdf9f9a50edeb1d77a9d8417094a60b9", size = 471908, upload-time = "2026-11-10T07:34:02.369Z" },
+    { url = "https://files.pythonhosted.org/packages/91/5f/1322a80c58222f5c7c3afbba84086213b9d7224d05a217710d71747b2e55/mxlpy-0.72.0-py3-none-any.whl", hash = "sha256:7a6e25b7f9bcb865d7199ffa928d4a1d06354909b4388c47c4c6fce4d932afd7", size = 506536, upload-time = "2026-11-18T14:52:03.686Z" },
 ]
 
 [[package]]
